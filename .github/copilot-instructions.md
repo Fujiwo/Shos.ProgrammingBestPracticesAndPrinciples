@@ -29,16 +29,23 @@ This is a Japanese documentation repository focused on writing a book about prog
 ### Key Directories
 ```
 /
-├── README.md                     # Basic repository description
-├── LICENSE                       # MIT License
+├── README.md                     # Repository description with current status
+├── LICENSE                       # MIT License  
+├── レビュー結果_001.md           # Review results and improvement plans
+├── MarkDown/                     # Book content (5 chapters completed)
+│   ├── 目次.md                   # Table of contents
+│   ├── 第1章_美しいソースコードの基本原則.md
+│   ├── 第2章_命名の重要性とベストプラクティス.md
+│   ├── 第3章_モデリングとしてのプログラミング.md
+│   ├── 第4章_マルチパラダイムプログラミング.md
+│   └── 第5章_オブジェクト指向設計の真髄.md
 ├── 参考資料/                     # Reference materials folder
 │   ├── AIによるまとめ/           # AI-generated summaries
-│   ├── 元資料/                   # Original source materials
-│   └── 参照用/                   # Reference files
-├── 計画と進捗/                   # Planning and progress folder
-│   ├── issue.001.md             # Main project specification
-│   └── 計画と進捗.md             # Progress tracking
-└── MarkDown/                     # Book content (to be created)
+│   ├── 元資料/                   # Original source materials (PPT, etc.)
+│   └── 参照用/                   # Reference files (PDF, TXT)
+└── 計画と進捗/                   # Planning and progress folder
+    ├── issue.001.md             # Main project specification
+    └── 計画と進捗.md             # Progress tracking
 ```
 
 ### Common Navigation Commands
@@ -60,9 +67,12 @@ find . -name "*.md" -type f
 
 ### Key Reference Files to Review
 1. `計画と進捗/issue.001.md` - Main project specification and requirements
-2. `参考資料/AIによるまとめ/*.md` - AI-generated summaries of programming concepts
-3. `参考資料/元資料/プログラミングのコツ.txt` - Programming tips and principles
-4. `参考資料/元資料/*.pptx` - Original presentation materials (cannot be edited directly)
+2. `計画と進捗/計画と進捗.md` - Current progress tracking with detailed statistics
+3. `レビュー結果_001.md` - Review results and improvement recommendations
+4. `MarkDown/目次.md` - Current table of contents and chapter structure
+5. `参考資料/AIによるまとめ/*.md` - AI-generated summaries of programming concepts
+6. `参考資料/元資料/プログラミングのコツ.txt` - Programming tips and principles
+7. `参考資料/元資料/*.pptx` - Original presentation materials (cannot be edited directly)
 
 ### Understanding the Content
 - The materials focus on "beautiful code" principles, object-oriented programming, and software quality
@@ -81,14 +91,18 @@ find . -name "*.md" -type f
 
 ### Workflow Steps
 1. **Read Reference Materials**: Start with `参考資料/AIによるまとめ/` files for summaries
-2. **Create Outline**: Develop detailed table of contents and chapter summaries
-3. **Write Draft**: Create chapter-by-chapter drafts in `MarkDown/` folder
-4. **Review and Revise**: Iterate on content with reviews
+2. **Review Current Progress**: Check `計画と進捗/計画と進捗.md` for current status
+3. **Create/Update Outline**: Work with detailed table of contents in `MarkDown/目次.md`
+4. **Write Draft**: Create chapter-by-chapter drafts in `MarkDown/` folder
+5. **Review and Revise**: Use review process documented in `レビュー結果_001.md`
+6. **Update Documentation**: Keep README.md and progress files current
 
 ### File Organization
-- Store finished markdown files in `MarkDown/` folder (create if needed)
-- Update README.md as appropriate
-- Reference source materials when creating content
+- Store finished markdown files in `MarkDown/` folder (already exists with 5 completed chapters)
+- Update README.md to reflect current progress and status
+- Update `計画と進捗/計画と進捗.md` with progress tracking
+- Reference source materials appropriately when creating content
+- Follow the review process documented in `レビュー結果_001.md`
 
 ## Common Tasks
 
@@ -102,17 +116,28 @@ git log --oneline -5
 
 # See all files in reference materials
 ls -la 参考資料/*/
+
+# Check current book progress
+cat 計画と進捗/計画と進捗.md
+
+# View table of contents
+cat MarkDown/目次.md
+
+# Check completed chapters
+ls -la MarkDown/第*.md
 ```
 
 ### Create Book Content Structure
 ```bash
-# Create MarkDown folder if it doesn't exist
-mkdir -p MarkDown
+# MarkDown folder already exists with content - check current structure
+ls -la MarkDown/
 
-# Create chapter structure (example)
-mkdir -p MarkDown/chapters
-touch MarkDown/目次.md
-touch MarkDown/chapters/第1章_プログラミングの基本原則.md
+# Create new chapter files (example)
+touch MarkDown/第6章_テスト駆動開発とTestable設計.md
+
+# Create appendix files (example)
+mkdir -p MarkDown/appendix
+touch MarkDown/appendix/付録A_美しいソースコードのための七箇条.md
 ```
 
 ### Work with Japanese File Names
@@ -127,6 +152,9 @@ touch MarkDown/chapters/第1章_プログラミングの基本原則.md
 - Ensure proper citation when using content from reference files
 - Maintain consistent Japanese writing style (だ・である体)
 - Include code examples as specified in requirements
+- Follow the review process established in `レビュー結果_001.md`
+- Check for completeness against `参考資料` content as documented in reviews
+- Verify no duplication between chapters as noted in quality assessments
 
 ### No Technical Validation Needed
 - **DO NOT run linting tools** - there is no code to lint
@@ -138,10 +166,11 @@ touch MarkDown/chapters/第1章_プログラミングの基本原則.md
 
 ### Expected File Types
 - `.md` - Markdown documentation and book content
-- `.txt` - Reference text files
+- `.txt` - Reference text files  
 - `.pptx` - Presentation files (read-only reference)
 - `.pdf` - PDF reference materials
-- Audio/video files - Reference materials from AI tools
+- `.m4a`, `.mp4` - Audio/video files from AI tools (reference materials)
+- `.png` - Image files (mind maps, diagrams)
 
 ### Files You Won't Find
 - No `.cs`, `.java`, `.py`, `.js` source code files
@@ -149,13 +178,36 @@ touch MarkDown/chapters/第1章_プログラミングの基本原則.md
 - No test files or test frameworks
 - No CI/CD workflows or deployment scripts
 
+## Current Project Status
+
+### Progress Summary
+- **Completion Status**: 5 chapters completed (50% of main content)
+- **Total Content**: 148,900+ characters across completed chapters
+- **Target**: 300+ pages (estimated 300,000 characters total)
+- **Review Process**: Established with documented feedback in `レビュー結果_001.md`
+
+### Completed Chapters
+1. **第1章**: 美しいソースコードの基本原則 (17,800文字)
+2. **第2章**: 命名の重要性とベストプラクティス (15,800文字)  
+3. **第3章**: モデリングとしてのプログラミング (29,400文字)
+4. **第4章**: マルチパラダイムプログラミング (36,500文字)
+5. **第5章**: オブジェクト指向設計の真髄 (49,400文字)
+
+### Remaining Work
+- Chapters 6-10 (テスト駆動開発, リファクタリング, etc.)
+- Appendices A-E (七箇条詳細版, 命名規則, etc.)
+- Final review and quality improvements based on review feedback
+
+
 ## Getting Started Checklist
 
 When working in this repository:
 1. Read this instruction file completely
 2. Review `計画と進捗/issue.001.md` for project requirements
-3. Explore reference materials in `参考資料/AIによるまとめ/`
-4. Create `MarkDown/` folder if planning to write content
-5. Focus on documentation tasks, not code development
+3. Check `計画と進捗/計画と進捗.md` for current progress and statistics
+4. Review `レビュー結果_001.md` for quality feedback and improvement areas
+5. Explore reference materials in `参考資料/AIによるまとめ/`
+6. Check existing content in `MarkDown/` folder to understand current state
+7. Focus on documentation tasks, not code development
 
 **Remember: This is a documentation project. Do not waste time looking for build processes, tests, or applications that do not exist.**
