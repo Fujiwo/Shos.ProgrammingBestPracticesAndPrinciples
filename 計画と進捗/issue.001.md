@@ -1,7 +1,7 @@
 # "Programming Best Practices and Principles" という本の執筆
 
 "Programming Best Practices and Principles" という本を執筆してください。
-参考資料の内容を、すべて網羅する形で、重複なく、わかりやすくまとめてください。
+参考資料の内容を、すべて完全に網羅する形で、重複なく、わかりやすくまとめてください。
 
 ## 参考資料
 
