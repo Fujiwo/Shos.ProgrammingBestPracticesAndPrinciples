@@ -83,7 +83,7 @@ public class OrderProcessor
 
 Testableな設計では、各依存関係が明確に分離され、個別にテストできる。
 
-#### 変更容易性（Modifiability）の向上
+#### 変更容易性（Ease of Change）の向上
 
 Testableな設計は自然と疎結合な設計となり、変更に対する耐性が向上する。
 
