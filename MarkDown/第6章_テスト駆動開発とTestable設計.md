@@ -1,8 +1,8 @@
-# 第6章　テスト駆動開発とTestable設計
+# 第6章 テスト駆動開発とTestable設計
 
-## 6.1　Testableな設計の重要性
+## 6.1 Testableな設計の重要性
 
-### 6.1.1　Testableとは何か
+### 6.1.1 Testableとは何か
 
 美しいソースコードのための七箇条の最後に掲げられる「Testable」は、単にテストが書けるということ以上の深い意味を持つ。Testableな設計とは、**正しい記述であることが分かり、検証が容易であること**を意味する。
 
@@ -10,11 +10,11 @@
 
 この原則は、ソフトウェアの品質保証の根幹をなす。テストできないコードは、事実上「ブラックボックス」であり、期待通りに動作するかどうかを客観的に判断する手段が存在しない。
 
-### 6.1.2　Testabilityが品質に与える影響
+### 6.1.2 Testabilityが品質に与える影響
 
-Testableな設計は、非機能品質の向上に直接的に寄与する：
+Testableな設計は、非機能品質の向上に直接的に寄与する:
 
-#### 理解容易性（Understandability）の向上
+#### 理解容易性(Understandability)の向上
 
 ```csharp
 // Testableでない設計例
@@ -83,12 +83,12 @@ public class OrderProcessor
 
 Testableな設計では、各依存関係が明確に分離され、個別にテストできる。
 
-#### 変更容易性（Ease of Change）の向上
+#### 変更容易性(Ease of Change)の向上
 
 Testableな設計は自然と疎結合な設計となり、変更に対する耐性が向上する。
 
 ```csharp
-// テスト例：支払い処理の失敗ケース
+// テスト例:支払い処理の失敗ケース
 [Test]
 public async Task ProcessOrder_PaymentFails_ReturnsPaymentFailedResult()
 {
@@ -121,14 +121,14 @@ public async Task ProcessOrder_PaymentFails_ReturnsPaymentFailedResult()
 }
 ```
 
-### 6.1.3　Testableな設計の原則
+### 6.1.3 Testableな設計の原則
 
-#### 依存性の注入（Dependency Injection）
+#### 依存性の注入(Dependency Injection)
 
 外部リソースや他のサービスへの依存は、コンストラクタやメソッドの引数として注入する。
 
 ```csharp
-// 悪い例：依存性がハードコーディングされている
+// 悪い例:依存性がハードコーディングされている
 public class UserService
 {
     public User GetUser(int id)
@@ -138,7 +138,7 @@ public class UserService
     }
 }
 
-// 良い例：依存性が注入される
+// 良い例:依存性が注入される
 public class UserService
 {
     private readonly IUserRepository _userRepository;
@@ -162,7 +162,7 @@ public class UserService
 ```python
 # 純粋関数の例
 def calculate_tax(price: float, tax_rate: float) -> float:
-    """純粋関数：同じ入力に対して常に同じ出力を返す"""
+    """純粋関数:同じ入力に対して常に同じ出力を返す"""
     return price * tax_rate
 
 # テストが簡単
@@ -208,13 +208,13 @@ public class BankAccount {
 }
 ```
 
-## 6.2　単体テストの基本原則
+## 6.2 単体テストの基本原則
 
-### 6.2.1　良いテストの特徴：F.I.R.S.T原則
+### 6.2.1 良いテストの特徴:F.I.R.S.T原則
 
-単体テストは以下の特徴を備えるべきである：
+単体テストは以下の特徴を備えるべきである:
 
-#### Fast（高速）
+#### Fast(高速)
 
 テストは迅速に実行されるべきである。開発者がテストを頻繁に実行することを妨げない速度でなければならない。
 
@@ -233,7 +233,7 @@ public void CalculateDiscount_ValidInput_ReturnsCorrectDiscount()
     Assert.AreEqual(15m, result);
 }
 
-// 遅いテストの例（避けるべき）
+// 遅いテストの例(避けるべき)
 [Test]
 public void GetUser_DatabaseIntegration_ReturnsUser()
 {
@@ -242,7 +242,7 @@ public void GetUser_DatabaseIntegration_ReturnsUser()
 }
 ```
 
-#### Independent（独立）
+#### Independent(独立)
 
 各テストは他のテストに依存せず、任意の順序で実行できるべきである。
 
@@ -261,7 +261,7 @@ class TestShoppingCart:
         assert cart.total == 0.00
 ```
 
-#### Repeatable（再現可能）
+#### Repeatable(再現可能)
 
 テストは任意の環境で同じ結果を得られるべきである。
 
@@ -283,7 +283,7 @@ describe('DateUtils', () => {
 });
 ```
 
-#### Self-Validating（自己検証）
+#### Self-Validating(自己検証)
 
 テストの結果は明確にパス/フェイルで判定できるべきである。
 
@@ -297,7 +297,7 @@ public void ValidateEmail_InvalidFormat_ReturnsFalse()
     Assert.IsFalse(result); // 明確な結果
 }
 
-// 悪い例：手動での結果確認が必要
+// 悪い例:手動での結果確認が必要
 [Test]
 public void PrintUserInfo_ValidUser_PrintsInformation()
 {
@@ -306,17 +306,17 @@ public void PrintUserInfo_ValidUser_PrintsInformation()
 }
 ```
 
-#### Timely（適時）
+#### Timely(適時)
 
 テストは、本体コードの直前または直後に書かれるべきである。
 
-### 6.2.2　テストの構造：AAA（Arrange-Act-Assert）パターン
+### 6.2.2 テストの構造:AAA(Arrange-Act-Assert)パターン
 
 ```csharp
 [Test]
 public void CalculateShippingCost_DomesticOrder_ReturnsStandardRate()
 {
-    // Arrange：テストの準備
+    // Arrange:テストの準備
     var calculator = new ShippingCalculator();
     var order = new Order 
     { 
@@ -325,15 +325,15 @@ public void CalculateShippingCost_DomesticOrder_ReturnsStandardRate()
         IsInternational = false 
     };
     
-    // Act：テスト対象の実行
+    // Act:テスト対象の実行
     var cost = calculator.CalculateShippingCost(order);
     
-    // Assert：結果の検証
+    // Assert:結果の検証
     Assert.AreEqual(500m, cost);
 }
 ```
 
-### 6.2.3　テストケースの設計原則
+### 6.2.3 テストケースの設計原則
 
 #### 境界値テスト
 
@@ -366,21 +366,21 @@ public void validateAge_EquivalenceClasses() {
 }
 ```
 
-## 6.3　テスト駆動開発（TDD）の実践
+## 6.3 テスト駆動開発(TDD)の実践
 
-### 6.3.1　TDDの基本サイクル：Red-Green-Refactor
+### 6.3.1 TDDの基本サイクル:Red-Green-Refactor
 
-テスト駆動開発は以下の3つのステップを繰り返す：
+テスト駆動開発は以下の3つのステップを繰り返す:
 
-![テスト駆動開発（TDD）サイクル](Images/tdd-cycle-flowchart.md)
+![テスト駆動開発(TDD)サイクル](Images/tdd-cycle-flowchart.md)
 
-1. **Red**：失敗するテストを書く
-2. **Green**：テストを通す最小限のコードを書く
-3. **Refactor**：コードを改善する
+1. **Red**:失敗するテストを書く
+2. **Green**:テストを通す最小限のコードを書く
+3. **Refactor**:コードを改善する
 
-### 6.3.2　TDDの実践例：電卓クラスの開発
+### 6.3.2 TDDの実践例:電卓クラスの開発
 
-#### ステップ1：Red - 失敗するテストを書く
+#### ステップ1:Red - 失敗するテストを書く
 
 ```csharp
 [Test]
@@ -399,7 +399,7 @@ public void Add_TwoPositiveNumbers_ReturnsSum()
 
 この時点では`Calculator`クラスが存在しないため、コンパイルエラーとなる。
 
-#### ステップ2：Green - 最小限の実装
+#### ステップ2:Green - 最小限の実装
 
 ```csharp
 public class Calculator
@@ -413,7 +413,7 @@ public class Calculator
 
 テストは通るが、実装は不完全である。
 
-#### ステップ3：より多くのテストケース
+#### ステップ3:より多くのテストケース
 
 ```csharp
 [Test]
@@ -427,7 +427,7 @@ public void Add_DifferentNumbers_ReturnsCorrectSum()
 }
 ```
 
-#### ステップ4：適切な実装への改善
+#### ステップ4:適切な実装への改善
 
 ```csharp
 public class Calculator
@@ -439,7 +439,7 @@ public class Calculator
 }
 ```
 
-#### ステップ5：Refactor - より複雑な機能の追加
+#### ステップ5:Refactor - より複雑な機能の追加
 
 ```csharp
 [Test]
@@ -476,11 +476,11 @@ public class Calculator
 }
 ```
 
-### 6.3.3　TDDの利点
+### 6.3.3 TDDの利点
 
 #### 設計の改善
 
-TDDを実践すると、自然とTestableな設計になる：
+TDDを実践すると、自然とTestableな設計になる:
 
 ```csharp
 // TDDで開発された銀行口座クラス
@@ -524,7 +524,7 @@ public class BankAccount
 }
 ```
 
-このクラスは以下のようなテストによって開発された：
+このクラスは以下のようなテストによって開発された:
 
 ```csharp
 [Test]
@@ -564,16 +564,16 @@ public void Withdraw_InsufficientFunds_ThrowsException()
 }
 ```
 
-## 6.4　テストコードの品質向上
+## 6.4 テストコードの品質向上
 
-### 6.4.1　テストコードも美しくあるべき
+### 6.4.1 テストコードも美しくあるべき
 
 テストコードは本体コードと同じように品質を保つべきである。美しいソースコードのための七箇条は、テストコードにも適用される。
 
 #### 意図を表現するテストコード
 
 ```csharp
-// 悪い例：意図が不明確
+// 悪い例:意図が不明確
 [Test]
 public void Test1()
 {
@@ -582,7 +582,7 @@ public void Test1()
     Assert.AreEqual(5, y);
 }
 
-// 良い例：意図が明確
+// 良い例:意図が明確
 [Test]
 public void Add_TwoPositiveIntegers_ReturnsCorrectSum()
 {
@@ -603,7 +603,7 @@ public void Add_TwoPositiveIntegers_ReturnsCorrectSum()
 #### テストコードの単一責務原則
 
 ```python
-# 悪い例：複数のことをテストしている
+# 悪い例:複数のことをテストしている
 def test_user_operations():
     user = User("John", "john@example.com")
     
@@ -619,7 +619,7 @@ def test_user_operations():
     user.update_profile({"bio": "Software Developer"})
     assert user.profile["bio"] == "Software Developer"
 
-# 良い例：単一の責務
+# 良い例:単一の責務
 def test_user_creation_with_valid_data():
     user = User("John", "john@example.com")
     assert user.name == "John"
@@ -636,7 +636,7 @@ def test_profile_update_sets_bio():
     assert user.profile["bio"] == "Software Developer"
 ```
 
-### 6.4.2　テストデータの管理
+### 6.4.2 テストデータの管理
 
 #### ファクトリーパターンの活用
 
@@ -730,7 +730,7 @@ public void validateUser_InactiveUser_ReturnsFalse() {
 }
 ```
 
-### 6.4.3　モックとスタブの効果的活用
+### 6.4.3 モックとスタブの効果的活用
 
 #### モックの使用例
 
@@ -791,21 +791,21 @@ def test_user_registration_sends_welcome_email():
     assert "Welcome" in email_service.sent_emails[0]['subject']
 ```
 
-## 6.5　実践演習：TDDによる開発
+## 6.5 実践演習:TDDによる開発
 
-### 6.5.1　演習課題：図書館管理システム
+### 6.5.1 演習課題:図書館管理システム
 
 以下の要件に従って、TDDで図書館管理システムの一部を開発してみよう。
 
 #### 要件
-1. 書籍には以下の情報がある：ISBN、タイトル、著者、貸出状況
+1. 書籍には以下の情報がある:ISBN、タイトル、著者、貸出状況
 2. 書籍は貸出、返却ができる
 3. 既に貸出中の書籍は貸出できない
 4. 存在しない書籍は操作できない
 5. 利用者は複数の書籍を借りることができる
 6. 利用者は貸出中の書籍一覧を確認できる
 
-#### ステップ1：書籍クラスのテスト
+#### ステップ1:書籍クラスのテスト
 
 ```csharp
 [Test]
@@ -866,7 +866,7 @@ public void Return_CheckedOutBook_MarksAsAvailable()
 }
 ```
 
-#### ステップ2：実装
+#### ステップ2:実装
 
 ```csharp
 public class Book
@@ -904,7 +904,7 @@ public class Book
 }
 ```
 
-#### ステップ3：図書館クラスのテスト
+#### ステップ3:図書館クラスのテスト
 
 ```csharp
 [Test]
@@ -953,7 +953,7 @@ public void CheckOutBook_NonExistentBook_ReturnsFalse()
 }
 ```
 
-#### ステップ4：図書館クラスの実装
+#### ステップ4:図書館クラスの実装
 
 ```csharp
 public class Library
@@ -1003,7 +1003,7 @@ public class Library
 }
 ```
 
-### 6.5.2　演習のポイント
+### 6.5.2 演習のポイント
 
 #### TDDサイクルの実践
 1. **Red**: 失敗するテストを先に書く
@@ -1011,14 +1011,14 @@ public class Library
 3. **Refactor**: コードの改善
 
 #### 設計の自然な改善
-TDDを実践することで、以下の設計改善が自然に生まれる：
+TDDを実践することで、以下の設計改善が自然に生まれる:
 - **カプセル化**: 状態変更は適切なメソッドを通して行う
 - **単一責務**: 各クラスが明確な責務を持つ
 - **Testability**: 依存関係が明確で、テストしやすい構造
 
 #### より高度な要求への対応
 
-利用者管理機能を追加する場合：
+利用者管理機能を追加する場合:
 
 ```csharp
 [Test]
@@ -1042,7 +1042,7 @@ public void CheckOutBook_ToMember_RecordsTransaction()
 
 このテストによって、`Member`クラスの必要性と`Library`クラスの機能拡張が明確になる。
 
-### 6.5.3　演習の発展課題
+### 6.5.3 演習の発展課題
 
 1. **貸出期限の管理**: 書籍に貸出日と返却期限を追加
 2. **延滞料金の計算**: 期限切れの書籍に対する料金計算

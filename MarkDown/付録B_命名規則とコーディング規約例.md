@@ -1,8 +1,8 @@
-# 付録B　命名規則とコーディング規約例
+# 付録B 命名規則とコーディング規約例
 
-## B.1　基本的な命名規則
+## B.1 基本的な命名規則
 
-### B.1.1　C#命名規則
+### B.1.1 C#命名規則
 
 #### クラス・インターフェース・構造体
 ```csharp
@@ -16,7 +16,7 @@ public enum OrderStatus { }
 public interface IEmailService { }
 public interface IDataRepository<T> { }
 
-// 抽象クラスには Abstract プレフィックス（オプション）
+// 抽象クラスには Abstract プレフィックス(オプション)
 public abstract class AbstractCustomerProcessor { }
 
 // 例外クラスには Exception サフィックス
@@ -67,67 +67,67 @@ public enum OrderStatus
 }
 ```
 
-### B.1.2　Java命名規則
+### B.1.2 Java命名規則
 
 ```java
-// クラス：PascalCase
+// クラス:PascalCase
 public class CustomerService { }
 
-// インターフェース：PascalCase（I プレフィックスなし）
+// インターフェース:PascalCase(I プレフィックスなし)
 public interface CustomerRepository { }
 
-// メソッド・変数：camelCase
+// メソッド・変数:camelCase
 public void processOrder(String customerName, int orderId) {
     List<Order> processedOrders = getOrders(orderId);
     CustomerInfo customerInfo = getCustomerInfo(customerName);
 }
 
-// 定数：SCREAMING_SNAKE_CASE
+// 定数:SCREAMING_SNAKE_CASE
 public static final int MAX_RETRY_COUNT = 3;
 public static final String DEFAULT_CURRENCY = "JPY";
 
-// パッケージ：小文字、ドット区切り
+// パッケージ:小文字、ドット区切り
 package com.company.project.domain.customer;
 ```
 
-### B.1.3　Python命名規則
+### B.1.3 Python命名規則
 
 ```python
-# クラス：PascalCase
+# クラス:PascalCase
 class CustomerService:
     pass
 
-# 関数・変数：snake_case
+# 関数・変数:snake_case
 def process_order(customer_name, order_id):
     processed_orders = get_orders(order_id)
     customer_info = get_customer_info(customer_name)
     return processed_orders
 
-# 定数：SCREAMING_SNAKE_CASE
+# 定数:SCREAMING_SNAKE_CASE
 MAX_RETRY_COUNT = 3
 DEFAULT_CURRENCY = "JPY"
 
-# プライベート：アンダースコアプレフィックス
+# プライベート:アンダースコアプレフィックス
 class CustomerService:
     def __init__(self):
         self._connection_string = ""
         self.__private_data = {}  # 強いプライベート
 ```
 
-### B.1.4　JavaScript/TypeScript命名規則
+### B.1.4 JavaScript/TypeScript命名規則
 
 ```javascript
-// クラス：PascalCase
+// クラス:PascalCase
 class CustomerService { }
 
-// 関数・変数：camelCase
+// 関数・変数:camelCase
 function processOrder(customerName, orderId) {
     const processedOrders = getOrders(orderId);
     const customerInfo = getCustomerInfo(customerName);
     return processedOrders;
 }
 
-// 定数：SCREAMING_SNAKE_CASE または camelCase
+// 定数:SCREAMING_SNAKE_CASE または camelCase
 const MAX_RETRY_COUNT = 3;
 const defaultCurrency = "JPY";
 
@@ -138,9 +138,9 @@ interface CustomerRepository {
 }
 ```
 
-## B.2　ドメイン駆動な命名
+## B.2 ドメイン駆動な命名
 
-### B.2.1　ビジネス概念の表現
+### B.2.1 ビジネス概念の表現
 
 ```csharp
 // ❌ 技術的な名前
@@ -165,7 +165,7 @@ public class OrderProcessor
 }
 ```
 
-### B.2.2　ユビキタス言語の活用
+### B.2.2 ユビキタス言語の活用
 
 ```csharp
 // ECサイトドメインの例
@@ -194,7 +194,7 @@ public class Account
 }
 ```
 
-### B.2.3　動詞の選択指針
+### B.2.3 動詞の選択指針
 
 #### 作成・生成系
 ```csharp
@@ -261,9 +261,9 @@ public bool VerifyPaymentMethod(PaymentMethod paymentMethod) { }
 public void EnsureCustomerExists(CustomerId customerId) { }
 ```
 
-## B.3　コーディング規約例
+## B.3 コーディング規約例
 
-### B.3.1　C#コーディング規約
+### B.3.1 C#コーディング規約
 
 #### ファイル構成
 ```csharp
@@ -401,11 +401,11 @@ public class Calculator
 }
 ```
 
-### B.3.2　メソッド設計規約
+### B.3.2 メソッド設計規約
 
 #### メソッドサイズ
 ```csharp
-// ✅ 適切なサイズ（10行以内が理想）
+// ✅ 適切なサイズ(10行以内が理想)
 public ValidationResult ValidateEmail(string email)
 {
     if (string.IsNullOrEmpty(email))
@@ -447,7 +447,7 @@ public class CustomerCreationRequest
 }
 ```
 
-### B.3.3　例外処理規約
+### B.3.3 例外処理規約
 
 #### 例外の種類と使い分け
 ```csharp
@@ -485,7 +485,7 @@ public class CustomerNotFoundException : Exception
 }
 ```
 
-### B.3.4　非同期処理規約
+### B.3.4 非同期処理規約
 
 ```csharp
 // ✅ 非同期メソッドの命名とシグネチャ
@@ -514,63 +514,63 @@ public class CustomerService
 }
 ```
 
-## B.4　コード品質チェックリスト
+## B.4 コード品質チェックリスト
 
 美しいソースコードを書くためのチェックリストを以下に示す。これらは日常的な開発やコードレビューで活用できる。
 
 ![コーディング規約チェックリスト集](Images/coding-standards-checklist.md)
 
-### B.4.1　命名チェックリスト
+### B.4.1 命名チェックリスト
 
 #### クラス・メソッド名
-- [ ] 名前から機能が想像できるか？
-- [ ] 省略語を避けているか？
-- [ ] 一貫した動詞を使用しているか？
-- [ ] ビジネス概念を反映しているか？
+- [ ] 名前から機能が想像できるか?
+- [ ] 省略語を避けているか?
+- [ ] 一貫した動詞を使用しているか?
+- [ ] ビジネス概念を反映しているか?
 
 #### 変数名
-- [ ] 役割が明確か？
-- [ ] スコープに適した長さか？
-- [ ] 型情報を名前に含めていないか？
-- [ ] 否定形を避けているか？
+- [ ] 役割が明確か?
+- [ ] スコープに適した長さか?
+- [ ] 型情報を名前に含めていないか?
+- [ ] 否定形を避けているか?
 
 #### ブール値
-- [ ] Is/Has/Can で始まっているか？
-- [ ] 肯定形で表現されているか？
-- [ ] 意味が明確か？
+- [ ] Is/Has/Can で始まっているか?
+- [ ] 肯定形で表現されているか?
+- [ ] 意味が明確か?
 
-### B.4.2　コード構造チェックリスト
+### B.4.2 コード構造チェックリスト
 
 #### メソッド設計
-- [ ] 単一責務を守っているか？
-- [ ] 適切なサイズか（15行以内）？
-- [ ] パラメータ数は適切か（3個以内が理想）？
-- [ ] 戻り値の型は適切か？
+- [ ] 単一責務を守っているか?
+- [ ] 適切なサイズか(15行以内)?
+- [ ] パラメータ数は適切か(3個以内が理想)?
+- [ ] 戻り値の型は適切か?
 
 #### クラス設計
-- [ ] 凝集度が高いか？
-- [ ] 結合度が低いか？
-- [ ] 依存関係が明確か？
-- [ ] テストしやすい構造か？
+- [ ] 凝集度が高いか?
+- [ ] 結合度が低いか?
+- [ ] 依存関係が明確か?
+- [ ] テストしやすい構造か?
 
 #### エラーハンドリング
-- [ ] 適切な例外型を使用しているか？
-- [ ] メッセージが分かりやすいか？
-- [ ] ログ出力は適切か？
-- [ ] リソースの解放は適切か？
+- [ ] 適切な例外型を使用しているか?
+- [ ] メッセージが分かりやすいか?
+- [ ] ログ出力は適切か?
+- [ ] リソースの解放は適切か?
 
-### B.4.3　パフォーマンスチェックリスト
+### B.4.3 パフォーマンスチェックリスト
 
 #### 非同期処理
-- [ ] I/O操作で async/await を使用しているか？
-- [ ] CancellationToken を適切に使用しているか？
-- [ ] ConfigureAwait(false) を適切に使用しているか？
-- [ ] デッドロックの可能性はないか？
+- [ ] I/O操作で async/await を使用しているか?
+- [ ] CancellationToken を適切に使用しているか?
+- [ ] ConfigureAwait(false) を適切に使用しているか?
+- [ ] デッドロックの可能性はないか?
 
 #### メモリ使用
-- [ ] 不要なオブジェクト生成を避けているか？
-- [ ] IDisposable の実装は適切か？
-- [ ] using文を適切に使用しているか？
-- [ ] メモリリークの可能性はないか？
+- [ ] 不要なオブジェクト生成を避けているか?
+- [ ] IDisposable の実装は適切か?
+- [ ] using文を適切に使用しているか?
+- [ ] メモリリークの可能性はないか?
 
 この付録で示した命名規則とコーディング規約は、チーム開発において一貫性を保つための基盤となる。これらの規約を遵守することで、コードの可読性と保守性が大幅に向上し、開発効率の向上につながる。

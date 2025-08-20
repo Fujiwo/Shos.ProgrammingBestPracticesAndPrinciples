@@ -1,12 +1,12 @@
-# 付録A　美しいソースコードのための七箇条（詳細版）
+# 付録A 美しいソースコードのための七箇条(詳細版)
 
-## A.1　第一箇条：意図を表現
+## A.1 第一箇条:意図を表現
 
-### A.1.1　意図表現の本質
+### A.1.1 意図表現の本質
 
-「意図を表現」とは、ソースコードが**「何をやりたいか」**という目的を明確に示し、かつその意図以外の不要な記述（ノイズ）が少ない状態を指す。これは美しいソースコードの最も重要な原則である。
+「意図を表現」とは、ソースコードが**「何をやりたいか」**という目的を明確に示し、かつその意図以外の不要な記述(ノイズ)が少ない状態を指す。これは美しいソースコードの最も重要な原則である。
 
-#### 良い例：意図が明確なコード
+#### 良い例:意図が明確なコード
 ```csharp
 // ✅ 意図が明確
 public List<Customer> GetActiveCustomers()
@@ -22,7 +22,7 @@ public decimal CalculateMonthlyRevenue(DateTime month)
 }
 ```
 
-#### 悪い例：意図が不明確なコード
+#### 悪い例:意図が不明確なコード
 ```csharp
 // ❌ 意図が不明確
 public List<Customer> GetData()
@@ -39,7 +39,7 @@ public List<Customer> GetData()
 }
 ```
 
-### A.1.2　ノイズの最小化
+### A.1.2 ノイズの最小化
 
 **ノイズ**とは、コードの意図とは直接関係のない、実装の詳細や構文上の記述を指す。
 
@@ -62,7 +62,7 @@ foreach (var customer in customers.Where(HasOrders))
 }
 ```
 
-### A.1.3　実践ガイドライン
+### A.1.3 実践ガイドライン
 
 1. **メソッド名で意図を表現する**
 2. **変数名で役割を明確にする**
@@ -70,9 +70,9 @@ foreach (var customer in customers.Where(HasOrders))
 4. **複雑な条件式には意味のある名前を付ける**
 5. **マジックナンバーを定数で置き換える**
 
-## A.2　第二箇条：単一責務の原則
+## A.2 第二箇条:単一責務の原則
 
-### A.2.1　単一責務の定義
+### A.2.1 単一責務の定義
 
 一つのクラス、メソッド、変数は**一つの責務のみ**を持つべきである。変更が起こる理由は一つであるべきという原則。
 
@@ -109,7 +109,7 @@ public class CustomerValidator
 }
 ```
 
-### A.2.2　メソッドレベルでの単一責務
+### A.2.2 メソッドレベルでの単一責務
 ```csharp
 // ❌ 複数の責務を持つメソッド
 public void ProcessOrder(Order order)
@@ -151,9 +151,9 @@ public void ProcessOrder(Order order)
 }
 ```
 
-## A.3　第三箇条：的確な名前付け
+## A.3 第三箇条:的確な名前付け
 
-### A.3.1　名前付けの重要性
+### A.3.1 名前付けの重要性
 
 名前付けは**モデリングの核心**である。適切な名前により、概念を明確化し、システムの理解を促進する。
 
@@ -164,7 +164,7 @@ public void ProcessOrder(Order order)
 4. **発音しやすい**
 5. **一貫性がある**
 
-### A.3.2　名前付けのパターン
+### A.3.2 名前付けのパターン
 
 #### 動詞の使い分け
 ```csharp
@@ -189,7 +189,7 @@ public bool HasOrders { get; }
 public bool CanProcess { get; }
 ```
 
-### A.3.3　アンチパターン
+### A.3.3 アンチパターン
 ```csharp
 // ❌ 避けるべき名前付け
 public class CustomerInfo { } // Info は曖昧
@@ -199,9 +199,9 @@ public string str; // 型名の使用
 public void ProcessData(object data) // 汎用的すぎる
 ```
 
-## A.4　第四箇条：Once And Only Once
+## A.4 第四箇条:Once And Only Once
 
-### A.4.1　重複排除の原則
+### A.4.1 重複排除の原則
 
 同じ意図のコードが複数箇所に書かれていない状態。重複は保守性を著しく低下させる。
 
@@ -244,7 +244,7 @@ private void ApplyVolumeDiscount(Order order)
 }
 ```
 
-##### 2. 意図の重複（構造的重複）
+##### 2. 意図の重複(構造的重複)
 ```csharp
 // ❌ 構造的重複
 public bool IsValidEmail(string email)
@@ -270,7 +270,7 @@ public bool IsValidPhone(string phone) =>
     IsValidFormat(phone, p => p.Length >= 10);
 ```
 
-### A.4.2　設定の重複排除
+### A.4.2 設定の重複排除
 ```csharp
 // ❌ 設定値の重複
 public class EmailSettings
@@ -292,9 +292,9 @@ public static class ApplicationSettings
 }
 ```
 
-## A.5　第五箇条：的確に記述されたメソッド
+## A.5 第五箇条:的確に記述されたメソッド
 
-### A.5.1　適切な抽象化レベル
+### A.5.1 適切な抽象化レベル
 
 メソッド内が**同じ抽象化レベル**で統一されていること。
 
@@ -328,7 +328,7 @@ public void ProcessCustomerRegistration(CustomerRequest request)
 }
 ```
 
-### A.5.2　適切なメソッドサイズ
+### A.5.2 適切なメソッドサイズ
 
 #### 理想的なメソッドサイズ
 - **5-15行程度**が理想
@@ -352,25 +352,25 @@ public ValidationResult ValidateCustomer(Customer customer)
 }
 ```
 
-## A.6　第六箇条：ルールの統一
+## A.6 第六箇条:ルールの統一
 
-### A.6.1　コーディング規約の統一
+### A.6.1 コーディング規約の統一
 
 #### 命名規則
 ```csharp
-// クラス名：PascalCase
+// クラス名:PascalCase
 public class CustomerService { }
 
-// メソッド名：PascalCase
+// メソッド名:PascalCase
 public void ProcessOrder() { }
 
-// 変数名：camelCase
+// 変数名:camelCase
 private string customerName;
 
-// 定数：PascalCase
+// 定数:PascalCase
 public const int MaxRetryCount = 3;
 
-// プライベートフィールド：アンダースコア + camelCase
+// プライベートフィールド:アンダースコア + camelCase
 private readonly ICustomerRepository _customerRepository;
 ```
 
@@ -396,7 +396,7 @@ public class CustomerService
 }
 ```
 
-### A.6.2　エラーハンドリングの統一
+### A.6.2 エラーハンドリングの統一
 
 ```csharp
 // ✅ 統一されたエラーハンドリングパターン
@@ -428,9 +428,9 @@ public class StandardErrorHandling
 }
 ```
 
-## A.7　第七箇条：Testable
+## A.7 第七箇条:Testable
 
-### A.7.1　テスタブルな設計
+### A.7.1 テスタブルな設計
 
 コードが正しく動作していることを**検証しやすい**状態。
 
@@ -470,9 +470,9 @@ public class OrderService
 }
 ```
 
-### A.7.2　純粋関数の活用
+### A.7.2 純粋関数の活用
 ```csharp
-// ✅ 純粋関数（テストしやすい）
+// ✅ 純粋関数(テストしやすい)
 public static class TaxCalculator
 {
     public static decimal CalculateTax(decimal amount, decimal taxRate)
@@ -502,46 +502,46 @@ public void CalculateTax_ShouldReturnCorrectAmount()
 }
 ```
 
-## A.8　実践チェックリスト
+## A.8 実践チェックリスト
 
-### A.8.1　コードレビュー用チェックリスト
+### A.8.1 コードレビュー用チェックリスト
 
 #### 意図を表現
-- [ ] メソッド名から何をするか理解できるか？
-- [ ] 変数名から役割が明確か？
-- [ ] コメントなしで意図が理解できるか？
+- [ ] メソッド名から何をするか理解できるか?
+- [ ] 変数名から役割が明確か?
+- [ ] コメントなしで意図が理解できるか?
 
 #### 単一責務の原則
-- [ ] メソッドは一つのことだけをしているか？
-- [ ] クラスの変更理由は一つに限定されているか？
-- [ ] 責務が適切に分離されているか？
+- [ ] メソッドは一つのことだけをしているか?
+- [ ] クラスの変更理由は一つに限定されているか?
+- [ ] 責務が適切に分離されているか?
 
 #### 的確な名前付け
-- [ ] 名前から機能が想像できるか？
-- [ ] 一貫した命名規則に従っているか？
-- [ ] 略語を避けているか？
+- [ ] 名前から機能が想像できるか?
+- [ ] 一貫した命名規則に従っているか?
+- [ ] 略語を避けているか?
 
 #### Once And Only Once
-- [ ] 重複したコードはないか？
-- [ ] 同じ処理が複数箇所にないか？
-- [ ] 共通化できる部分はないか？
+- [ ] 重複したコードはないか?
+- [ ] 同じ処理が複数箇所にないか?
+- [ ] 共通化できる部分はないか?
 
 #### 的確に記述されたメソッド
-- [ ] 抽象化レベルが統一されているか？
-- [ ] メソッドサイズは適切か？
-- [ ] 一つの概念を表現しているか？
+- [ ] 抽象化レベルが統一されているか?
+- [ ] メソッドサイズは適切か?
+- [ ] 一つの概念を表現しているか?
 
 #### ルールの統一
-- [ ] コーディング規約に従っているか？
-- [ ] フォーマットが統一されているか？
-- [ ] エラーハンドリングが一貫しているか？
+- [ ] コーディング規約に従っているか?
+- [ ] フォーマットが統一されているか?
+- [ ] エラーハンドリングが一貫しているか?
 
 #### Testable
-- [ ] 依存関係が注入可能か？
-- [ ] 単体テストが書きやすいか？
-- [ ] 外部リソースへの依存を分離できているか？
+- [ ] 依存関係が注入可能か?
+- [ ] 単体テストが書きやすいか?
+- [ ] 外部リソースへの依存を分離できているか?
 
-### A.8.2　実装ガイドライン
+### A.8.2 実装ガイドライン
 
 #### 新機能実装時
 1. **要件の理解**: 何を実現したいかを明確にする

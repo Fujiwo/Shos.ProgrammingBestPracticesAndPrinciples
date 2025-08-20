@@ -1,12 +1,12 @@
-# 付録C　リファクタリングパターン集
+# 付録C リファクタリングパターン集
 
-## C.1　基本的なリファクタリングパターン
+## C.1 基本的なリファクタリングパターン
 
-### C.1.1　メソッド抽出（Extract Method）
+### C.1.1 メソッド抽出(Extract Method)
 
 最も基本的で効果的なリファクタリング手法。長いメソッドを意味のある単位に分割する。
 
-#### Before（リファクタリング前）
+#### Before(リファクタリング前)
 ```csharp
 public void ProcessOrder(Order order)
 {
@@ -45,7 +45,7 @@ public void ProcessOrder(Order order)
 }
 ```
 
-#### After（リファクタリング後）
+#### After(リファクタリング後)
 ```csharp
 public void ProcessOrder(Order order)
 {
@@ -95,7 +95,7 @@ private void SendOrderConfirmation(Order order)
 }
 ```
 
-### C.1.2　変数抽出（Extract Variable）
+### C.1.2 変数抽出(Extract Variable)
 
 複雑な式や意味のある値に名前を付けて理解しやすくする。
 
@@ -121,7 +121,7 @@ public bool IsEligibleForDiscount(Customer customer, Order order)
 }
 ```
 
-### C.1.3　条件式の統合（Consolidate Conditional Expression）
+### C.1.3 条件式の統合(Consolidate Conditional Expression)
 
 複数の条件が同じ結果を返す場合、条件式を統合して意図を明確にする。
 
@@ -156,9 +156,9 @@ private bool IsEligibleForDiscount(Customer customer)
 }
 ```
 
-## C.2　オブジェクト指向リファクタリング
+## C.2 オブジェクト指向リファクタリング
 
-### C.2.1　クラス抽出（Extract Class）
+### C.2.1 クラス抽出(Extract Class)
 
 一つのクラスが複数の責務を持っている場合、責務ごとにクラスを分離する。
 
@@ -225,7 +225,7 @@ public class Address
 }
 ```
 
-### C.2.2　委譲の導入（Introduce Delegation）
+### C.2.2 委譲の導入(Introduce Delegation)
 
 継承よりも委譲を使用してコードの柔軟性を向上させる。
 
@@ -280,7 +280,7 @@ public class RegularPricingStrategy : IPricingStrategy
 }
 ```
 
-### C.2.3　状態パターンの導入（Replace Conditional with State）
+### C.2.3 状態パターンの導入(Replace Conditional with State)
 
 複雑な状態遷移を状態パターンで整理する。
 
@@ -388,9 +388,9 @@ public class ShippedOrderState : IOrderState
 }
 ```
 
-## C.3　データ構造のリファクタリング
+## C.3 データ構造のリファクタリング
 
-### C.3.1　プリミティブ型の置換（Replace Primitive with Object）
+### C.3.1 プリミティブ型の置換(Replace Primitive with Object)
 
 プリミティブ型を意味のあるオブジェクトに置き換える。
 
@@ -458,7 +458,7 @@ public class PhoneNumber
 }
 ```
 
-### C.3.2　コレクションのカプセル化（Encapsulate Collection）
+### C.3.2 コレクションのカプセル化(Encapsulate Collection)
 
 コレクションへの直接アクセスを防ぎ、安全な操作メソッドを提供する。
 
@@ -474,7 +474,7 @@ public class Order
     }
 }
 
-// 使用例（問題のある使い方）
+// 使用例(問題のある使い方)
 var order = new Order();
 order.Items.Add(new OrderItem()); // 直接操作
 order.Items.Clear(); // 外部から全削除される可能性
@@ -517,13 +517,13 @@ public class Order
 }
 ```
 
-## C.4　レガシーコード対応パターン
+## C.4 レガシーコード対応パターン
 
-### C.4.1　特性化テストの導入（Characterization Tests）
+### C.4.1 特性化テストの導入(Characterization Tests)
 
 既存コードの動作を保護するテストを作成してからリファクタリングを実行する。
 
-#### ステップ1：現在の動作を記録
+#### ステップ1:現在の動作を記録
 ```csharp
 [Test]
 public void CharacterizeCurrentBehavior()
@@ -531,7 +531,7 @@ public void CharacterizeCurrentBehavior()
     // 既存システムの動作を記録するテスト
     var calculator = new LegacyPriceCalculator();
     
-    // 現在の動作を記録（意図通りかどうかは後で検証）
+    // 現在の動作を記録(意図通りかどうかは後で検証)
     Assert.AreEqual(1100, calculator.CalculatePrice(1000, "PREMIUM"));
     Assert.AreEqual(900, calculator.CalculatePrice(1000, "DISCOUNT"));
     Assert.AreEqual(1000, calculator.CalculatePrice(1000, "REGULAR"));
@@ -539,7 +539,7 @@ public void CharacterizeCurrentBehavior()
 }
 ```
 
-#### ステップ2：安全にリファクタリング
+#### ステップ2:安全にリファクタリング
 ```csharp
 // リファクタリング前
 public class LegacyPriceCalculator
@@ -583,11 +583,11 @@ public class PriceCalculator
 }
 ```
 
-### C.4.2　ストラングラーパターン（Strangler Pattern）
+### C.4.2 ストラングラーパターン(Strangler Pattern)
 
 レガシーシステムを段階的に新システムに置き換える。
 
-#### フェーズ1：プロキシの導入
+#### フェーズ1:プロキシの導入
 ```csharp
 public class CustomerServiceProxy : ICustomerService
 {
@@ -619,7 +619,7 @@ public class CustomerServiceProxy : ICustomerService
 }
 ```
 
-#### フェーズ2：段階的移行
+#### フェーズ2:段階的移行
 ```csharp
 public class MigrationCustomerService : ICustomerService
 {
@@ -649,9 +649,9 @@ public class MigrationCustomerService : ICustomerService
 }
 ```
 
-## C.5　パフォーマンス改善パターン
+## C.5 パフォーマンス改善パターン
 
-### C.5.1　遅延評価の導入（Introduce Lazy Evaluation）
+### C.5.1 遅延評価の導入(Introduce Lazy Evaluation)
 
 重い処理を必要になるまで遅延させる。
 
@@ -693,7 +693,7 @@ public class ProductCatalog
 }
 ```
 
-### C.5.2　メモ化の導入（Introduce Memoization）
+### C.5.2 メモ化の導入(Introduce Memoization)
 
 計算結果をキャッシュして同じ計算の繰り返しを避ける。
 
@@ -754,9 +754,9 @@ public class PriceCalculator
 }
 ```
 
-## C.6　リファクタリングの実践ガイドライン
+## C.6 リファクタリングの実践ガイドライン
 
-### C.6.1　安全なリファクタリング手順
+### C.6.1 安全なリファクタリング手順
 
 1. **テストの準備**: 既存の動作を保護するテストを作成
 2. **小さな変更**: 一度に一つのリファクタリングを実行
@@ -764,7 +764,7 @@ public class PriceCalculator
 4. **コミット**: 動作を確認できたら変更をコミット
 5. **反復**: 次のリファクタリングに進む
 
-### C.6.2　リファクタリングの優先順位
+### C.6.2 リファクタリングの優先順位
 
 #### 高優先度
 - **コードクローン**: 重複したコードの統合
@@ -782,7 +782,7 @@ public class PriceCalculator
 - **コメントの削除**: 自明なコメントの除去
 - **デッドコードの削除**: 使用されていないコードの除去
 
-### C.6.3　リファクタリング後の検証項目
+### C.6.3 リファクタリング後の検証項目
 
 - [ ] すべてのテストが通っているか
 - [ ] 新しいテストケースが必要か
