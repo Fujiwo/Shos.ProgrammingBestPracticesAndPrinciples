@@ -10,9 +10,12 @@
 
 ### 概念図・ダイアグラム
 - `seven-principles-overview.md` - 美しいソースコードのための七箇条の概要図
-- `solid-principles-diagram.md` - SOLID原則の詳細構造図
+- `solid-principles-diagram.md` - SOLID原則の詳細構造図  
 - `tdd-cycle-flowchart.md` - テスト駆動開発（TDD）のサイクル図
 - `refactoring-workflow.md` - リファクタリングのワークフロー図
+- `architecture-patterns-diagram.md` - アーキテクチャパターンと実践的設計
+- `team-development-workflow.md` - チーム開発における品質管理ワークフロー
+- `modeling-programming-concepts.md` - モデリングとしてのプログラミング概念図
 
 ### 比較表・チェックリスト
 - `programming-paradigms-comparison.md` - プログラミングパラダイムの比較表
