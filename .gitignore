@@ -1,0 +1,18 @@
+# Build artifacts and dependencies
+node_modules/
+package-lock.json
+*.log
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Editor artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+tmp/
+temp/
