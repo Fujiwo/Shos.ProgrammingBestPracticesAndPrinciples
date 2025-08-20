@@ -372,6 +372,8 @@ public void validateAge_EquivalenceClasses() {
 
 テスト駆動開発は以下の3つのステップを繰り返す：
 
+![テスト駆動開発（TDD）サイクル](Images/tdd-cycle-flowchart.md)
+
 1. **Red**：失敗するテストを書く
 2. **Green**：テストを通す最小限のコードを書く
 3. **Refactor**：コードを改善する
