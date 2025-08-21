@@ -1,0 +1,478 @@
+
+## NotebookLMによる解説コンテンツ
+
+以下は、本書の内容に関するNotebookLMによるまとめと解説である。
+
+### "The Art of Naming: How Code Speaks to Humans"
+
+[![The Art of Naming: How Code Speaks to Humans](http://img.youtube.com/vi/SjjrPdNgRbc/0.jpg)](https://www.youtube.com/watch?v=SjjrPdNgRbc)
+
+## 動画の文字起こし
+
+### **English (英語)**
+
+**(0:00)** Welcome to The Explainer. Today, we are getting into something that's at the absolute heart of good software development, but it's something we often get wrong: the art of naming things.
+
+**(0:10)** Okay, let's kick things off with a question that, well, if you're a developer, you know this feeling in your bones. You write some code, it's clean, it's clever, it works perfectly. But then you come back to it six months later, or worse, someone else does, and it's this tangled, unreadable mess. It's a nightmare to change. So, what happened?
+
+**(0:29)** Well, it turns out we're not just fighting against bad habits or tight deadlines. We're actually fighting a fundamental law of the universe. It's called software entropy.
+
+**(0:39)** You see, just like a clean room that naturally gets messy over time, software systems naturally tend towards disorder. As we add features, as requirements shift, as we slap on quick fixes, the complexity just spirals. What starts out simple and elegant inevitably gets tangled and chaotic.
+
+**(0:58)** And you know where the first symptoms of this rot almost always appear? In the names we choose. We see these vague, meaningless names like `tmpWork` or `flg`. I mean, a flag for what, exactly? We see weird abbreviations, mixed languages, names that are just plain misleading. These are the tiny cracks that eventually shatter a project's understandability.
+
+**(1:18)** So, how in the world do we fight back? According to programmer Fujio Kojima, the solution isn't some fancy new framework or tool. Nope. It's a fundamental shift in our perspective. It's about asking ourselves, who are we really writing this code for?
+
+**(1:34)** For the longest time, we've thought of programming as telling a machine *how* to do something, step-by-step. But Kojima argues that our main audience isn't the computer at all. It's the next human who has to read, understand, and change our code. So our goal shouldn't be to give instructions; it should be to express our intent, to explain *what* we're trying to achieve.
+
+**(1:54)** Take a look at this date-checking function. This is a perfect example of focusing on the *how*. Yeah, it works, but to figure out what it's for, you have to mentally run through this maze of modulo operators and nested if-statements. It basically forces the human reading it to act like a computer.
+
+**(2:12)** Now, compare that mess to this. This one line just perfectly shows the power of expressing the *what*. It's totally, instantly clear what's happening. It reads like a sentence in English. We're not telling the computer how to check for leap years. We are simply stating what we're doing: checking if the birthday is a valid date.
+
+**(2:31)** So, that's the magic trick, right? How do we get from that first ugly chunk of code to the second beautiful one? The secret, and this is the absolute core of the whole idea, is to treat naming not as some trivial thing you do at the end, but as the central, most important act of software design.
+
+**(2:49)** Kojima has this brilliant term for this strategy: Name and Conquer. It's kind of like "divide and conquer," but with a crucial twist. Instead of just breaking a problem into smaller pieces, we actively search for the core concepts hidden inside our logic, and we give them a proper name.
+
+**(3:05)** And this is so powerful because a name does way more than just label something. It defines it. The moment you give all that complicated leap year logic a name like `is_valid_date`, you've carved a clear, well-defined concept out of a fog of implementation details. You've literally turned an idea into a formal piece of knowledge that people can actually use and understand.
+
+**(3:26)** This simple phrase says it all: "Naming is important." But it's more than that. It's not just one of many important things you do when you code. In this battle against complexity, it is the most important thing.
+
+**(3:39)** Okay, so if naming is our primary weapon, it brings up a really important question: who, exactly, is our target? Who is the audience for the names we choose?
+
+**(3:49)** To get our heads around the answer, let's step away from code for just a second. I want you to think about a really simple, everyday object.
+
+**(3:56)** Here's the key insight. When I say "telephone," you probably picture the thing you hold in your hand. But that's just the user interface. The name "telephone" actually refers to this massive, incredibly complex global system of wires and satellites and switches. We name the entire system after the one little part we actually interact with.
+
+**(4:17)** And believe it or not, this exact same principle applies to our code. The "user" of any piece of code is the other code that calls it. We call that "the client." And the names we create—our function names, our class names—that becomes the interface for our client.
+
+**(4:32)** And this is the big "aha" moment. Our names shouldn't describe what's happening *inside* a function; they should describe the service that the client needs. The client code needed to know if a date was valid, so we created a service for it and named it `is_valid_date`. The client's need drove the name.
+
+**(4:49)** Okay, let's put this all together. How does this philosophy actually translate into a set of principles we can use to write code that isn't just working, but is beautiful and actually lasts?
+
+**(4:59)** All of these powerful ideas really come together right here. Beautiful code expresses the WHAT, not the HOW. Every piece of it does one thing and one thing only. It doesn't repeat itself. It has precise, crystal-clear names that were designed from the client's point of view. And because of all that, it becomes easy to test, simple to understand, and a breeze to change.
+
+**(5:20)** Ultimately, what we have to remember is that every single line of code we write is a form of communication. It's a story that we are telling our future selves and our teammates. The names we choose, that's the vocabulary of our story. So the question we should always be asking ourselves is this: what story does my code tell?
+
+**(5:38)** [notebooklm.google.com]
+
+### **Japanese (日本語)**
+
+**(0:00)** 「The Explainer」へようこそ。今日は、優れたソフトウェア開発のまさに中心にあるものでありながら、私たちがしばしば間違ってしまうこと、つまり「物事に名前を付ける技術」について掘り下げていきます。
+
+**(0:10)** では、開発者なら骨身にしみてわかるであろう質問から始めましょう。コードを書いたとします。それはクリーンで、巧妙で、完璧に動作します。しかし、6ヶ月後にそれを見直したり、さらに悪いことに、他の誰かがそれを見たりすると、それはもつれて読めない塊になっています。変更するのは悪夢です。一体何が起こったのでしょうか?
+
+**(0:29)** 実は、私たちは単に悪い習慣や厳しい納期と戦っているだけではないのです。私たちは宇宙の基本法則と戦っているのです。それは「ソフトウェアエントロピー」と呼ばれています。
+
+**(0:39)** きれいな部屋が時間とともに自然に散らかっていくように、ソフトウェアシステムも自然に無秩序に向かう傾向があります。機能を追加し、要件が変わり、応急処置的な修正を重ねるにつれて、複雑さは増すばかりです。最初はシンプルでエレガントだったものが、必然的にもつれて混沌としていきます。
+
+**(0:58)** そして、この劣化の最初の兆候がほぼ常に現れる場所がどこかご存知ですか? それは私たちが選ぶ名前に現れます。`tmpWork`や`flg`のような、曖昧で無意味な名前を見かけます。一体、何のためのフラグなのでしょうか? 奇妙な略語、混在した言語、全く誤解を招くような名前。これらは、プロジェクトの理解可能性を最終的に打ち砕く小さなひび割れなのです。
+
+**(1:18)** では、一体どうすればこれに立ち向かえるのでしょうか? プログラマーの小島富治雄氏によれば、解決策は何か fancy な新しいフレームワークやツールではありません。そうではなく、私たちの視点の根本的な転換です。それは、「私たちは一体誰のためにこのコードを書いているのか?」と自問することです。
+
+**(1:34)** 長い間、私たちはプログラミングを、機械に何かを*どのように*(how)行うかをステップバイステップで教えることだと考えてきました。しかし小島氏は、私たちの主な読者はコンピューターでは全くなく、次にそのコードを読み、理解し、変更しなければならない人間なのだと主張します。ですから、私たちの目標は指示を与えることではなく、意図を表現すること、つまり*何を*(what)達成しようとしているのかを説明することであるべきです。
+
+**(1:54)** この日付チェック関数を見てください。これは*どのように*(how)に焦点を当てた完璧な例です。ええ、それは動作しますが、それが何のためのものかを理解するには、剰余演算子やネストされたif文の迷路を頭の中で実行しなければなりません。これは基本的に、それを読む人間にコンピューターのように振る舞うことを強制します。
+
+**(2:12)** では、そのごちゃごちゃしたものと、こちらを比較してみてください。この一行は、*何を*(what)を表現する力を完璧に示しています。何が起こっているかが、完全に、即座に明確です。英語の文章のように読めます。私たちはコンピューターに閏年をチェックする方法を教えているわけではありません。単に自分たちがしていること、つまり誕生日が有効な日付かどうかをチェックしている、と述べているだけです。
+
+**(2:31)** これが魔法のトリックですね。では、どうすれば最初の醜いコードの塊から、二番目の美しいコードにたどり着けるのでしょうか? その秘訣、そしてこれがこの考え全体の核心ですが、それは命名を最後に行う些細なこととしてではなく、ソフトウェア設計の中心的な、最も重要な行為として扱うことです。
+
+**(2:49)** 小島氏はこの戦略に見事な名前を付けています。「名前を付けて制圧せよ(Name and Conquer)」です。これは「分割して統治せよ(divide and conquer)」に似ていますが、決定的なひねりがあります。単に問題を小さな部分に分割するのではなく、ロジックの中に隠された核となる概念を積極的に探し出し、それに適切な名前を与えるのです。
+
+**(3:05)** そして、これは非常に強力です。なぜなら、名前は単に何かにラベルを貼る以上のことをするからです。それはそれを定義します。あの複雑な閏年のロジックすべてに `is_valid_date` のような名前を付けた瞬間、あなたは実装詳細の霧の中から、明確で、よく定義された概念を切り出したのです。あなたは文字通り、一つのアイデアを、人々が実際に使って理解できる公式な知識の一部に変えたのです。
+
+**(3:26)** このシンプルなフレーズがすべてを物語っています。「命名は重要である」。しかし、それ以上です。それはコーディングをするときに行う多くの重要なことの一つ、というだけではありません。複雑さとのこの戦いにおいて、それは最も重要なことなのです。
+
+**(3:39)** さて、もし命名が私たちの主要な武器であるなら、非常に重要な疑問が浮かび上がります。私たちのターゲットは一体誰なのでしょうか? 私たちが選ぶ名前の読者は誰なのでしょうか?
+
+**(3:49)** その答えを理解するために、少しの間コードから離れてみましょう。非常にシンプルで、日常的な物体について考えてみてください。
+
+**(3:56)** ここに重要な洞察があります。私が「電話」と言うと、あなたはおそらく手に持つものを想像するでしょう。しかし、それは単なるユーザーインターフェースです。 「電話」という名前は、実際には電線や衛星や交換機からなる、この巨大で信じられないほど複雑な地球規模のシステム全体を指しています。私たちは、システム全体を、私たちが実際に触れ合うその小さな一部分にちなんで名付けているのです。
+
+**(4:17)** そして信じられないかもしれませんが、これと全く同じ原則が私たちのコードにも当てはまります。あらゆるコードの「ユーザー」とは、それを呼び出す他のコードのことです。私たちはそれを「クライアント」と呼びます。そして、私たちが作成する名前、つまり関数名やクラス名が、クライアントのためのインターフェースになるのです。
+
+**(4:32)** そして、これが大きな「アハ体験」の瞬間です。私たちの名前は、関数の*内部*で何が起こっているかを説明するべきではありません。クライアントが必要とするサービスを説明するべきなのです。クライアントコードは日付が有効かどうかを知る必要があったので、私たちはそのためのサービスを作成し、それに `is_valid_date` と名付けました。クライアントのニーズが名前を決定したのです。
+
+**(4:49)** では、これらすべてをまとめてみましょう。この哲学は、単に機能するだけでなく、美しく、実際に長持ちするコードを書くために使える一連の原則に、具体的にどのように変換されるのでしょうか?
+
+**(4:59)** これらの強力なアイデアはすべて、まさにここに集約されます。美しいコードは、HOW(どのように)ではなく、WHAT(何を)を表現します。その各部分は一つのことだけを行い、他のことはしません。自己を繰り返し表現しません。クライアントの視点から設計された、正確で、非常に明確な名前を持っています。そして、そのすべてのおかげで、テストが容易になり、理解が簡単になり、変更が楽になります。
+
+**(5:20)** 最終的に、私たちが覚えておかなければならないのは、私たちが書くコードの一行一行がコミュニケーションの一形態であるということです。それは、未来の自分自身やチームメイトに語っている物語です。私たちが選ぶ名前は、その物語の語彙です。ですから、私たちが常に自問すべき質問はこれです。「私のコードは、どんな物語を語っているだろうか?」
+
+**(5:38)** [notebooklm.google.com]
+
+## 音声解説
+
+[音声解説「美しいコード: 原則と実践」 by NotebookLM](https://notebooklm.google.com/notebook/f9d9ab45-891e-4c7c-87c5-d397d749cfe8?artifactId=74eb4347-b03d-4977-8add-8954faa4fd6f)
+
+### 文字起こし
+
+こんにちは。今回は小島富治雄さんのソフトウェア開発に関する、えっと、資料群ですね。プレゼンとかメモとか。
+
+ええ、ええ。いくつもありますね。
+
+これを深く掘り下げて、皆さんが、まあ、より良いコードを書くための核心みたいなものを探っていければと。
+
+いいですね。
+
+特に名前、これが異様に重要だと。あとはオブジェクト指向の捉え方、そして美しいコードって結局何なのか。
+
+なるほど。
+
+そういうところに光を当てて、日々のコーディングにこう直接活かせるヒントを一緒に見つけ出すのが今回のミッションです。
+
+はい。
+
+さて、さっそくですけど、
+
+ええ。
+
+プログラミングってどうしてもどうやるか、つまりHowに目が生きがちですけど、
+
+そうですね。
+
+小島さんの資料って一貫して「なぜそうするのか」、Whyを問いかけてくる。
+
+そこが、あの、深いんですよね。
+
+うーん。
+
+特にソフトウェア開発って本質的に複雑じゃないですか。
+
+ええ。
+
+複雑さとの戦いみたいな。
+
+そう。だからコードに込められた意図の明確さ、これが後の、まあ、生産性とか品質をもう決定づけるんだと。そこが肝ですね。
+
+いや、まず本当に驚くのが名前重要っていうもうほとんど執念に近いような。
+
+ははは。
+
+確かに繰り返し出てきますね。
+
+強調っぷりですよね。資料にも、あの、IとかTMPワークとか。
+
+よくあるやつですね。
+
+果てはイニシャ処理、これ途中ならローマ字とか。
+
+ははははは。
+
+極めつけは変数名が全部ジャニーズ、なんていう、まあ笑えないけどありそうな悪霊が満載で。
+
+いや、まあリアルかもしれないですね。
+
+たかが名前に「なぜここまで」って思うんですけど、これが設計の本質とどう関わるのか、そこもう少し聞きたいですね。
+
+ええ、それが小島さんが言うところの「Name and Conquer」、つまり定義攻略っていう考え方、これが非常に示唆に富んでるんですよ。
+
+定義攻略ですか。
+
+はい。名前をつけるっていう行為は単なるラベル貼りじゃないと。
+
+ふんふん。
+
+それはある概念を定義して、その責任範囲、つまり境界を定める、その行為そのものなんだと。
+
+なるほど。境界を定める。
+
+例えば、「Employee」ってクラス名をつけることは、システムのこの部分は従業員に関する責務を負うんだっていう宣言になるわけです。
+
+ああ、なるほど。
+
+これで曖昧さが消えて対象が明確になる。
+
+良い名前っていうのは、コードを読む人がその部分の役割とか責任範囲をこうすぐに理解できる手助けになるんですね。
+
+確かに。
+
+これが定義攻略。名前によって曖昧さをなくしていく力というか。
+
+うーん。
+
+そして何より、名前はどうやるか(How)じゃなくて、何(What)をしたいかっていう意図を表現すべきだと。ここが重要なんです。
+
+なるほど。どうじゃなく何か。コードを読む人のために書くという視点ですね、それは。
+
+まさに。
+
+ここで、あの、すごく興味深いのがサービス指向名前付け、SONっていう。
+
+ああ、SON出てきましたね。
+
+テレビとか電話の例えが出てきますよね。本来システム全体を指すはずの言葉なのに、私たちはインターフェース、つまり機器そのものを指して呼んでいると。
+
+ええ、ええ。
+
+これをコードに応用する、具体的には?
+
+SONの核心っていうのは、サービスとかインターフェースの名前を、それを使う側、つまりクライアント側の視点で決めましょうということなんです。
+
+クライアント視点。
+
+資料にあった「日付に問う」「日付として正しい」っていう例、あれ分かりやすいですよね。
+
+ああ、ありましたね。
+
+If {dot} 友人 {dot} 誕生日 {dot} 日付として正しい、みたいな。
+そうそう。使う側が、まるで自然言語みたいに直感的に書ける名前が良い名前なんだと。
+
+なるほど。
+
+開発者の都合じゃなくて、あくまで利用側の文脈で名前を選ぶ。これって結構思考の転換が必要というか、パラダイムシフトですよね。
+
+クライアント視点の命名。
+
+うーん、理想的ですけど、実際にはやっぱり内部実装に引っ張られた名前つけちゃいがちですよね。
+
+まあ、そうなりがちですけどね。
+
+でも、この原則は強力だなと。で、命名が設計行為そのものだとしたら、その設計をこう健全に保つための具体的な考え方についても、資料は深く掘り下げてる。
+
+ええ。
+
+それがオブジェクト指向の原則につながってくるわけですね。
+
+ソフトウェア開発は、さっきも出たけど、複雑さとの戦い。エントロピー増大との戦いであって。
+
+そうですね。
+
+目標は開発を楽に、品質を良くすることだと。
+
+まさにその通りです。
+
+その複雑さを管理するための、まあ、武器。
+
+武器。
+
+単一責務の原則、SRPですね。1つのクラスとかモジュールは、1つの明確な責務だけを持つべきだと。
+
+はいはい。
+
+それから、高凝集疎結合。これは、部品が特定の目的にこうぎゅっと集中していて(高凝集)、他の部品とはできるだけ独立している(疎結合)状態を目指すこと。
+
+うん。
+
+さらに、関心の分離とか、一度、たった一度だけ(Once and Only Once)とか。
+
+色々ありますね。
+
+ええ。これらは全部、複雑な問題を分割(Divide and Conquer)して、概念を定義(Name and Conquer)するための指針なんです。
+
+分割して定義する、と。
+
+そうです。そして面白いことに、これらの原則がそのままコードの美しさの基準にもなってるんですね。
+
+ああ、「美しいソースコードのための7か条」にもありましたね。「意図を表現」とか「単一責務」「的確な名前」とか。
+
+ええ。つまり、これらは単なる見た目の綺麗さの問題じゃなくて、変更のしやすさとか、理解しやすさ、つまり保守性とか拡張性に直結する機能美なんですね。
+
+ああ、ありましたね。
+
+クライアント視点の命名。
+
+うーん、理想的ですけど、実際にはやっぱり内部実装に引っ張られた名前つけちゃいがちですよね。
+
+まあ、そうなりがちですけどね。
+
+でも、この原則は強力だなと。で、命名が設計行為そのものだとしたら、その設計をこう健全に保つための具体的な考え方についても資料は深く掘り下げてる。
+
+ええ。
+
+それがオブジェクト指向の原則につながってくるわけですね。
+
+ソフトウェア開発は、さっきも出たけど複雑さとの戦い。エントロピー増大との戦いであって。
+
+そうですね。
+
+目標は開発を楽に品質を良くすることだと。
+
+まさにその通りです。
+
+その複雑さを管理するための、まあ、武器として。
+
+武器。
+
+単一責務の原則、SRPですね。1つのクラスとかモジュールは1つの明確な責務だけを持つべきだと。
+
+はいはい。
+
+それから、高凝集疎結合。これは部品が特定の目的にこうぎゅっと集中していて(高凝集)、他の部品とはできるだけ独立している(疎結合)状態を目指す。
+
+うん。
+
+さらに、関心の分離とか、一度たった一度だけ(Once and Only Once)とか。
+
+色々ありますね。
+
+ええ。これらは全部、複雑な問題を分割(Divide and Conquer)して、概念を定義(Name and Conquer)するための指針なんです。
+
+分割して定義する、と。
+
+そうです。
+
+そして面白いことに、これらの原則がそのままコードの美しさの基準にもなってるんですね。
+
+ああ、「美しいソースコードのための7か条」にもありましたね。「意図を表現」とか「単一責務」「的確な名前」とか。
+
+ええ。つまりこれらは単なる見た目の綺麗さの問題じゃなくて、変更のしやすさとか理解しやすさ、つまり保守性とか拡張性に直結する機能美なんですね。
+
+クライアント視点の命名。
+
+うーん、理想的ですけど、実際にはやっぱり内部実装に引っ張られた名前つけちゃいがちですよね。
+
+まあ、そうなりがちですけどね。
+
+でも、この原則は強力だなと。で、命名が設計行為そのものだとしたら、その設計をこう健全に保つための具体的な考え方についても資料は深く掘り下げてる。
+
+ええ。
+
+それがオブジェクト指向の原則につながってくるわけですね。
+
+ソフトウェア開発は、さっきも出たけど複雑さとの戦い。エントロピー増大との戦いであって。
+
+そうですね。
+
+目標は開発を楽に品質を良くすることだと。
+
+まさにその通りです。
+
+その複雑さを管理するための、まあ、武器として。
+
+武器。
+
+単一責務の原則、SRPですね。1つのクラスとかモジュールは1つの明確な責務だけを持つべきだと。
+
+はいはい。
+
+それから、高凝集疎結合。これは部品が特定の目的にこうぎゅっと集中していて(高凝集)、他の部品とはできるだけ独立している(疎結合)状態を目指すこと。
+
+うん。
+
+さらに、関心の分離とか、一度たった一度だけ(Once and Only Once)とか。
+
+色々ありますね。
+
+ええ。これらは全部、複雑な問題を分割(Divide and Conquer)して、概念を定義(Name and Conquer)するための指針なんです。
+
+分割して定義する、と。
+
+そうです。
+
+そして面白いことに、これらの原則がそのままコードの美しさの基準にもなってるんですね。
+
+ああ、「美しいソースコードのための7か条」にもありましたね。「意図を表現」とか「単一責務」「的確な名前」とか。
+
+ええ。つまりこれらは単なる見た目の綺麗さの問題じゃなくて、変更のしやすさとか理解しやすさ、つまり保守性とか拡張性に直結する機能美なんですね。
+
+はいはい。
+
+クライアント視点の命名。
+
+うん。理想的ですけど、実際にはやっぱり内部実装に引っ張られた名前つけちゃいがちですよね。
+
+まあ、そうなりがちですけどね。
+
+でも、この原則は強力だなと。で、命名が設計行為そのものだとしたら、その設計をこう健全に保つための具体的な考え方についても資料は深く掘り下げてる。
+
+ええ。
+
+それがオブジェクト指向の原則につながってくるわけですね。
+
+ソフトウェア開発は、さっきも出たけど複雑さとの戦い。エントロピー増大との戦いであって。
+
+そうですね。
+
+目標は開発を楽に品質を良くすることだと。
+
+まさにその通りです。
+
+その複雑さを管理するための、まあ、武器として。
+
+武器。
+
+単一責務の原則、SRPですね。1つのクラスとかモジュールは1つの明確な責務だけを持つべきだと。
+
+はいはい。
+
+それから、高凝集疎結合。これは部品が特定の目的にこうぎゅっと集中していて(高凝集)、他の部品とはできるだけ独立している(疎結合)状態を目指すこと。
+
+うん。
+
+さらに、関心の分離とか、一度たった一度だけ(Once and Only Once)とか。
+色々ありますね。
+
+ええ。これらは全部、複雑な問題を分割(Divide and Conquer)して、概念を定義(Name and Conquer)するための指針なんです。
+
+分割して定義する、と。
+
+そうです。
+
+そして面白いことに、これらの原則がそのままコードの美しさの基準にもなってるんですね。
+
+ああ、「美しいソースコードのための7か条」にもありましたね。「意図を表現」とか「単一責務」「的確な名前」とか。
+
+ええ。つまりこれらは単なる見た目の綺麗さの問題じゃなくて、変更のしやすさとか理解しやすさ、つまり保守性とか拡張性に直結する機能美なんですね。
+
+まさにその通りです。手続き型ってどうしても処理の流れで考えがちですけど
+
+はい。
+
+オブジェクト指向だと常に「これは誰の責務なんだ」って問うんです。
+
+責務で考える。
+
+そう。責務で分割して適切な名前をつける。これが複雑さに立ち向かうための、ま、基本戦略と言えるでしょうね。
+
+なるほどなあ。
+
+資料では、あの、コメントの良くない使い方、例えば、自明なことの説明とか、コード内の会話とか、怪しげな取引の記録とか。
+
+あはは。
+
+ありましたね、ユーモラスなやつ。
+
+ええ、あれも結局はコード自身に語らせなさいよっていう原則の、ま、裏返しなわけですよね。
+
+確かに。
+
+コメントに頼る前に、まずコードで表現しろと。
+
+そういうことです。
+
+うーん、今回の資料をこう読み解いて見えてきたのは、命名っていうのは単なるラベル付けなんかじゃなくて、設計そのものなんだなと。
+
+ええ。
+
+で、特に利用者の視点、SONっていうのが鍵を握ると。
+
+そうですね。
+
+そして、SRPとか凝集度結合度みたいなオブジェクト指向の原則は、ソフトウェア開発っていう、まあ、終わりのない複雑さとの戦いにおいてものすごく実践的な武器になるんだなってことですね。
+
+はい。
+
+コードはコンピューターへの命令であると同時に、未来の自分とか他の人への明確なコミュニケーションツールなんだと。
+
+ええ、まさに。
+
+では最後に、皆さんの思考をこう、さらに深めてもらうための問いを一つ投げかけてみましょうか。
+
+お、お願いします。
+
+これらの資料って一貫して、コードはコンピューターへの指示だけじゃなくて、人間、つまり未来の自分自身とか他の開発者への伝達手段なんだって示唆してますよね。
+
+はい、そうですね。
+
+もしプログラミングを単なる技術的な作業としてだけじゃなく、もっと書くこと、writing、つまり文章を書くのに近いような、そういう知的活動として捉え直したとしたら
+
+書くことですか?
+
+ええ。そうなった場合、あなたの学習のアプローチとか日々のコードとの向き合い方って、どのように変わる可能性があるでしょう?
+
+うーん、なるほど。
+
+ちょっと考えてみていただけると面白いかなと。
+
+---
