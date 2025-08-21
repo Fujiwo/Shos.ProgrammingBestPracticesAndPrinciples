@@ -4,19 +4,19 @@
 graph TD
     A[クライアント] --> B[サービス指向名前付け<br/>SON]
     B --> C[サービス提供者]
-    
+   
     D[実装者視点<br/>❌ 悪い例] --> E[SqlCustomerDAO<br/>ExecuteSqlQuery<br/>技術的詳細が露出]
-    
+   
     F[クライアント視点<br/>✅ 良い例] --> G[CustomerRepository<br/>FindById<br/>ビジネス概念で表現]
-    
+   
     H[命名の原則] --> I[What: 何をするか]
     H --> J[Who: 誰のためか]
     H --> K[Why: なぜ必要か]
-    
+   
     I --> L[顧客を検索する]
     J --> M[クライアント開発者]
     K --> N[ビジネス要求実現]
-    
+   
     style A fill:#e1f5fe
     style C fill:#e1f5fe
     style D fill:#ffebee

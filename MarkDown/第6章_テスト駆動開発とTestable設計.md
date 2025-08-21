@@ -25,14 +25,14 @@ public class OrderProcessor
         // データベースから直接取得
         using var connection = new SqlConnection(connectionString);
         var order = GetOrderFromDatabase(connection, orderId);
-        
+       
         // 外部サービスに直接依存
         var paymentService = new PaymentService();
         var result = paymentService.ProcessPayment(order.Amount);
-        
+       
         // ファイルシステムに直接書き込み
         File.WriteAllText($"order_{orderId}.log", $"Processed at {DateTime.Now}");
-        
+       
         // メール送信
         var emailService = new EmailService();
         emailService.SendConfirmation(order.CustomerEmail);
@@ -50,7 +50,7 @@ public class OrderProcessor
     private readonly IPaymentService _paymentService;
     private readonly ILogger _logger;
     private readonly IEmailService _emailService;
-    
+   
     public OrderProcessor(
         IOrderRepository orderRepository,
         IPaymentService paymentService,
@@ -62,20 +62,20 @@ public class OrderProcessor
         _logger = logger;
         _emailService = emailService;
     }
-    
+   
     public async Task<OrderProcessingResult> ProcessOrderAsync(int orderId)
     {
         var order = await _orderRepository.GetByIdAsync(orderId);
         if (order == null)
             return OrderProcessingResult.NotFound();
-            
+           
         var paymentResult = await _paymentService.ProcessPaymentAsync(order.Amount);
         if (!paymentResult.IsSuccess)
             return OrderProcessingResult.PaymentFailed(paymentResult.ErrorMessage);
-            
+           
         _logger.LogOrderProcessed(orderId);
         await _emailService.SendConfirmationAsync(order.CustomerEmail);
-        
+       
         return OrderProcessingResult.Success();
     }
 }
@@ -97,25 +97,25 @@ public async Task ProcessOrder_PaymentFails_ReturnsPaymentFailedResult()
     var mockPaymentService = new Mock<IPaymentService>();
     var mockLogger = new Mock<ILogger>();
     var mockEmailService = new Mock<IEmailService>();
-    
+   
     var order = new Order { Id = 1, Amount = 100, CustomerEmail = "test@example.com" };
     mockOrderRepo.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(order);
     mockPaymentService.Setup(p => p.ProcessPaymentAsync(100))
                      .ReturnsAsync(PaymentResult.Failed("Insufficient funds"));
-    
+   
     var processor = new OrderProcessor(
-        mockOrderRepo.Object, 
-        mockPaymentService.Object, 
-        mockLogger.Object, 
+        mockOrderRepo.Object,
+        mockPaymentService.Object,
+        mockLogger.Object,
         mockEmailService.Object);
-    
+   
     // Act
     var result = await processor.ProcessOrderAsync(1);
-    
+   
     // Assert
     Assert.IsFalse(result.IsSuccess);
     Assert.AreEqual("Insufficient funds", result.ErrorMessage);
-    
+   
     // メール送信が呼ばれていないことを確認
     mockEmailService.Verify(e => e.SendConfirmationAsync(It.IsAny<string>()), Times.Never);
 }
@@ -142,12 +142,12 @@ public class UserService
 public class UserService
 {
     private readonly IUserRepository _userRepository;
-    
+   
     public UserService(IUserRepository userRepository)
     {
         _userRepository = userRepository;
     }
-    
+   
     public User GetUser(int id)
     {
         return _userRepository.GetById(id);
@@ -181,27 +181,27 @@ public class BankAccount {
     private final String accountNumber;
     private BigDecimal balance;
     private final List<Transaction> transactions;
-    
+   
     public BankAccount(String accountNumber, BigDecimal initialBalance) {
         this.accountNumber = accountNumber;
         this.balance = initialBalance;
         this.transactions = new ArrayList<>();
     }
-    
+   
     public WithdrawResult withdraw(BigDecimal amount) {
         if (amount.compareTo(BigDecimal.ZERO) <= 0) {
             return WithdrawResult.invalidAmount();
         }
-        
+       
         if (balance.compareTo(amount) < 0) {
             return WithdrawResult.insufficientFunds();
         }
-        
+       
         balance = balance.subtract(amount);
         transactions.add(new Transaction(TransactionType.WITHDRAW, amount));
         return WithdrawResult.success(balance);
     }
-    
+   
     // テスト用のゲッター
     public BigDecimal getBalance() { return balance; }
     public List<Transaction> getTransactions() { return new ArrayList<>(transactions); }
@@ -225,10 +225,10 @@ public void CalculateDiscount_ValidInput_ReturnsCorrectDiscount()
 {
     // Arrange - 準備が軽量
     var calculator = new DiscountCalculator();
-    
+   
     // Act - 実行が高速
     var result = calculator.CalculateDiscount(100m, CustomerType.Premium);
-    
+   
     // Assert - 検証が明確
     Assert.AreEqual(15m, result);
 }
@@ -253,7 +253,7 @@ class TestShoppingCart:
         cart = ShoppingCart()  # 各テストで新しいインスタンス
         cart.add_item(Item("Book", 20.00))
         assert cart.total == 20.00
-    
+   
     def test_remove_item_decreases_total(self):
         cart = ShoppingCart()  # 独立したインスタンス
         cart.add_item(Item("Book", 20.00))
@@ -274,7 +274,7 @@ describe('DateUtils', () => {
         const result = DateUtils.formatDate(fixedDate);
         expect(result).toBe('2024-01-15');
     });
-    
+   
     // 現在時刻に依存する悪い例
     it('should return current year', () => {
         const result = DateUtils.getCurrentYear();
@@ -318,16 +318,16 @@ public void CalculateShippingCost_DomesticOrder_ReturnsStandardRate()
 {
     // Arrange:テストの準備
     var calculator = new ShippingCalculator();
-    var order = new Order 
-    { 
-        Weight = 2.5m, 
-        Destination = "Tokyo", 
-        IsInternational = false 
+    var order = new Order
+    {
+        Weight = 2.5m,
+        Destination = "Tokyo",
+        IsInternational = false
     };
-    
+   
     // Act:テスト対象の実行
     var cost = calculator.CalculateShippingCost(order);
-    
+   
     // Assert:結果の検証
     Assert.AreEqual(500m, cost);
 }
@@ -340,7 +340,7 @@ public void CalculateShippingCost_DomesticOrder_ReturnsStandardRate()
 ```python
 def test_grade_calculation_boundary_values():
     calculator = GradeCalculator()
-    
+   
     # 境界値をテスト
     assert calculator.get_letter_grade(89.9) == 'B'  # Aの直前
     assert calculator.get_letter_grade(90.0) == 'A'  # A の下限
@@ -354,11 +354,11 @@ def test_grade_calculation_boundary_values():
 @Test
 public void validateAge_EquivalenceClasses() {
     AgeValidator validator = new AgeValidator();
-    
+   
     // 有効な値のクラス
     assertTrue(validator.isValid(25));  // 成人
     assertTrue(validator.isValid(65));  // 高齢者
-    
+   
     // 無効な値のクラス
     assertFalse(validator.isValid(-1));  // 負の値
     assertFalse(validator.isValid(0));   // ゼロ
@@ -388,10 +388,10 @@ public void Add_TwoPositiveNumbers_ReturnsSum()
 {
     // Arrange
     var calculator = new Calculator();
-    
+   
     // Act
     var result = calculator.Add(2, 3);
-    
+   
     // Assert
     Assert.AreEqual(5, result);
 }
@@ -420,7 +420,7 @@ public class Calculator
 public void Add_DifferentNumbers_ReturnsCorrectSum()
 {
     var calculator = new Calculator();
-    
+   
     Assert.AreEqual(5, calculator.Add(2, 3));
     Assert.AreEqual(7, calculator.Add(3, 4));
     Assert.AreEqual(0, calculator.Add(-1, 1));
@@ -465,12 +465,12 @@ public class Calculator
     {
         return a + b;
     }
-    
+   
     public double Divide(double dividend, double divisor)
     {
         if (divisor == 0)
             throw new DivideByZeroException("Cannot divide by zero");
-            
+           
         return dividend / divisor;
     }
 }
@@ -488,36 +488,36 @@ public class BankAccount
 {
     private decimal _balance;
     private readonly List<Transaction> _transactions;
-    
+   
     public BankAccount(decimal initialBalance = 0)
     {
         if (initialBalance < 0)
             throw new ArgumentException("Initial balance cannot be negative");
-            
+           
         _balance = initialBalance;
         _transactions = new List<Transaction>();
     }
-    
+   
     public decimal Balance => _balance;
     public IReadOnlyList<Transaction> Transactions => _transactions.AsReadOnly();
-    
+   
     public void Deposit(decimal amount)
     {
         if (amount <= 0)
             throw new ArgumentException("Deposit amount must be positive");
-            
+           
         _balance += amount;
         _transactions.Add(new Transaction(TransactionType.Deposit, amount, DateTime.Now));
     }
-    
+   
     public void Withdraw(decimal amount)
     {
         if (amount <= 0)
             throw new ArgumentException("Withdrawal amount must be positive");
-            
+           
         if (amount > _balance)
             throw new InvalidOperationException("Insufficient funds");
-            
+           
         _balance -= amount;
         _transactions.Add(new Transaction(TransactionType.Withdrawal, amount, DateTime.Now));
     }
@@ -591,10 +591,10 @@ public void Add_TwoPositiveIntegers_ReturnsCorrectSum()
     var firstNumber = 2;
     var secondNumber = 3;
     var expectedSum = 5;
-    
+   
     // When: 加算を実行
     var actualSum = calculator.Add(firstNumber, secondNumber);
-    
+   
     // Then: 正しい合計が返される
     Assert.AreEqual(expectedSum, actualSum);
 }
@@ -606,15 +606,15 @@ public void Add_TwoPositiveIntegers_ReturnsCorrectSum()
 # 悪い例:複数のことをテストしている
 def test_user_operations():
     user = User("John", "john@example.com")
-    
+   
     # ユーザー作成のテスト
     assert user.name == "John"
     assert user.email == "john@example.com"
-    
+   
     # パスワード設定のテスト
     user.set_password("password123")
     assert user.check_password("password123")
-    
+   
     # プロフィール更新のテスト
     user.update_profile({"bio": "Software Developer"})
     assert user.profile["bio"] == "Software Developer"
@@ -648,7 +648,7 @@ public static class TestDataFactory
     {
         return new User(name, email);
     }
-    
+   
     public static Order CreateOrderWithItems(params Item[] items)
     {
         var order = new Order(CreateValidUser());
@@ -658,7 +658,7 @@ public static class TestDataFactory
         }
         return order;
     }
-    
+   
     public static Item CreateBook(string title = "Default Book", decimal price = 29.99m)
     {
         return new Item(title, price, ItemType.Book);
@@ -672,9 +672,9 @@ public void CalculateTotal_MultipleItems_ReturnsCorrectSum()
     var book1 = TestDataFactory.CreateBook("Book 1", 19.99m);
     var book2 = TestDataFactory.CreateBook("Book 2", 24.99m);
     var order = TestDataFactory.CreateOrderWithItems(book1, book2);
-    
+   
     var total = order.CalculateTotal();
-    
+   
     Assert.AreEqual(44.98m, total);
 }
 ```
@@ -688,27 +688,27 @@ public class UserTestBuilder {
     private String email = "default@example.com";
     private int age = 25;
     private boolean isActive = true;
-    
+   
     public UserTestBuilder withName(String name) {
         this.name = name;
         return this;
     }
-    
+   
     public UserTestBuilder withEmail(String email) {
         this.email = email;
         return this;
     }
-    
+   
     public UserTestBuilder withAge(int age) {
         this.age = age;
         return this;
     }
-    
+   
     public UserTestBuilder inactive() {
         this.isActive = false;
         return this;
     }
-    
+   
     public User build() {
         return new User(name, email, age, isActive);
     }
@@ -722,10 +722,10 @@ public void validateUser_InactiveUser_ReturnsFalse() {
         .withEmail("john@example.com")
         .inactive()
         .build();
-    
+   
     UserValidator validator = new UserValidator();
     boolean isValid = validator.validate(user);
-    
+   
     assertFalse(isValid);
 }
 ```
@@ -742,20 +742,20 @@ public async Task ProcessOrder_PaymentSucceeds_SendsConfirmationEmail()
     var mockPaymentService = new Mock<IPaymentService>();
     var mockEmailService = new Mock<IEmailService>();
     var mockOrderRepository = new Mock<IOrderRepository>();
-    
+   
     var order = new Order { Id = 1, CustomerEmail = "test@example.com", Amount = 100 };
     mockOrderRepository.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(order);
     mockPaymentService.Setup(p => p.ProcessPaymentAsync(100))
                      .ReturnsAsync(PaymentResult.Success());
-    
+   
     var processor = new OrderProcessor(
         mockOrderRepository.Object,
         mockPaymentService.Object,
         mockEmailService.Object);
-    
+   
     // Act
     await processor.ProcessOrderAsync(1);
-    
+   
     // Assert
     mockEmailService.Verify(
         e => e.SendConfirmationEmailAsync("test@example.com", It.IsAny<OrderConfirmation>()),
@@ -770,7 +770,7 @@ public async Task ProcessOrder_PaymentSucceeds_SendsConfirmationEmail()
 class StubEmailService:
     def __init__(self):
         self.sent_emails = []
-    
+   
     def send_email(self, to, subject, body):
         self.sent_emails.append({
             'to': to,
@@ -783,9 +783,9 @@ class StubEmailService:
 def test_user_registration_sends_welcome_email():
     email_service = StubEmailService()
     user_service = UserService(email_service)
-    
+   
     user_service.register_user("john@example.com", "password123")
-    
+   
     assert len(email_service.sent_emails) == 1
     assert email_service.sent_emails[0]['to'] == "john@example.com"
     assert "Welcome" in email_service.sent_emails[0]['subject']
@@ -813,7 +813,7 @@ public void Book_Constructor_SetsPropertiesCorrectly()
 {
     // Arrange & Act
     var book = new Book("978-4-12-345678-9", "Clean Code", "Robert C. Martin");
-    
+   
     // Assert
     Assert.AreEqual("978-4-12-345678-9", book.ISBN);
     Assert.AreEqual("Clean Code", book.Title);
@@ -826,10 +826,10 @@ public void CheckOut_AvailableBook_MarksAsCheckedOut()
 {
     // Arrange
     var book = new Book("978-4-12-345678-9", "Clean Code", "Robert C. Martin");
-    
+   
     // Act
     var result = book.CheckOut();
-    
+   
     // Assert
     Assert.IsTrue(result);
     Assert.IsTrue(book.IsCheckedOut);
@@ -841,10 +841,10 @@ public void CheckOut_AlreadyCheckedOutBook_ReturnsFalse()
     // Arrange
     var book = new Book("978-4-12-345678-9", "Clean Code", "Robert C. Martin");
     book.CheckOut(); // 既に貸出済み
-    
+   
     // Act
     var result = book.CheckOut();
-    
+   
     // Assert
     Assert.IsFalse(result);
     Assert.IsTrue(book.IsCheckedOut); // 状態は変わらない
@@ -856,10 +856,10 @@ public void Return_CheckedOutBook_MarksAsAvailable()
     // Arrange
     var book = new Book("978-4-12-345678-9", "Clean Code", "Robert C. Martin");
     book.CheckOut();
-    
+   
     // Act
     var result = book.Return();
-    
+   
     // Assert
     Assert.IsTrue(result);
     Assert.IsFalse(book.IsCheckedOut);
@@ -875,7 +875,7 @@ public class Book
     public string Title { get; }
     public string Author { get; }
     public bool IsCheckedOut { get; private set; }
-    
+   
     public Book(string isbn, string title, string author)
     {
         ISBN = isbn ?? throw new ArgumentNullException(nameof(isbn));
@@ -883,21 +883,21 @@ public class Book
         Author = author ?? throw new ArgumentNullException(nameof(author));
         IsCheckedOut = false;
     }
-    
+   
     public bool CheckOut()
     {
         if (IsCheckedOut)
             return false;
-            
+           
         IsCheckedOut = true;
         return true;
     }
-    
+   
     public bool Return()
     {
         if (!IsCheckedOut)
             return false;
-            
+           
         IsCheckedOut = false;
         return true;
     }
@@ -913,10 +913,10 @@ public void AddBook_ValidBook_AddsToCollection()
     // Arrange
     var library = new Library();
     var book = new Book("978-4-12-345678-9", "Clean Code", "Robert C. Martin");
-    
+   
     // Act
     library.AddBook(book);
-    
+   
     // Assert
     var foundBook = library.FindBook("978-4-12-345678-9");
     Assert.IsNotNull(foundBook);
@@ -930,10 +930,10 @@ public void CheckOutBook_ExistingAvailableBook_ReturnsTrue()
     var library = new Library();
     var book = new Book("978-4-12-345678-9", "Clean Code", "Robert C. Martin");
     library.AddBook(book);
-    
+   
     // Act
     var result = library.CheckOutBook("978-4-12-345678-9");
-    
+   
     // Assert
     Assert.IsTrue(result);
     Assert.IsTrue(book.IsCheckedOut);
@@ -944,10 +944,10 @@ public void CheckOutBook_NonExistentBook_ReturnsFalse()
 {
     // Arrange
     var library = new Library();
-    
+   
     // Act
     var result = library.CheckOutBook("978-4-12-345678-9");
-    
+   
     // Assert
     Assert.IsFalse(result);
 }
@@ -959,43 +959,43 @@ public void CheckOutBook_NonExistentBook_ReturnsFalse()
 public class Library
 {
     private readonly Dictionary<string, Book> _books;
-    
+   
     public Library()
     {
         _books = new Dictionary<string, Book>();
     }
-    
+   
     public void AddBook(Book book)
     {
         if (book == null)
             throw new ArgumentNullException(nameof(book));
-            
+           
         _books[book.ISBN] = book;
     }
-    
+   
     public Book FindBook(string isbn)
     {
         _books.TryGetValue(isbn, out var book);
         return book;
     }
-    
+   
     public bool CheckOutBook(string isbn)
     {
         var book = FindBook(isbn);
         return book?.CheckOut() ?? false;
     }
-    
+   
     public bool ReturnBook(string isbn)
     {
         var book = FindBook(isbn);
         return book?.Return() ?? false;
     }
-    
+   
     public IEnumerable<Book> GetAvailableBooks()
     {
         return _books.Values.Where(b => !b.IsCheckedOut);
     }
-    
+   
     public IEnumerable<Book> GetCheckedOutBooks()
     {
         return _books.Values.Where(b => b.IsCheckedOut);
@@ -1030,10 +1030,10 @@ public void CheckOutBook_ToMember_RecordsTransaction()
     var member = new Member("M001", "John Doe");
     library.AddBook(book);
     library.RegisterMember(member);
-    
+   
     // Act
     var result = library.CheckOutBook("978-4-12-345678-9", "M001");
-    
+   
     // Assert
     Assert.IsTrue(result);
     Assert.Contains(book, member.CheckedOutBooks);

@@ -186,7 +186,7 @@ public class CustomerLoyaltyService
 }
 
 // 中レベル抽象化（実装とバランス）
-public class OrderProcessingService 
+public class OrderProcessingService
 {
     public async Task<ProcessingResult> ProcessAsync(Order order)
     {

@@ -117,14 +117,14 @@ public void ProcessOrder(Order order)
     // バリデーション
     if (order == null) throw new ArgumentNullException();
     if (order.Items.Count == 0) throw new InvalidOperationException();
-    
+   
     // 在庫チェック
     foreach (var item in order.Items)
     {
         if (inventory.GetStock(item.ProductId) < item.Quantity)
             throw new InsufficientStockException();
     }
-    
+   
     // 価格計算
     decimal total = 0;
     foreach (var item in order.Items)
@@ -132,10 +132,10 @@ public void ProcessOrder(Order order)
         total += item.Price * item.Quantity;
     }
     order.TotalAmount = total;
-    
+   
     // 保存
     orderRepository.Save(order);
-    
+   
     // 通知
     emailService.SendOrderConfirmation(order);
 }
@@ -263,10 +263,10 @@ public bool IsValidFormat(string input, Func<string, bool> validator)
     return !string.IsNullOrEmpty(input) && validator(input);
 }
 
-public bool IsValidEmail(string email) => 
+public bool IsValidEmail(string email) =>
     IsValidFormat(email, e => e.Contains("@"));
 
-public bool IsValidPhone(string phone) => 
+public bool IsValidPhone(string phone) =>
     IsValidFormat(phone, p => p.Length >= 10);
 ```
 
@@ -305,7 +305,7 @@ public void ProcessCustomerRegistration(CustomerRequest request)
 {
     // 高レベルの処理
     var customer = CreateCustomerFromRequest(request);
-    
+   
     // 低レベルの詳細処理が混在
     using (var connection = new SqlConnection(connectionString))
     {
@@ -314,7 +314,7 @@ public void ProcessCustomerRegistration(CustomerRequest request)
         command.Parameters.AddWithValue("@Name", customer.Name);
         command.ExecuteNonQuery();
     }
-    
+   
     // 高レベルの処理
     SendWelcomeEmail(customer);
 }
@@ -341,13 +341,13 @@ public ValidationResult ValidateCustomer(Customer customer)
 {
     if (customer == null)
         return ValidationResult.Failure("Customer is required");
-        
+       
     if (string.IsNullOrEmpty(customer.Name))
         return ValidationResult.Failure("Customer name is required");
-        
+       
     if (!IsValidEmail(customer.Email))
         return ValidationResult.Failure("Valid email is required");
-        
+       
     return ValidationResult.Success();
 }
 ```
@@ -380,17 +380,17 @@ private readonly ICustomerRepository _customerRepository;
 public class CustomerService
 {
     private readonly ICustomerRepository _repository;
-    
+   
     public CustomerService(ICustomerRepository repository)
     {
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
-    
+   
     public async Task<Customer> GetCustomerAsync(int customerId)
     {
         if (customerId <= 0)
             throw new ArgumentException("Customer ID must be positive", nameof(customerId));
-            
+           
         return await _repository.GetByIdAsync(customerId);
     }
 }
@@ -444,7 +444,7 @@ public class OrderService
         // 直接的な依存関係
         var repository = new OrderRepository();
         var emailService = new EmailService();
-        
+       
         repository.Save(order);
         emailService.SendConfirmation(order);
     }
@@ -455,13 +455,13 @@ public class OrderService
 {
     private readonly IOrderRepository _repository;
     private readonly IEmailService _emailService;
-    
+   
     public OrderService(IOrderRepository repository, IEmailService emailService)
     {
         _repository = repository;
         _emailService = emailService;
     }
-    
+   
     public void ProcessOrder(Order order)
     {
         _repository.Save(order);
@@ -479,7 +479,7 @@ public static class TaxCalculator
     {
         return amount * taxRate;
     }
-    
+   
     public static decimal CalculateTotal(decimal amount, decimal taxRate)
     {
         return amount + CalculateTax(amount, taxRate);
@@ -493,10 +493,10 @@ public void CalculateTax_ShouldReturnCorrectAmount()
     // Arrange
     var amount = 1000m;
     var taxRate = 0.1m;
-    
+   
     // Act
     var result = TaxCalculator.CalculateTax(amount, taxRate);
-    
+   
     // Assert
     Assert.AreEqual(100m, result);
 }

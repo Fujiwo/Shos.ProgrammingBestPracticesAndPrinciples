@@ -3,48 +3,48 @@
 ```mermaid
 timeline
     title プログラミング技術の進化とパラダイムシフト
-    
+   
     1990s : 手続き型プログラミング時代
            : C言語
            : 構造化プログラミング
            : Pascal, Fortran
-           
+          
     2000s : オブジェクト指向全盛期
            : C++, Java
            : デザインパターン
            : UML modeling
-           
+          
     2005  : .NET Framework 2.0
            : Generic プログラミング
            : C# 2.0
            : Visual Studio 2005
-           
+          
     2007  : C# 3.0 革命
            : LINQ (Language Integrated Query)
            : ラムダ式
            : 拡張メソッド
            : 宣言型プログラミングの普及
-           
+          
     2010s : マルチパラダイム時代
            : 関数型プログラミング
            : 非同期プログラミング
            : クラウドコンピューティング
-           
+          
     2012  : C# 5.0
            : async/await
            : 並列プログラミング
            : Task-based Asynchronous Pattern
-           
+          
     2015  : Modern C#
            : C# 6.0-7.0
            : Pattern Matching
            : Null安全性の向上
-           
+          
     2019  : .NET Core統合
            : C# 8.0-9.0
            : Records
            : Init-only properties
-           
+          
     2020s : 現代的プログラミング
            : Minimal APIs
            : Source Generators
@@ -60,7 +60,7 @@ timeline
 手続き分解 → オブジェクトとしての抽象化
 ```
 
-### 2. オブジェクト指向 → マルチパラダイム (2005 - 2010s)  
+### 2. オブジェクト指向 → マルチパラダイム (2005 - 2010s) 
 ```
 表現力の拡張:
 単一パラダイム → 複数パラダイムの選択的適用
@@ -83,7 +83,7 @@ foreach (var customer in customers)
         result.Add(customer.Name);
 }
 
-// 宣言型(What): 何をしたいか  
+// 宣言型(What): 何をしたいか 
 var result = customers
     .Where(c => c.IsActive && c.Region == "Asia")
     .Select(c => c.Name)
@@ -96,7 +96,7 @@ var result = customers
 IAsyncResult BeginOperation(AsyncCallback callback, object state);
 void EndOperation(IAsyncResult result);
 
-// .NET 4.0 Task時代  
+// .NET 4.0 Task時代 
 Task<string> OperationAsync();
 
 // .NET 4.5 async/await時代
