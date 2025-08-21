@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#155e75;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="blueprint" patternUnits="userSpaceOnUse" width="20" height="20">
+      <rect width="20" height="20" fill="none"/>
+      <path d="M 20,0 l 0,20 M 0,20 l 20,0" stroke="#0891b2" stroke-width="0.5" opacity="0.3"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background with blueprint grid -->
+  <rect width="800" height="200" fill="url(#bg3)"/>
+  <rect width="800" height="200" fill="url(#blueprint)"/>
+  
+  <!-- Central modeling workspace -->
+  <g transform="translate(250, 40)">
+    <!-- Drafting table/workspace -->
+    <rect x="0" y="0" width="300" height="120" fill="#f8fafc" rx="8" stroke="#0891b2" stroke-width="2"/>
+    
+    <!-- Blueprint/model on the table -->
+    <g transform="translate(20, 20)">
+      <!-- Domain model diagram -->
+      <rect x="0" y="0" width="80" height="25" fill="#3b82f6" rx="3" opacity="0.8"/>
+      <rect x="100" y="0" width="80" height="25" fill="#10b981" rx="3" opacity="0.8"/>
+      <rect x="200" y="0" width="60" height="25" fill="#8b5cf6" rx="3" opacity="0.8"/>
+      
+      <!-- Relationships -->
+      <line x1="80" y1="12" x2="100" y2="12" stroke="#475569" stroke-width="2"/>
+      <line x1="180" y1="12" x2="200" y2="12" stroke="#475569" stroke-width="2"/>
+      
+      <!-- Lower layer -->
+      <rect x="40" y="50" width="70" height="25" fill="#f59e0b" rx="3" opacity="0.8"/>
+      <rect x="140" y="50" width="70" height="25" fill="#ef4444" rx="3" opacity="0.8"/>
+      
+      <!-- Vertical connections -->
+      <line x1="40" y1="25" x2="40" y2="50" stroke="#475569" stroke-width="2"/>
+      <line x1="140" y1="25" x2="140" y2="50" stroke="#475569" stroke-width="2"/>
+      <line x1="230" y1="25" x2="180" y2="50" stroke="#475569" stroke-width="2"/>
+    </g>
+  </g>
+  
+  <!-- Left side: Real world concepts -->
+  <g transform="translate(50, 60)">
+    <!-- Building representing real world -->
+    <rect x="0" y="40" width="40" height="60" fill="#64748b" rx="3"/>
+    <rect x="50" y="50" width="30" height="50" fill="#64748b" rx="3"/>
+    <rect x="90" y="30" width="35" height="70" fill="#64748b" rx="3"/>
+    
+    <!-- Windows -->
+    <rect x="10" y="50" width="8" height="8" fill="#fbbf24"/>
+    <rect x="22" y="50" width="8" height="8" fill="#fbbf24"/>
+    <rect x="10" y="70" width="8" height="8" fill="#fbbf24"/>
+    <rect x="22" y="70" width="8" height="8" fill="#fbbf24"/>
+    
+    <rect x="58" y="60" width="6" height="6" fill="#fbbf24"/>
+    <rect x="68" y="60" width="6" height="6" fill="#fbbf24"/>
+    <rect x="58" y="75" width="6" height="6" fill="#fbbf24"/>
+    
+    <rect x="100" y="40" width="8" height="8" fill="#fbbf24"/>
+    <rect x="112" y="40" width="8" height="8" fill="#fbbf24"/>
+    <rect x="100" y="55" width="8" height="8" fill="#fbbf24"/>
+    <rect x="112" y="55" width="8" height="8" fill="#fbbf24"/>
+  </g>
+  
+  <!-- Right side: Code implementation -->
+  <g transform="translate(620, 60)">
+    <!-- Code editor/IDE -->
+    <rect x="0" y="0" width="120" height="80" fill="#1e293b" rx="5"/>
+    <!-- Title bar -->
+    <rect x="0" y="0" width="120" height="15" fill="#374151" rx="5 5 0 0"/>
+    <circle cx="10" cy="7" r="2" fill="#ef4444"/>
+    <circle cx="18" cy="7" r="2" fill="#fbbf24"/>
+    <circle cx="26" cy="7" r="2" fill="#10b981"/>
+    
+    <!-- Code lines -->
+    <g opacity="0.8">
+      <rect x="8" y="25" width="40" height="2" fill="#10b981" rx="1"/>
+      <rect x="8" y="32" width="60" height="2" fill="#3b82f6" rx="1"/>
+      <rect x="15" y="39" width="35" height="2" fill="#8b5cf6" rx="1"/>
+      <rect x="15" y="46" width="45" height="2" fill="#06b6d4" rx="1"/>
+      <rect x="8" y="53" width="30" height="2" fill="#f59e0b" rx="1"/>
+      <rect x="8" y="60" width="50" height="2" fill="#ef4444" rx="1"/>
+    </g>
+  </g>
+  
+  <!-- Transformation arrows -->
+  <g>
+    <!-- Analysis to Model -->
+    <path d="M180 100 L240 100 L235 95 M235 105 L240 100" stroke="#fbbf24" stroke-width="3" fill="none"/>
+    
+    <!-- Model to Implementation -->
+    <path d="M560 100 L610 100 L605 95 M605 105 L610 100" stroke="#fbbf24" stroke-width="3" fill="none"/>
+  </g>
+  
+  <!-- DDD Context boundaries visualization -->
+  <g transform="translate(100, 150)" opacity="0.7">
+    <!-- Bounded contexts -->
+    <ellipse cx="60" cy="25" rx="50" ry="20" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="5,5"/>
+    <ellipse cx="160" cy="25" rx="45" ry="20" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5"/>
+    <ellipse cx="250" cy="25" rx="40" ry="20" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5,5"/>
+    
+    <!-- Context labels -->
+    <circle cx="60" cy="25" r="8" fill="#10b981" opacity="0.6"/>
+    <circle cx="160" cy="25" r="8" fill="#3b82f6" opacity="0.6"/>
+    <circle cx="250" cy="25" r="8" fill="#8b5cf6" opacity="0.6"/>
+  </g>
+  
+  <!-- Design + Implementation + Test formula -->
+  <g transform="translate(350, 170)" opacity="0.6">
+    <circle cx="15" cy="15" r="12" fill="#3b82f6" opacity="0.7"/>
+    <text x="35" y="20" fill="#f8fafc" font-size="12" font-family="monospace">+</text>
+    <circle cx="55" cy="15" r="12" fill="#10b981" opacity="0.7"/>
+    <text x="75" y="20" fill="#f8fafc" font-size="12" font-family="monospace">+</text>
+    <circle cx="95" cy="15" r="12" fill="#8b5cf6" opacity="0.7"/>
+  </g>
+</svg>

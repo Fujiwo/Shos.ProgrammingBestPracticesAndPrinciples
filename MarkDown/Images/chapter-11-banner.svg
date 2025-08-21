@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg11" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="journeyGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="200" fill="url(#bg11)"/>
+  
+  <!-- Journey path from beginning to mastery -->
+  <g transform="translate(50, 100)">
+    <!-- Journey path -->
+    <path d="M0 0 Q100 -30 200 0 Q300 30 400 0 Q500 -20 600 10 Q650 20 700 0" 
+          stroke="#fbbf24" stroke-width="4" fill="none" opacity="0.8"/>
+    
+    <!-- Milestones along the journey -->
+    <!-- Starting point: Beginner -->
+    <circle cx="0" cy="0" r="8" fill="#ef4444"/>
+    <text x="0" y="-15" text-anchor="middle" fill="#fca5a5" font-size="8" font-weight="bold">Start</text>
+    
+    <!-- Learning phase -->
+    <circle cx="150" cy="-15" r="8" fill="#f59e0b"/>
+    <text x="150" y="-30" text-anchor="middle" fill="#fcd34d" font-size="8" font-weight="bold">Learning</text>
+    
+    <!-- Practicing phase -->
+    <circle cx="300" cy="15" r="8" fill="#3b82f6"/>
+    <text x="300" y="35" text-anchor="middle" fill="#93c5fd" font-size="8" font-weight="bold">Practice</text>
+    
+    <!-- Applying phase -->
+    <circle cx="450" cy="-10" r="8" fill="#10b981"/>
+    <text x="450" y="-25" text-anchor="middle" fill="#86efac" font-size="8" font-weight="bold">Apply</text>
+    
+    <!-- Mastering phase -->
+    <circle cx="600" cy="5" r="8" fill="#8b5cf6"/>
+    <text x="600" y="25" text-anchor="middle" fill="#c4b5fd" font-size="8" font-weight="bold">Master</text>
+    
+    <!-- Enlightenment/Beautiful Code -->
+    <circle cx="700" cy="0" r="12" fill="url(#journeyGlow)"/>
+    <circle cx="700" cy="0" r="8" fill="#fbbf24"/>
+    <text x="700" y="-20" text-anchor="middle" fill="#fef3c7" font-size="9" font-weight="bold">Beautiful</text>
+    <text x="700" y="-10" text-anchor="middle" fill="#fef3c7" font-size="9" font-weight="bold">Code</text>
+  </g>
+  
+  <!-- Knowledge graduation cap -->
+  <g transform="translate(100, 30)">
+    <!-- Graduation cap -->
+    <rect x="0" y="15" width="40" height="8" fill="#1e293b" rx="2"/>
+    <polygon points="5,15 35,15 40,5 0,5" fill="#374151"/>
+    <rect x="40" y="10" width="3" height="15" fill="#6b7280"/>
+    <circle cx="43" cy="25" r="2" fill="#fbbf24"/>
+    
+    <!-- Knowledge symbols -->
+    <g transform="translate(50, 0)" opacity="0.7">
+      <circle cx="10" cy="10" r="6" fill="#3b82f6"/>
+      <text x="10" y="14" text-anchor="middle" fill="white" font-size="8">1</text>
+      
+      <circle cx="25" cy="15" r="6" fill="#10b981"/>
+      <text x="25" y="19" text-anchor="middle" fill="white" font-size="8">2</text>
+      
+      <circle cx="40" cy="20" r="6" fill="#8b5cf6"/>
+      <text x="40" y="24" text-anchor="middle" fill="white" font-size="8">7</text>
+    </g>
+  </g>
+  
+  <!-- Continuous learning cycle -->
+  <g transform="translate(600, 40)">
+    <!-- Learning cycle -->
+    <circle cx="40" cy="30" r="25" fill="none" stroke="#a855f7" stroke-width="3" stroke-dasharray="5,3"/>
+    
+    <!-- Cycle elements -->
+    <circle cx="40" cy="10" r="6" fill="#3b82f6"/> <!-- Learn -->
+    <circle cx="60" cy="25" r="6" fill="#10b981"/> <!-- Practice -->
+    <circle cx="55" cy="50" r="6" fill="#f59e0b"/> <!-- Reflect -->
+    <circle cx="25" cy="50" r="6" fill="#ef4444"/> <!-- Improve -->
+    <circle cx="20" cy="25" r="6" fill="#8b5cf6"/> <!-- Share -->
+    
+    <!-- Cycle arrows -->
+    <path d="M46 12 Q55 15 58 20" stroke="#fbbf24" stroke-width="2" fill="none" marker-end="url(#cycleArrow)"/>
+    <path d="M58 31 Q58 40 55 44" stroke="#fbbf24" stroke-width="2" fill="none" marker-end="url(#cycleArrow)"/>
+    <path d="M49 50 Q40 52 31 50" stroke="#fbbf24" stroke-width="2" fill="none" marker-end="url(#cycleArrow)"/>
+    <path d="M25 44 Q22 35 22 31" stroke="#fbbf24" stroke-width="2" fill="none" marker-end="url(#cycleArrow)"/>
+    <path d="M22 19 Q25 15 34 12" stroke="#fbbf24" stroke-width="2" fill="none" marker-end="url(#cycleArrow)"/>
+  </g>
+  
+  <!-- Philosophy symbols -->
+  <g transform="translate(200, 30)">
+    <!-- Philosophy of programming -->
+    <circle cx="30" cy="30" r="20" fill="none" stroke="#c4b5fd" stroke-width="2"/>
+    
+    <!-- Yin-yang style balance (art and science) -->
+    <path d="M15 30 A15 15 0 0 1 45 30 A7.5 7.5 0 0 1 30 30 A7.5 7.5 0 0 0 15 30" 
+          fill="#1e293b"/>
+    <circle cx="22.5" cy="30" r="2" fill="#c4b5fd"/>
+    <circle cx="37.5" cy="30" r="2" fill="#1e293b"/>
+    
+    <!-- Philosophy text -->
+    <text x="30" y="60" text-anchor="middle" fill="#e0e7ff" font-size="8" font-weight="bold">Philosophy</text>
+  </g>
+  
+  <!-- Legacy and mentorship -->
+  <g transform="translate(400, 30)">
+    <!-- Mentor figure -->
+    <circle cx="20" cy="20" r="12" fill="#8b5cf6"/>
+    <rect x="10" y="32" width="20" height="25" rx="3" fill="#8b5cf6"/>
+    
+    <!-- Knowledge transfer -->
+    <g opacity="0.7">
+      <path d="M35 25 Q45 20 55 25" stroke="#fbbf24" stroke-width="2" fill="none"/>
+      <circle cx="60" cy="25" r="3" fill="#fbbf24"/>
+      <circle cx="65" cy="30" r="2" fill="#fbbf24"/>
+      <circle cx="70" cy="35" r="1" fill="#fbbf24"/>
+    </g>
+    
+    <!-- Next generation -->
+    <circle cx="80" cy="35" r="8" fill="#3b82f6"/>
+    <rect x="72" y="43" width="16" height="18" rx="2" fill="#3b82f6"/>
+  </g>
+  
+  <!-- Growth and evolution -->
+  <g transform="translate(50, 150)">
+    <!-- Growth from small to large -->
+    <circle cx="20" cy="20" r="3" fill="#10b981" opacity="0.3"/>
+    <circle cx="60" cy="18" r="6" fill="#10b981" opacity="0.5"/>
+    <circle cx="120" cy="15" r="9" fill="#10b981" opacity="0.7"/>
+    <circle cx="200" cy="10" r="12" fill="#10b981" opacity="0.9"/>
+    <circle cx="300" cy="5" r="15" fill="#10b981"/>
+    
+    <!-- Growth connections -->
+    <path d="M23 20 Q40 19 54 18" stroke="#10b981" stroke-width="1" opacity="0.4"/>
+    <path d="M66 18 Q90 16 111 15" stroke="#10b981" stroke-width="1" opacity="0.4"/>
+    <path d="M129 15 Q160 12 188 10" stroke="#10b981" stroke-width="1" opacity="0.4"/>
+    <path d="M212 10 Q250 7 285 5" stroke="#10b981" stroke-width="1" opacity="0.4"/>
+  </g>
+  
+  <!-- Future vision -->
+  <g transform="translate(500, 150)">
+    <!-- Crystal ball / future vision -->
+    <circle cx="50" cy="25" r="20" fill="none" stroke="#a855f7" stroke-width="2"/>
+    <circle cx="50" cy="25" r="15" fill="#7c3aed" opacity="0.3"/>
+    
+    <!-- Future code patterns inside -->
+    <g opacity="0.6">
+      <rect x="42" y="18" width="8" height="2" fill="#fbbf24" rx="1"/>
+      <rect x="44" y="22" width="12" height="2" fill="#10b981" rx="1"/>
+      <rect x="40" y="26" width="10" height="2" fill="#3b82f6" rx="1"/>
+      <rect x="46" y="30" width="8" height="2" fill="#8b5cf6" rx="1"/>
+    </g>
+    
+    <!-- Light rays from crystal ball -->
+    <g opacity="0.4">
+      <line x1="30" y1="15" x2="20" y2="10" stroke="#fbbf24" stroke-width="1"/>
+      <line x1="70" y1="15" x2="80" y2="10" stroke="#fbbf24" stroke-width="1"/>
+      <line x1="30" y1="35" x2="20" y2="40" stroke="#fbbf24" stroke-width="1"/>
+      <line x1="70" y1="35" x2="80" y2="40" stroke="#fbbf24" stroke-width="1"/>
+    </g>
+  </g>
+  
+  <!-- Wisdom scroll -->
+  <g transform="translate(650, 150)">
+    <!-- Ancient scroll -->
+    <rect x="0" y="0" width="60" height="30" fill="#fbbf24" rx="3"/>
+    <rect x="5" y="5" width="50" height="20" fill="#fef3c7" rx="2"/>
+    
+    <!-- Scroll text lines -->
+    <line x1="10" y1="12" x2="45" y2="12" stroke="#92400e" stroke-width="1"/>
+    <line x1="10" y1="17" x2="40" y2="17" stroke="#92400e" stroke-width="1"/>
+    <line x1="10" y1="22" x2="48" y2="22" stroke="#92400e" stroke-width="1"/>
+    
+    <!-- Scroll ends -->
+    <circle cx="0" cy="15" r="3" fill="#d97706"/>
+    <circle cx="60" cy="15" r="3" fill="#d97706"/>
+  </g>
+  
+  <!-- Completion celebration -->
+  <g transform="translate(700, 60)" opacity="0.6">
+    <!-- Fireworks/celebration -->
+    <g>
+      <line x1="20" y1="20" x2="15" y2="10" stroke="#fbbf24" stroke-width="2"/>
+      <line x1="20" y1="20" x2="25" y2="10" stroke="#fbbf24" stroke-width="2"/>
+      <line x1="20" y1="20" x2="10" y2="20" stroke="#fbbf24" stroke-width="2"/>
+      <line x1="20" y1="20" x2="30" y2="20" stroke="#fbbf24" stroke-width="2"/>
+      <line x1="20" y1="20" x2="15" y2="30" stroke="#fbbf24" stroke-width="2"/>
+      <line x1="20" y1="20" x2="25" y2="30" stroke="#fbbf24" stroke-width="2"/>
+      
+      <!-- Sparkles -->
+      <circle cx="15" cy="10" r="1" fill="#fbbf24"/>
+      <circle cx="25" cy="10" r="1" fill="#10b981"/>
+      <circle cx="10" cy="20" r="1" fill="#3b82f6"/>
+      <circle cx="30" cy="20" r="1" fill="#ef4444"/>
+      <circle cx="15" cy="30" r="1" fill="#8b5cf6"/>
+      <circle cx="25" cy="30" r="1" fill="#f59e0b"/>
+    </g>
+  </g>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="cycleArrow" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
+      <polygon points="0 0, 6 2, 0 4" fill="#fbbf24"/>
+    </marker>
+  </defs>
+</svg>
