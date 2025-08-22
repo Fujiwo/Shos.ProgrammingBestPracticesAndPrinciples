@@ -17,6 +17,10 @@ This is a Japanese documentation repository focused on writing a book about prog
 - Create and edit markdown files for the book project
 - Organize documentation and manage the book writing project
 - Work with the existing folder structure and file organization
+- Review and make minor improvements to completed content
+- Update documentation and references
+- Work with visual materials in the `MarkDown/Images/` directory
+- Perform quality assurance and consistency checks
 
 ### What You CANNOT Do
 - **DO NOT attempt to build or compile anything** - there are no build processes
@@ -102,6 +106,30 @@ find . -name "*.md" -type f
 - The materials focus on "beautiful code" principles, object-oriented programming, and software quality
 - Key concepts include "守破離" (Shu-Ha-Ri learning stages), modeling, and naming conventions
 - Content emphasizes the "Why-What-How" development approach
+
+## Working with a Completed Project
+
+### Understanding the Current State
+This project has reached completion status with all major content finished. The book contains:
+- **12 main sections**: Introduction + 11 chapters covering comprehensive programming principles
+- **6 appendices**: Detailed supplementary materials and references
+- **Extensive visual materials**: Diagrams, charts, and banners in the Images/ directory
+- **Complete documentation**: Multiple review cycles and progress tracking
+
+### Types of Updates Appropriate for Completed Project
+- **Minor editorial improvements**: Fixing typos, improving clarity
+- **Documentation updates**: Keeping README.md and progress files current
+- **Quality assurance**: Ensuring consistency across chapters
+- **Reference updates**: Adding new sources or improving citations
+- **Visual enhancements**: Improving diagrams or adding new visual aids
+- **Format improvements**: Better organization of existing content
+
+### Avoid Major Restructuring
+Since the project is complete and has undergone multiple review cycles:
+- Avoid major content reorganization without specific justification
+- Don't delete substantial content unless it's clearly redundant or incorrect
+- Maintain the established chapter structure and flow
+- Preserve the review-approved content organization
 
 ## Book Writing Workflow
 
