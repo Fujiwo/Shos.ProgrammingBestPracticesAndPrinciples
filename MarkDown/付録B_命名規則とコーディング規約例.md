@@ -67,11 +67,6 @@ public enum OrderStatus
 }
 ```
 
-#### 参考
-
-- [C# コーディング ガイドライン (2025年度版)](https://github.com/Fujiwo/CSharpCodingGuideline/blob/main/README.Japanese.md) https://github.com/Fujiwo/CSharpCodingGuideline/blob/main/README.Japanese.md (日本語版)
-- [C# Coding Guidelines (2025 Edition)](https://github.com/Fujiwo/CSharpCodingGuideline/blob/main/README.English.md) https://github.com/Fujiwo/CSharpCodingGuideline/blob/main/README.English.md  (英語版)
-
 ### B.1.2 Java命名規則
 
 ```java
@@ -577,5 +572,10 @@ public class CustomerService
 - [ ] IDisposable の実装は適切か?
 - [ ] using文を適切に使用しているか?
 - [ ] メモリリークの可能性はないか?
+
+## 参考
+
+- [C# コーディング ガイドライン (2025年度版)](https://github.com/Fujiwo/CSharpCodingGuideline/blob/main/README.Japanese.md) https://github.com/Fujiwo/CSharpCodingGuideline/blob/main/README.Japanese.md (日本語版)
+- [C# Coding Guidelines (2025 Edition)](https://github.com/Fujiwo/CSharpCodingGuideline/blob/main/README.English.md) https://github.com/Fujiwo/CSharpCodingGuideline/blob/main/README.English.md  (英語版)
 
 この付録で示した命名規則とコーディング規約は、チーム開発において一貫性を保つための基盤となる。これらの規約を遵守することで、コードの可読性と保守性が大幅に向上し、開発効率の向上につながる。
