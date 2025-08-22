@@ -108,7 +108,8 @@
 
 ### E.2.2 Name and Conquer(定義攻略)
 
-**出典**:  「オブジェクト指向によるソフトウェア最適設計手法」 by 著者
+**出典**:  [「ソフトウェア原則 - ちょっと横道 その2　Name and Conquer」](https://objectclub.jp/technicaldoc/object-orientation/principle/principle05) by 平鍋 健児氏
+- https://objectclub.jp/technicaldoc/object-orientation/principle/principle05
 
 「ある注目すべきもの」を見つけてそれに名前を付けることで、複雑な問題をシンプルな概念に分割し、確定させるソフトウェア開発のアプローチ。Divide and Conquer(分割攻略)と対をなす概念。
 
@@ -201,7 +202,7 @@
 ### E.4.1 日本のプログラミングコミュニティ
 
 #### 勉強会・イベント
-- **こみゅぷらす** - 関西圏の開発者コミュニティ
+- **こみゅぷらす** - 関東圏の開発者コミュニティ
 - **Hokuriku.NET** - 北陸地方の.NET開発者コミュニティ
 - **FITEA** - IT技術者向け勉強会
 - **Developers Summit** - 年次技術カンファレンス
