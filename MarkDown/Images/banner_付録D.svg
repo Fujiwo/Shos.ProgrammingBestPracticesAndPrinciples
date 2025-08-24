@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="questionGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:0" />
+    </radialGradient>
+    <radialGradient id="answerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:0" />
+    </radialGradient>
+    <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.8" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="200" fill="url(#bg)"/>
+  
+  <!-- Central dialogue between question and answer -->
+  <g transform="translate(400, 100)">
+    <!-- Question bubble (left) -->
+    <g transform="translate(-80, 0)">
+      <ellipse cx="0" cy="0" rx="40" ry="25" fill="url(#questionGlow)"/>
+      <ellipse cx="0" cy="0" rx="30" ry="18" fill="#fbbf24" opacity="0.9"/>
+      <text x="0" y="6" text-anchor="middle" fill="#0f172a" font-size="24" font-family="Arial, sans-serif" font-weight="bold">?</text>
+      <!-- Question bubble tail -->
+      <polygon points="-25,15 -35,25 -15,20" fill="#fbbf24" opacity="0.9"/>
+    </g>
+    
+    <!-- Answer bubble (right) -->
+    <g transform="translate(80, 0)">
+      <ellipse cx="0" cy="0" rx="40" ry="25" fill="url(#answerGlow)"/>
+      <ellipse cx="0" cy="0" rx="30" ry="18" fill="#10b981" opacity="0.9"/>
+      <text x="0" y="6" text-anchor="middle" fill="#ffffff" font-size="20" font-family="Arial, sans-serif" font-weight="bold">!</text>
+      <!-- Answer bubble tail -->
+      <polygon points="25,15 35,25 15,20" fill="#10b981" opacity="0.9"/>
+    </g>
+    
+    <!-- Connecting dialogue flow -->
+    <path d="M-40,0 Q0,-15 40,0" stroke="#8b5cf6" stroke-width="3" fill="none" opacity="0.7"/>
+    <circle cx="0" cy="-8" r="3" fill="#8b5cf6" opacity="0.7"/>
+  </g>
+  
+  <!-- Learning journey path -->
+  <g stroke="url(#pathGradient)" stroke-width="4" fill="none" opacity="0.6">
+    <path d="M50 150 Q150 120 250 140 Q350 160 450 140 Q550 120 650 140 Q750 160 780 150"/>
+  </g>
+  
+  <!-- Knowledge milestones along the path -->
+  <g opacity="0.7">
+    <!-- Beginner milestone -->
+    <g transform="translate(150, 135)">
+      <circle r="10" fill="#fbbf24"/>
+      <circle r="6" fill="#ffffff"/>
+      <text x="0" y="25" text-anchor="middle" fill="#fbbf24" font-size="10" font-family="Arial">Start</text>
+    </g>
+    
+    <!-- Understanding milestone -->
+    <g transform="translate(350, 155)">
+      <circle r="10" fill="#8b5cf6"/>
+      <circle r="6" fill="#ffffff"/>
+      <text x="0" y="25" text-anchor="middle" fill="#8b5cf6" font-size="10" font-family="Arial">Learn</text>
+    </g>
+    
+    <!-- Mastery milestone -->
+    <g transform="translate(550, 125)">
+      <circle r="10" fill="#10b981"/>
+      <circle r="6" fill="#ffffff"/>
+      <text x="0" y="25" text-anchor="middle" fill="#10b981" font-size="10" font-family="Arial">Master</text>
+    </g>
+  </g>
+  
+  <!-- Q&A pairs scattered around -->
+  <g opacity="0.6">
+    <!-- Top left Q&A -->
+    <g transform="translate(150, 60)">
+      <circle cx="-15" cy="0" r="8" fill="#fbbf24" opacity="0.8"/>
+      <text x="-15" y="3" text-anchor="middle" fill="#0f172a" font-size="10" font-family="Arial" font-weight="bold">Q</text>
+      <circle cx="15" cy="0" r="8" fill="#10b981" opacity="0.8"/>
+      <text x="15" y="3" text-anchor="middle" fill="#ffffff" font-size="10" font-family="Arial" font-weight="bold">A</text>
+      <line x1="-7" y1="0" x2="7" y2="0" stroke="#8b5cf6" stroke-width="1"/>
+    </g>
+    
+    <!-- Top right Q&A -->
+    <g transform="translate(650, 60)">
+      <circle cx="-15" cy="0" r="8" fill="#fbbf24" opacity="0.8"/>
+      <text x="-15" y="3" text-anchor="middle" fill="#0f172a" font-size="10" font-family="Arial" font-weight="bold">Q</text>
+      <circle cx="15" cy="0" r="8" fill="#10b981" opacity="0.8"/>
+      <text x="15" y="3" text-anchor="middle" fill="#ffffff" font-size="10" font-family="Arial" font-weight="bold">A</text>
+      <line x1="-7" y1="0" x2="7" y2="0" stroke="#8b5cf6" stroke-width="1"/>
+    </g>
+    
+    <!-- Bottom left Q&A -->
+    <g transform="translate(250, 170)">
+      <circle cx="-10" cy="0" r="6" fill="#fbbf24" opacity="0.7"/>
+      <text x="-10" y="2" text-anchor="middle" fill="#0f172a" font-size="8" font-family="Arial" font-weight="bold">Q</text>
+      <circle cx="10" cy="0" r="6" fill="#10b981" opacity="0.7"/>
+      <text x="10" y="2" text-anchor="middle" fill="#ffffff" font-size="8" font-family="Arial" font-weight="bold">A</text>
+      <line x1="-4" y1="0" x2="4" y2="0" stroke="#8b5cf6" stroke-width="1"/>
+    </g>
+    
+    <!-- Bottom right Q&A -->
+    <g transform="translate(550, 170)">
+      <circle cx="-10" cy="0" r="6" fill="#fbbf24" opacity="0.7"/>
+      <text x="-10" y="2" text-anchor="middle" fill="#0f172a" font-size="8" font-family="Arial" font-weight="bold">Q</text>
+      <circle cx="10" cy="0" r="6" fill="#10b981" opacity="0.7"/>
+      <text x="10" y="2" text-anchor="middle" fill="#ffffff" font-size="8" font-family="Arial" font-weight="bold">A</text>
+      <line x1="-4" y1="0" x2="4" y2="0" stroke="#8b5cf6" stroke-width="1"/>
+    </g>
+  </g>
+  
+  <!-- Wisdom symbols at corners -->
+  <g opacity="0.5">
+    <!-- Top left - Light bulb (insight) -->
+    <g transform="translate(80, 50)">
+      <circle cx="0" cy="0" r="8" fill="#fbbf24" opacity="0.4"/>
+      <circle cx="0" cy="-2" r="4" fill="#fbbf24"/>
+      <rect x="-2" y="2" width="4" height="4" fill="#fbbf24"/>
+    </g>
+    
+    <!-- Top right - Book (knowledge) -->
+    <g transform="translate(720, 50)">
+      <rect x="-6" y="-4" width="12" height="8" fill="#06b6d4" opacity="0.4" rx="1"/>
+      <rect x="-4" y="-2" width="8" height="4" fill="#06b6d4" rx="1"/>
+      <line x1="-4" y1="0" x2="4" y2="0" stroke="#ffffff" stroke-width="0.5"/>
+    </g>
+    
+    <!-- Bottom left - Growth (progress) -->
+    <g transform="translate(80, 150)">
+      <circle cx="0" cy="0" r="8" fill="#10b981" opacity="0.4"/>
+      <polygon points="0,-4 3,0 0,4 -3,0" fill="#10b981"/>
+    </g>
+    
+    <!-- Bottom right - Target (goal) -->
+    <g transform="translate(720, 150)">
+      <circle cx="0" cy="0" r="8" fill="#8b5cf6" opacity="0.4"/>
+      <circle cx="0" cy="0" r="5" fill="none" stroke="#8b5cf6" stroke-width="1"/>
+      <circle cx="0" cy="0" r="2" fill="#8b5cf6"/>
+    </g>
+  </g>
+  
+  <!-- Flowing conversation lines -->
+  <g stroke="#06b6d4" stroke-width="1" fill="none" opacity="0.3">
+    <!-- Top conversation flow -->
+    <path d="M100 40 Q200 30 300 40 Q350 45 400 35 Q450 45 500 40 Q600 30 700 40"/>
+    
+    <!-- Bottom conversation flow -->
+    <path d="M100 180 Q200 190 300 180 Q350 175 400 185 Q450 175 500 180 Q600 190 700 180"/>
+  </g>
+  
+  <!-- Connecting wisdom lines -->
+  <g stroke="#8b5cf6" stroke-width="0.5" fill="none" opacity="0.2">
+    <line x1="150" y1="60" x2="250" y2="100"/>
+    <line x1="650" y1="60" x2="550" y2="100"/>
+    <line x1="250" y1="100" x2="350" y2="140"/>
+    <line x1="550" y1="100" x2="450" y2="140"/>
+  </g>
+</svg>
