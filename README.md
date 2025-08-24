@@ -127,6 +127,20 @@ MarkDown/
 - **フォーマット**: Markdown (UTF-8)
 - **対象環境**: マルチプラットフォーム
 
+## 著者
+
+小島 富治雄: ソフトウェア開発エンジニア
+
+- Microsoft MVP for Development Tools - Visual C# (Jul. 2005 - Dec. 2014)
+- Microsoft MVP for .NET (Jan. 2015 - Oct. 2015)
+- Microsoft MVP for Visual Studio and Development Technologies (Nov. 2015 - Jun. 2018)
+- Microsoft MVP for Developer Technologies (Nov. 2018 - Jun. 2026)
+* [MVP Profile](https://mvp.microsoft.com/en-us/PublicProfile/21482)
+* [ブログ (Japanese)](http://wp.shos.info)
+* [Webサイト (Japanese)](http://www.shos.info)
+* [X](https://x.com/Fujiwo)
+* [Instagram](https://www.instagram.com/fujiwo/)
+
 ### ライセンス
 
 本書は著者の思想と実践に基づいており、参考資料の出典を適切に明記しています。
