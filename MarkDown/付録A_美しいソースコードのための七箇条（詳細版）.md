@@ -1,5 +1,7 @@
 # 付録A 美しいソースコードのための七箇条(詳細版)
 
+![付録A バナー](Images/banner_付録A.svg)
+
 ![七箇条実践ガイド：Before/After コード比較](Images/seven-principles-before-after-examples.md)
 
 ## A.1 第一箇条:意図を表現

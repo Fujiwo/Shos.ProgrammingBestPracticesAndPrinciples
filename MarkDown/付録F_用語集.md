@@ -1,5 +1,7 @@
 # 付録F 用語集
 
+![付録F バナー](Images/banner_付録F_用語集.svg)
+
 ## A
 
 ### Abstract(抽象)
