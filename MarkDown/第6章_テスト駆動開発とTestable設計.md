@@ -39,6 +39,7 @@ Testableな設計は、非機能品質の向上に直接的に寄与する:
 
 #### 理解容易性(Understandability)の向上
 
+_[C#]_
 ```csharp
 // Testableでない設計例
 public class OrderProcessor
@@ -65,6 +66,7 @@ public class OrderProcessor
 
 この設計では、何がテストできて何がテストできないのかが明確でない。
 
+_[C#]_
 ```csharp
 // Testableな設計例
 public class OrderProcessor
@@ -110,6 +112,7 @@ Testableな設計では、各依存関係が明確に分離され、個別にテ
 
 Testableな設計は自然と疎結合な設計となり、変更に対する耐性が向上する。
 
+_[C#]_
 ```csharp
 // テスト例:支払い処理の失敗ケース
 [Test]
@@ -150,6 +153,7 @@ public async Task ProcessOrder_PaymentFails_ReturnsPaymentFailedResult()
 
 外部リソースや他のサービスへの依存は、コンストラクタやメソッドの引数として注入する。
 
+_[C#]_
 ```csharp
 // 悪い例:依存性がハードコーディングされている
 public class UserService
@@ -182,6 +186,7 @@ public class UserService
 
 副作用のない純粋関数は、最もテストしやすい形式である。
 
+_[Python]_
 ```python
 # 純粋関数の例
 def calculate_tax(price: float, tax_rate: float) -> float:
@@ -198,6 +203,7 @@ def test_calculate_tax():
 
 オブジェクトの状態変化を明示的に管理し、予測可能にする。
 
+_[Java]_
 ```java
 // 状態管理の良い例
 public class BankAccount {
@@ -241,6 +247,7 @@ public class BankAccount {
 
 テストは迅速に実行されるべきである。開発者がテストを頻繁に実行することを妨げない速度でなければならない。
 
+_[C#]_
 ```csharp
 // 高速なテストの例
 [Test]
@@ -269,6 +276,7 @@ public void GetUser_DatabaseIntegration_ReturnsUser()
 
 各テストは他のテストに依存せず、任意の順序で実行できるべきである。
 
+_[Python]_
 ```python
 # 独立したテストの例
 class TestShoppingCart:
@@ -288,6 +296,7 @@ class TestShoppingCart:
 
 テストは任意の環境で同じ結果を得られるべきである。
 
+_[JavaScript]_
 ```javascript
 // 再現可能なテストの例
 describe('DateUtils', () => {
@@ -310,6 +319,7 @@ describe('DateUtils', () => {
 
 テストの結果は明確にパス/フェイルで判定できるべきである。
 
+_[C#]_
 ```csharp
 // 自己検証の良い例
 [Test]
@@ -335,6 +345,7 @@ public void PrintUserInfo_ValidUser_PrintsInformation()
 
 ### 6.2.2 テストの構造:AAA(Arrange-Act-Assert)パターン
 
+_[C#]_
 ```csharp
 [Test]
 public void CalculateShippingCost_DomesticOrder_ReturnsStandardRate()
@@ -360,6 +371,7 @@ public void CalculateShippingCost_DomesticOrder_ReturnsStandardRate()
 
 #### 境界値テスト
 
+_[Python]_
 ```python
 def test_grade_calculation_boundary_values():
     calculator = GradeCalculator()
@@ -373,6 +385,7 @@ def test_grade_calculation_boundary_values():
 
 #### 等価クラステスト
 
+_[Java]_
 ```java
 @Test
 public void validateAge_EquivalenceClasses() {
@@ -405,6 +418,7 @@ public void validateAge_EquivalenceClasses() {
 
 #### ステップ1:Red - 失敗するテストを書く
 
+_[C#]_
 ```csharp
 [Test]
 public void Add_TwoPositiveNumbers_ReturnsSum()
@@ -424,6 +438,7 @@ public void Add_TwoPositiveNumbers_ReturnsSum()
 
 #### ステップ2:Green - 最小限の実装
 
+_[C#]_
 ```csharp
 public class Calculator
 {
@@ -438,6 +453,7 @@ public class Calculator
 
 #### ステップ3:より多くのテストケース
 
+_[C#]_
 ```csharp
 [Test]
 public void Add_DifferentNumbers_ReturnsCorrectSum()
@@ -452,6 +468,7 @@ public void Add_DifferentNumbers_ReturnsCorrectSum()
 
 #### ステップ4:適切な実装への改善
 
+_[C#]_
 ```csharp
 public class Calculator
 {
@@ -464,6 +481,7 @@ public class Calculator
 
 #### ステップ5:Refactor - より複雑な機能の追加
 
+_[C#]_
 ```csharp
 [Test]
 public void Divide_ValidNumbers_ReturnsQuotient()
@@ -481,6 +499,7 @@ public void Divide_ByZero_ThrowsException()
 }
 ```
 
+_[C#]_
 ```csharp
 public class Calculator
 {
@@ -505,6 +524,7 @@ public class Calculator
 
 TDDを実践すると、自然とTestableな設計になる:
 
+_[C#]_
 ```csharp
 // TDDで開発された銀行口座クラス
 public class BankAccount
@@ -549,6 +569,7 @@ public class BankAccount
 
 このクラスは以下のようなテストによって開発された:
 
+_[C#]_
 ```csharp
 [Test]
 public void Constructor_PositiveBalance_SetsBalance()
@@ -595,6 +616,7 @@ public void Withdraw_InsufficientFunds_ThrowsException()
 
 #### 意図を表現するテストコード
 
+_[C#]_
 ```csharp
 // 悪い例:意図が不明確
 [Test]
@@ -625,6 +647,7 @@ public void Add_TwoPositiveIntegers_ReturnsCorrectSum()
 
 #### テストコードの単一責務原則
 
+_[Python]_
 ```python
 # 悪い例:複数のことをテストしている
 def test_user_operations():
@@ -663,6 +686,7 @@ def test_profile_update_sets_bio():
 
 #### ファクトリーパターンの活用
 
+_[C#]_
 ```csharp
 // テストデータファクトリー
 public static class TestDataFactory
@@ -704,6 +728,7 @@ public void CalculateTotal_MultipleItems_ReturnsCorrectSum()
 
 #### Builderパターンによる柔軟なテストデータ作成
 
+_[Java]_
 ```java
 // テストデータビルダー
 public class UserTestBuilder {
@@ -757,6 +782,7 @@ public void validateUser_InactiveUser_ReturnsFalse() {
 
 #### モックの使用例
 
+_[C#]_
 ```csharp
 [Test]
 public async Task ProcessOrder_PaymentSucceeds_SendsConfirmationEmail()
@@ -788,6 +814,7 @@ public async Task ProcessOrder_PaymentSucceeds_SendsConfirmationEmail()
 
 #### スタブの使用例
 
+_[Python]_
 ```python
 # スタブクラスの実装
 class StubEmailService:
@@ -830,6 +857,7 @@ def test_user_registration_sends_welcome_email():
 
 #### ステップ1:書籍クラスのテスト
 
+_[C#]_
 ```csharp
 [Test]
 public void Book_Constructor_SetsPropertiesCorrectly()
@@ -891,6 +919,7 @@ public void Return_CheckedOutBook_MarksAsAvailable()
 
 #### ステップ2:実装
 
+_[C#]_
 ```csharp
 public class Book
 {
@@ -929,6 +958,7 @@ public class Book
 
 #### ステップ3:図書館クラスのテスト
 
+_[C#]_
 ```csharp
 [Test]
 public void AddBook_ValidBook_AddsToCollection()
@@ -978,6 +1008,7 @@ public void CheckOutBook_NonExistentBook_ReturnsFalse()
 
 #### ステップ4:図書館クラスの実装
 
+_[C#]_
 ```csharp
 public class Library
 {
@@ -1043,6 +1074,7 @@ TDDを実践することで、以下の設計改善が自然に生まれる:
 
 利用者管理機能を追加する場合:
 
+_[C#]_
 ```csharp
 [Test]
 public void CheckOutBook_ToMember_RecordsTransaction()
