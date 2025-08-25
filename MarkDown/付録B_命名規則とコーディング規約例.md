@@ -7,6 +7,7 @@
 ### B.1.1 C#命名規則
 
 #### クラス・インターフェース・構造体
+_[C#]_
 ```csharp
 // ✅ PascalCase を使用
 public class CustomerService { }
@@ -26,6 +27,7 @@ public class CustomerNotFoundException : Exception { }
 ```
 
 #### メソッド・プロパティ
+_[C#]_
 ```csharp
 // ✅ PascalCase を使用
 public void ProcessOrder() { }
@@ -40,6 +42,7 @@ public bool CanProcess { get; }
 ```
 
 #### フィールド・変数・パラメータ
+_[C#]_
 ```csharp
 // ✅ camelCase を使用
 public void ProcessCustomer(string customerName, int orderId)
@@ -55,6 +58,7 @@ private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
 ```
 
 #### 定数・列挙値
+_[C#]_
 ```csharp
 // ✅ PascalCase を使用
 public const int MaxRetryCount = 3;
@@ -71,6 +75,7 @@ public enum OrderStatus
 
 ### B.1.2 Java命名規則
 
+_[Java]_
 ```java
 // クラス:PascalCase
 public class CustomerService { }
@@ -94,6 +99,7 @@ package com.company.project.domain.customer;
 
 ### B.1.3 Python命名規則
 
+_[Python]_
 ```python
 # クラス:PascalCase
 class CustomerService:
@@ -118,6 +124,7 @@ class CustomerService:
 
 ### B.1.4 JavaScript/TypeScript命名規則
 
+_[JavaScript]_
 ```javascript
 // クラス:PascalCase
 class CustomerService { }
@@ -144,6 +151,7 @@ interface CustomerRepository {
 
 ### B.2.1 ビジネス概念の表現
 
+_[C#]_
 ```csharp
 // ❌ 技術的な名前
 public class DataManager
@@ -169,6 +177,7 @@ public class OrderProcessor
 
 ### B.2.2 ユビキタス言語の活用
 
+_[C#]_
 ```csharp
 // ECサイトドメインの例
 public class ShoppingCart
@@ -199,6 +208,7 @@ public class Account
 ### B.2.3 動詞の選択指針
 
 #### 作成・生成系
+_[C#]_
 ```csharp
 // Create: 新しいエンティティの作成
 public Customer CreateCustomer(CustomerRequest request) { }
@@ -216,6 +226,7 @@ public string MakeDisplayName(string firstName, string lastName) { }
 ```
 
 #### 取得・検索系
+_[C#]_
 ```csharp
 // Get: 確実に存在するものの取得
 public Customer GetCustomer(CustomerId id) { }
@@ -234,6 +245,7 @@ public List<Order> FetchRecentOrders(CustomerId customerId, int count) { }
 ```
 
 #### 処理・実行系
+_[C#]_
 ```csharp
 // Process: 複雑な業務処理
 public void ProcessPayment(Payment payment) { }
@@ -249,6 +261,7 @@ public void HandleOrderCancellation(OrderCancelledEvent @event) { }
 ```
 
 #### 検証・確認系
+_[C#]_
 ```csharp
 // Validate: 包括的な検証
 public ValidationResult ValidateOrder(Order order) { }
@@ -268,6 +281,7 @@ public void EnsureCustomerExists(CustomerId customerId) { }
 ### B.3.1 C#コーディング規約
 
 #### ファイル構成
+_[C#]_
 ```csharp
 // ✅ 推奨されるファイル構成
 using System;
@@ -357,6 +371,7 @@ namespace MyProject.Application.Services
 ```
 
 #### インデントとブレース
+_[C#]_
 ```csharp
 // ✅ 推奨スタイル
 public class CustomerService
@@ -384,6 +399,7 @@ public class CustomerService
 ```
 
 #### 空白とスペース
+_[C#]_
 ```csharp
 // ✅ 推奨スタイル
 public class Calculator
@@ -406,6 +422,7 @@ public class Calculator
 ### B.3.2 メソッド設計規約
 
 #### メソッドサイズ
+_[C#]_
 ```csharp
 // ✅ 適切なサイズ(10行以内が理想)
 public ValidationResult ValidateEmail(string email)
@@ -424,6 +441,7 @@ public ValidationResult ValidateEmail(string email)
 ```
 
 #### パラメータ数の制限
+_[C#]_
 ```csharp
 // ❌ パラメータが多すぎる
 public void CreateCustomer(string name, string email, string phone, string address,
@@ -452,6 +470,7 @@ public class CustomerCreationRequest
 ### B.3.3 例外処理規約
 
 #### 例外の種類と使い分け
+_[C#]_
 ```csharp
 // ✅ 適切な例外の使い分け
 public class CustomerService
@@ -489,6 +508,7 @@ public class CustomerNotFoundException : Exception
 
 ### B.3.4 非同期処理規約
 
+_[C#]_
 ```csharp
 // ✅ 非同期メソッドの命名とシグネチャ
 public class CustomerService

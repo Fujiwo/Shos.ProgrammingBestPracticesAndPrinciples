@@ -11,6 +11,7 @@
 「意図を表現」とは、ソースコードが**「何をやりたいか」**という目的を明確に示し、かつその意図以外の不要な記述(ノイズ)が少ない状態を指す。これは美しいソースコードの最も重要な原則である。
 
 #### 良い例:意図が明確なコード
+_[C#]_
 ```csharp
 // ✅ 意図が明確
 public List<Customer> GetActiveCustomers()
@@ -27,6 +28,7 @@ public decimal CalculateMonthlyRevenue(DateTime month)
 ```
 
 #### 悪い例:意図が不明確なコード
+_[C#]_
 ```csharp
 // ❌ 意図が不明確
 public List<Customer> GetData()
@@ -48,6 +50,7 @@ public List<Customer> GetData()
 **ノイズ**とは、コードの意図とは直接関係のない、実装の詳細や構文上の記述を指す。
 
 #### ノイズの例
+_[C#]_
 ```csharp
 // ❌ ノイズが多い
 for (int i = 0; i < customerList.Count; i++)
@@ -81,6 +84,7 @@ foreach (var customer in customers.Where(HasOrders))
 一つのクラス、メソッド、変数は**一つの責務のみ**を持つべきである。変更が起こる理由は一つであるべきという原則。
 
 #### クラスレベルでの単一責務
+_[C#]_
 ```csharp
 // ❌ 複数の責務を持つクラス
 public class CustomerManager
@@ -114,6 +118,7 @@ public class CustomerValidator
 ```
 
 ### A.2.2 メソッドレベルでの単一責務
+_[C#]_
 ```csharp
 // ❌ 複数の責務を持つメソッド
 public void ProcessOrder(Order order)
@@ -171,6 +176,7 @@ public void ProcessOrder(Order order)
 ### A.3.2 名前付けのパターン
 
 #### 動詞の使い分け
+_[C#]_
 ```csharp
 // Create vs Generate vs Build
 public Customer CreateCustomer(CustomerRequest request) // 新規作成
@@ -184,6 +190,7 @@ public Customer RetrieveCustomer(int id) // 外部システムから取得
 ```
 
 #### 形容詞の活用
+_[C#]_
 ```csharp
 // 状態を表す形容詞
 public bool IsValid { get; }
@@ -194,6 +201,7 @@ public bool CanProcess { get; }
 ```
 
 ### A.3.3 アンチパターン
+_[C#]_
 ```csharp
 // ❌ 避けるべき名前付け
 public class CustomerInfo { } // Info は曖昧
@@ -212,6 +220,7 @@ public void ProcessData(object data) // 汎用的すぎる
 #### 重複の種類
 
 ##### 1. 完全重複
+_[C#]_
 ```csharp
 // ❌ 完全重複
 public void ProcessOrderA(Order order)
@@ -249,6 +258,7 @@ private void ApplyVolumeDiscount(Order order)
 ```
 
 ##### 2. 意図の重複(構造的重複)
+_[C#]_
 ```csharp
 // ❌ 構造的重複
 public bool IsValidEmail(string email)
@@ -275,6 +285,7 @@ public bool IsValidPhone(string phone) =>
 ```
 
 ### A.4.2 設定の重複排除
+_[C#]_
 ```csharp
 // ❌ 設定値の重複
 public class EmailSettings
@@ -303,6 +314,7 @@ public static class ApplicationSettings
 メソッド内が**同じ抽象化レベル**で統一されていること。
 
 #### 抽象化レベルの統一
+_[C#]_
 ```csharp
 // ❌ 抽象化レベルが混在
 public void ProcessCustomerRegistration(CustomerRequest request)
@@ -339,6 +351,7 @@ public void ProcessCustomerRegistration(CustomerRequest request)
 - **一画面に収まる**サイズ
 - **一つの概念**を表現
 
+_[C#]_
 ```csharp
 // ✅ 適切なサイズのメソッド
 public ValidationResult ValidateCustomer(Customer customer)
@@ -361,6 +374,7 @@ public ValidationResult ValidateCustomer(Customer customer)
 ### A.6.1 コーディング規約の統一
 
 #### 命名規則
+_[C#]_
 ```csharp
 // クラス名:PascalCase
 public class CustomerService { }
@@ -379,6 +393,7 @@ private readonly ICustomerRepository _customerRepository;
 ```
 
 #### フォーマット規則
+_[C#]_
 ```csharp
 // ✅ 統一されたフォーマット
 public class CustomerService
@@ -402,6 +417,7 @@ public class CustomerService
 
 ### A.6.2 エラーハンドリングの統一
 
+_[C#]_
 ```csharp
 // ✅ 統一されたエラーハンドリングパターン
 public class StandardErrorHandling
@@ -439,6 +455,7 @@ public class StandardErrorHandling
 コードが正しく動作していることを**検証しやすい**状態。
 
 #### 依存関係の注入
+_[C#]_
 ```csharp
 // ❌ テストしにくい設計
 public class OrderService
@@ -475,6 +492,7 @@ public class OrderService
 ```
 
 ### A.7.2 純粋関数の活用
+_[C#]_
 ```csharp
 // ✅ 純粋関数(テストしやすい)
 public static class TaxCalculator
