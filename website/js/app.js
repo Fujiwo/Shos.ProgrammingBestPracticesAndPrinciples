@@ -144,8 +144,8 @@ async function loadPage(pageName) {
             // Set content
             content.innerHTML = htmlContent;
             
-            // Highlight code blocks
-            highlightCodeBlocks();
+            // Clean corrupted syntax highlighting and apply proper highlighting
+            cleanupAndHighlightCodeBlocks();
             
             // Update navigation state
             updateNavigationState(pageName);
@@ -213,6 +213,9 @@ function highlightCodeBlocks() {
     const codeBlocks = document.querySelectorAll('pre code');
     
     codeBlocks.forEach(block => {
+        // First, check if the content is already corrupted and clean it
+        cleanCorruptedContent(block);
+        
         const className = block.className;
         const language = className.replace('language-', '');
         
@@ -229,6 +232,35 @@ function highlightCodeBlocks() {
     });
 }
 
+function cleanCorruptedContent(block) {
+    // Get the current text content
+    let textContent = block.textContent || block.innerText || '';
+    
+    // Check if the content contains malformed color style fragments
+    const containsCorruption = textContent.includes('"color: #') || 
+                              textContent.includes('style="color:') ||
+                              textContent.includes('">#') ||
+                              block.innerHTML.includes('<span style="color:');
+    
+    if (containsCorruption) {
+        console.log('Detected corrupted syntax highlighting, cleaning content...');
+        
+        // Remove all malformed color style fragments
+        textContent = textContent
+            .replace(/"color:\s*#[0-9a-fA-F]{6};\s*"[>]?/g, '') // Remove "color: #xxxxxx;"
+            .replace(/style="color:\s*#[0-9a-fA-F]{6};\s*"/g, '') // Remove style="color: #xxxxxx;"
+            .replace(/"[>]/g, '') // Remove orphaned ">
+            .replace(/\s+/g, ' ') // Normalize whitespace
+            .trim();
+        
+        // Reset the block content to clean text
+        block.innerHTML = '';
+        block.textContent = textContent;
+        
+        console.log('Content cleaned successfully');
+    }
+}
+
 function highlightCSharp(block) {
     // Check if already highlighted to avoid double-processing
     if (block.querySelector('span[style*="color:"]')) {
@@ -237,6 +269,9 @@ function highlightCSharp(block) {
     
     // Get the raw text content (not innerHTML which might be escaped)
     let content = block.textContent || block.innerText;
+    
+    // First, escape HTML entities in the content to prevent XSS and ensure proper rendering
+    content = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     
     // Keywords
     const keywords = ['public', 'private', 'protected', 'internal', 'static', 'virtual', 'override', 'abstract', 'sealed', 'class', 'interface', 'struct', 'enum', 'namespace', 'using', 'if', 'else', 'for', 'foreach', 'while', 'do', 'switch', 'case', 'default', 'break', 'continue', 'return', 'try', 'catch', 'finally', 'throw', 'new', 'this', 'base', 'var', 'const', 'readonly', 'bool', 'int', 'string', 'double', 'float', 'decimal', 'char', 'byte', 'long', 'short', 'object'];
@@ -259,6 +294,9 @@ function highlightCSharp(block) {
 function highlightJava(block) {
     let content = block.textContent;
     
+    // First, escape HTML entities in the content to prevent XSS and ensure proper rendering
+    content = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    
     // Keywords
     const keywords = ['public', 'private', 'protected', 'static', 'final', 'abstract', 'class', 'interface', 'extends', 'implements', 'import', 'package', 'if', 'else', 'for', 'while', 'do', 'switch', 'case', 'default', 'break', 'continue', 'return', 'try', 'catch', 'finally', 'throw', 'throws', 'new', 'this', 'super', 'boolean', 'int', 'String', 'double', 'float', 'char', 'byte', 'long', 'short', 'void'];
     
@@ -279,6 +317,9 @@ function highlightJava(block) {
 
 function highlightJavaScript(block) {
     let content = block.textContent;
+    
+    // First, escape HTML entities in the content to prevent XSS and ensure proper rendering
+    content = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     
     // Keywords
     const keywords = ['function', 'var', 'let', 'const', 'if', 'else', 'for', 'while', 'do', 'switch', 'case', 'default', 'break', 'continue', 'return', 'try', 'catch', 'finally', 'throw', 'new', 'this', 'class', 'extends', 'import', 'export', 'from', 'async', 'await', 'typeof', 'instanceof', 'in', 'of'];
@@ -302,6 +343,9 @@ function highlightJavaScript(block) {
 
 function highlightPython(block) {
     let content = block.textContent;
+    
+    // First, escape HTML entities in the content to prevent XSS and ensure proper rendering
+    content = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     
     // Keywords
     const keywords = ['def', 'class', 'if', 'elif', 'else', 'for', 'while', 'try', 'except', 'finally', 'with', 'as', 'import', 'from', 'return', 'yield', 'break', 'continue', 'pass', 'and', 'or', 'not', 'in', 'is', 'lambda', 'global', 'nonlocal', 'True', 'False', 'None'];
@@ -375,3 +419,53 @@ function showError(message) {
 
 // Make loadPage function globally available
 window.loadPage = loadPage;
+
+// Function to clean corrupted syntax highlighting
+function cleanCorruptedContent(block) {
+    const originalContent = block.textContent;
+    
+    // Check if the content contains corrupted style information
+    if (originalContent.includes('"color:') || originalContent.includes('style="color:')) {
+        console.log('Detected corrupted syntax highlighting, cleaning content...');
+        
+        // Remove various patterns of corrupted content
+        let cleanedContent = originalContent
+            // Remove color style attributes and malformed tags
+            .replace(/"color:\s*#[0-9a-fA-F]{6};\s*"[>]?/g, '')
+            .replace(/style="color:\s*#[0-9a-fA-F]{6};\s*"/g, '')
+            .replace(/"[>]/g, '')
+            // Clean up extra spaces
+            .replace(/\s+/g, ' ')
+            .trim();
+        
+        block.textContent = cleanedContent;
+        console.log('Content cleaned successfully');
+        return true;
+    }
+    return false;
+}
+
+// Combined function to clean corrupted content and apply syntax highlighting
+function cleanupAndHighlightCodeBlocks() {
+    const codeBlocks = document.querySelectorAll('pre code');
+    
+    codeBlocks.forEach(block => {
+        // First, clean any corrupted content
+        cleanCorruptedContent(block);
+        
+        // Then apply proper syntax highlighting
+        const className = block.className;
+        const language = className.replace('language-', '');
+        
+        // Basic syntax highlighting for different languages
+        if (language === 'csharp' || language === 'cs' || language === 'c#') {
+            highlightCSharp(block);
+        } else if (language === 'java') {
+            highlightJava(block);
+        } else if (language === 'javascript' || language === 'js') {
+            highlightJavaScript(block);
+        } else if (language === 'python' || language === 'py') {
+            highlightPython(block);
+        }
+    });
+}
