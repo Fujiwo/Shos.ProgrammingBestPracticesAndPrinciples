@@ -1,0 +1,66 @@
+/* Basic syntax highlighting styles */
+.language-csharp,
+.language-cs,
+.language-c# {
+    background-color: #2d3748;
+    color: #e2e8f0;
+}
+
+.language-java {
+    background-color: #2d3748;
+    color: #e2e8f0;
+}
+
+.language-javascript,
+.language-js {
+    background-color: #2d3748;
+    color: #e2e8f0;
+}
+
+.language-python,
+.language-py {
+    background-color: #2d3748;
+    color: #e2e8f0;
+}
+
+.language-json {
+    background-color: #2d3748;
+    color: #e2e8f0;
+}
+
+.language-xml,
+.language-html {
+    background-color: #2d3748;
+    color: #e2e8f0;
+}
+
+.language-css {
+    background-color: #2d3748;
+    color: #e2e8f0;
+}
+
+.language-sql {
+    background-color: #2d3748;
+    color: #e2e8f0;
+}
+
+.language-bash,
+.language-shell {
+    background-color: #1a202c;
+    color: #68d391;
+}
+
+.language-text {
+    background-color: #f7fafc;
+    color: #2d3748;
+}
+
+/* Basic syntax highlighting for common patterns */
+pre code {
+    display: block;
+    overflow-x: auto;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+/* Keywords and language-specific styling will be handled by JavaScript */
