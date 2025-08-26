@@ -26,11 +26,11 @@ class SimpleMarkdownParser {
         html = html.replace(/__([^_]+)__/g, '<strong>$1</strong>');
         html = html.replace(/_([^_]+)_/g, '<em>$1</em>');
         
+        // Images (must be processed BEFORE links to prevent conflicts)
+        html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" />');
+        
         // Links
         html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
-        
-        // Images
-        html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" />');
         
         // Horizontal rules
         html = html.replace(/^---$/gm, '<hr>');

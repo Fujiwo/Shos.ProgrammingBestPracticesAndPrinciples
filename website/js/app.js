@@ -230,7 +230,13 @@ function highlightCodeBlocks() {
 }
 
 function highlightCSharp(block) {
-    let content = block.textContent;
+    // Check if already highlighted to avoid double-processing
+    if (block.querySelector('span[style*="color:"]')) {
+        return;
+    }
+    
+    // Get the raw text content (not innerHTML which might be escaped)
+    let content = block.textContent || block.innerText;
     
     // Keywords
     const keywords = ['public', 'private', 'protected', 'internal', 'static', 'virtual', 'override', 'abstract', 'sealed', 'class', 'interface', 'struct', 'enum', 'namespace', 'using', 'if', 'else', 'for', 'foreach', 'while', 'do', 'switch', 'case', 'default', 'break', 'continue', 'return', 'try', 'catch', 'finally', 'throw', 'new', 'this', 'base', 'var', 'const', 'readonly', 'bool', 'int', 'string', 'double', 'float', 'decimal', 'char', 'byte', 'long', 'short', 'object'];
