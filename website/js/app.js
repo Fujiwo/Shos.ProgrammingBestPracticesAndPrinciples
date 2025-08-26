@@ -230,7 +230,7 @@ function highlightCodeBlocks() {
 }
 
 function highlightCSharp(block) {
-    let content = block.innerHTML;
+    let content = block.textContent;
     
     // Keywords
     const keywords = ['public', 'private', 'protected', 'internal', 'static', 'virtual', 'override', 'abstract', 'sealed', 'class', 'interface', 'struct', 'enum', 'namespace', 'using', 'if', 'else', 'for', 'foreach', 'while', 'do', 'switch', 'case', 'default', 'break', 'continue', 'return', 'try', 'catch', 'finally', 'throw', 'new', 'this', 'base', 'var', 'const', 'readonly', 'bool', 'int', 'string', 'double', 'float', 'decimal', 'char', 'byte', 'long', 'short', 'object'];
@@ -251,7 +251,7 @@ function highlightCSharp(block) {
 }
 
 function highlightJava(block) {
-    let content = block.innerHTML;
+    let content = block.textContent;
     
     // Keywords
     const keywords = ['public', 'private', 'protected', 'static', 'final', 'abstract', 'class', 'interface', 'extends', 'implements', 'import', 'package', 'if', 'else', 'for', 'while', 'do', 'switch', 'case', 'default', 'break', 'continue', 'return', 'try', 'catch', 'finally', 'throw', 'throws', 'new', 'this', 'super', 'boolean', 'int', 'String', 'double', 'float', 'char', 'byte', 'long', 'short', 'void'];
@@ -272,7 +272,7 @@ function highlightJava(block) {
 }
 
 function highlightJavaScript(block) {
-    let content = block.innerHTML;
+    let content = block.textContent;
     
     // Keywords
     const keywords = ['function', 'var', 'let', 'const', 'if', 'else', 'for', 'while', 'do', 'switch', 'case', 'default', 'break', 'continue', 'return', 'try', 'catch', 'finally', 'throw', 'new', 'this', 'class', 'extends', 'import', 'export', 'from', 'async', 'await', 'typeof', 'instanceof', 'in', 'of'];
@@ -295,7 +295,7 @@ function highlightJavaScript(block) {
 }
 
 function highlightPython(block) {
-    let content = block.innerHTML;
+    let content = block.textContent;
     
     // Keywords
     const keywords = ['def', 'class', 'if', 'elif', 'else', 'for', 'while', 'try', 'except', 'finally', 'with', 'as', 'import', 'from', 'return', 'yield', 'break', 'continue', 'pass', 'and', 'or', 'not', 'in', 'is', 'lambda', 'global', 'nonlocal', 'True', 'False', 'None'];
