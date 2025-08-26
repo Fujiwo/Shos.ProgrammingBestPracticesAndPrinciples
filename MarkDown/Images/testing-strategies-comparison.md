@@ -151,7 +151,7 @@ public void Given_InvalidEmail_When_RegisterUser_Then_ThrowsValidationException(
 [Test]
 public void Should_ThrowValidationException_When_EmailIsInvalid()
 
-// パターン3: 日本語（説明的）
+// パターン3: 日本語(説明的)
 [Test]  
 public void 無効なメールアドレスでユーザー登録する場合_バリデーション例外が発生すること()
 ```
@@ -180,7 +180,7 @@ public void 無効なメールアドレスでユーザー登録する場合_バ�
 
 - [ ] テストが期待動作を明確に表現している
 - [ ] テストが独立して実行可能である
-- [ ] テストが高速に実行される（1秒以内）
-- [ ] テストが決定的である（毎回同じ結果）
+- [ ] テストが高速に実行される(1秒以内)
+- [ ] テストが決定的である(毎回同じ結果)
 - [ ] テストが保守しやすい構造である
 - [ ] テストが適切な粒度で設計されている

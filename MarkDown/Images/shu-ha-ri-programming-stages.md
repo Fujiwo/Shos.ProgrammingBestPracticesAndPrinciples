@@ -88,7 +88,7 @@ public static class FluentValidation
     public static ValidatorBuilder<T> For<T>() => new ValidatorBuilder<T>();
 }
 
-// 使用例：独自のDSL（Domain Specific Language）
+// 使用例:独自のDSL(Domain Specific Language)
 var validator = FluentValidation.For<Customer>()
     .Ensure(c => c.Name).IsNotEmpty().WithMessage("名前は必須です")
     .Ensure(c => c.Email).IsEmail().WithMessage("有効なメールアドレスを入力してください")

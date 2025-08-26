@@ -1,4 +1,4 @@
-# 七箇条実践ガイド：Before/After コード比較
+# 七箇条実践ガイド:Before/After コード比較
 
 ## 実践的なリファクタリング例
 
@@ -48,13 +48,13 @@ public decimal CalculatePrice(Product product)
     decimal price = 0.0m; // 不要な初期化
     price = product.BasePrice; // 分離する必要がない処理
     
-    // 自明なコメント（ノイズ）
+    // 自明なコメント(ノイズ)
     if (product.Discount > 0) // 割引があるかチェック
     {
         price = price - (price * product.Discount); // 割引を適用
     }
     
-    return price; // 価格を返す（不要なコメント）
+    return price; // 価格を返す(不要なコメント)
 }
 ```
 
