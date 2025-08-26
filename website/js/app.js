@@ -419,3 +419,53 @@ function showError(message) {
 
 // Make loadPage function globally available
 window.loadPage = loadPage;
+
+// Function to clean corrupted syntax highlighting
+function cleanCorruptedContent(block) {
+    const originalContent = block.textContent;
+    
+    // Check if the content contains corrupted style information
+    if (originalContent.includes('"color:') || originalContent.includes('style="color:')) {
+        console.log('Detected corrupted syntax highlighting, cleaning content...');
+        
+        // Remove various patterns of corrupted content
+        let cleanedContent = originalContent
+            // Remove color style attributes and malformed tags
+            .replace(/"color:\s*#[0-9a-fA-F]{6};\s*"[>]?/g, '')
+            .replace(/style="color:\s*#[0-9a-fA-F]{6};\s*"/g, '')
+            .replace(/"[>]/g, '')
+            // Clean up extra spaces
+            .replace(/\s+/g, ' ')
+            .trim();
+        
+        block.textContent = cleanedContent;
+        console.log('Content cleaned successfully');
+        return true;
+    }
+    return false;
+}
+
+// Combined function to clean corrupted content and apply syntax highlighting
+function cleanupAndHighlightCodeBlocks() {
+    const codeBlocks = document.querySelectorAll('pre code');
+    
+    codeBlocks.forEach(block => {
+        // First, clean any corrupted content
+        cleanCorruptedContent(block);
+        
+        // Then apply proper syntax highlighting
+        const className = block.className;
+        const language = className.replace('language-', '');
+        
+        // Basic syntax highlighting for different languages
+        if (language === 'csharp' || language === 'cs' || language === 'c#') {
+            highlightCSharp(block);
+        } else if (language === 'java') {
+            highlightJava(block);
+        } else if (language === 'javascript' || language === 'js') {
+            highlightJavaScript(block);
+        } else if (language === 'python' || language === 'py') {
+            highlightPython(block);
+        }
+    });
+}
