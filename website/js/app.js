@@ -144,8 +144,8 @@ async function loadPage(pageName) {
             // Set content
             content.innerHTML = htmlContent;
             
-            // Highlight code blocks
-            highlightCodeBlocks();
+            // Clean corrupted syntax highlighting and apply proper highlighting
+            cleanupAndHighlightCodeBlocks();
             
             // Update navigation state
             updateNavigationState(pageName);
@@ -213,6 +213,9 @@ function highlightCodeBlocks() {
     const codeBlocks = document.querySelectorAll('pre code');
     
     codeBlocks.forEach(block => {
+        // First, check if the content is already corrupted and clean it
+        cleanCorruptedContent(block);
+        
         const className = block.className;
         const language = className.replace('language-', '');
         
@@ -227,6 +230,35 @@ function highlightCodeBlocks() {
             highlightPython(block);
         }
     });
+}
+
+function cleanCorruptedContent(block) {
+    // Get the current text content
+    let textContent = block.textContent || block.innerText || '';
+    
+    // Check if the content contains malformed color style fragments
+    const containsCorruption = textContent.includes('"color: #') || 
+                              textContent.includes('style="color:') ||
+                              textContent.includes('">#') ||
+                              block.innerHTML.includes('<span style="color:');
+    
+    if (containsCorruption) {
+        console.log('Detected corrupted syntax highlighting, cleaning content...');
+        
+        // Remove all malformed color style fragments
+        textContent = textContent
+            .replace(/"color:\s*#[0-9a-fA-F]{6};\s*"[>]?/g, '') // Remove "color: #xxxxxx;"
+            .replace(/style="color:\s*#[0-9a-fA-F]{6};\s*"/g, '') // Remove style="color: #xxxxxx;"
+            .replace(/"[>]/g, '') // Remove orphaned ">
+            .replace(/\s+/g, ' ') // Normalize whitespace
+            .trim();
+        
+        // Reset the block content to clean text
+        block.innerHTML = '';
+        block.textContent = textContent;
+        
+        console.log('Content cleaned successfully');
+    }
 }
 
 function highlightCSharp(block) {
