@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美しいコードの原則 — 意図を伝える設計と実践</title>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/prism.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><a href="#" onclick="loadPage('目次')">美しいコードの原則</a></h1>
+            <p class="subtitle">意図を伝える設計と実践 ～AI時代だからこそ～</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="nav-header">
+                <h3>目次</h3>
+                <button id="toggleSidebar" class="toggle-btn">≡</button>
+            </div>
+            <div class="nav-content" id="navContent">
+                <!-- Navigation will be populated by JavaScript -->
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main class="main-content" id="mainContent">
+            <div class="loading" id="loading">読み込み中...</div>
+            <div class="content" id="content">
+                <!-- Content will be loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Embedded content -->
+    <script src="js/content.js"></script>
+    <!-- Custom markdown parser and app -->
+    <script src="js/markdown-parser.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
