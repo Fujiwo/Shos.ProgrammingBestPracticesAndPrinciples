@@ -10,7 +10,34 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism.min.css">
 </head>
 <body>
-    <div id="content"></div>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><a href="#" onclick="loadTableOfContents()">美しいコードの原則 — 意図を伝える設計と実践</a></h1>
+            <div class="subtitle">～AI時代だからこそ～</div>
+        </header>
+        
+        <!-- Main layout -->
+        <div class="container">
+            <!-- Sidebar with navigation -->
+            <nav class="sidebar">
+                <div class="nav-header">
+                    <h3>目次</h3>
+                    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+                </div>
+                <div class="nav-content" id="nav-content">
+                    <!-- Navigation will be populated by JavaScript -->
+                </div>
+            </nav>
+            
+            <!-- Main content area -->
+            <main class="main-content">
+                <div class="content" id="content">
+                    <!-- Content will be loaded here -->
+                </div>
+            </main>
+        </div>
+    </div>
 
     <!-- Include the necessary libraries -->
     <script src="https://cdn.jsdelivr.net/npm/turndown/dist/turndown.js"></script>
