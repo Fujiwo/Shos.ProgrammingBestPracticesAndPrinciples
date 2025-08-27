@@ -1,6 +1,6 @@
 # 第6章 テスト駆動開発とTestable設計
 
-![第6章バナー](Images/chapter-06-banner.svg)
+![第6章バナー](../Images/chapter-06-banner.svg)
 
 ## 章の概要
 
@@ -31,7 +31,7 @@
 
 この原則は、ソフトウェアの品質保証の根幹をなす。テストできないコードは、事実上「ブラックボックス」であり、期待通りに動作するかどうかを客観的に判断する手段が存在しない。
 
-![テスト戦略とテスタブル設計パターン](Images/testing-strategies-comparison.md)
+![テスト戦略とテスタブル設計パターン](../Images/testing-strategies-comparison.md)
 
 ### 6.1.2 Testabilityが品質に与える影響
 
@@ -408,7 +408,7 @@ public void validateAge_EquivalenceClasses() {
 
 テスト駆動開発は以下の3つのステップを繰り返す:
 
-![テスト駆動開発(TDD)サイクル](Images/tdd-cycle-flowchart.md)
+![テスト駆動開発(TDD)サイクル](../Images/tdd-cycle-flowchart.md)
 
 1. **Red**:失敗するテストを書く
 2. **Green**:テストを通す最小限のコードを書く

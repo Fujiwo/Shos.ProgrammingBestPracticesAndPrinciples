@@ -1,6 +1,6 @@
 # 付録B 命名規則とコーディング規約例
 
-![付録B バナー](Images/banner_付録B.svg)
+![付録B バナー](../Images/banner_付録B.svg)
 
 ## B.1 基本的な命名規則
 
@@ -540,7 +540,7 @@ public class CustomerService
 
 美しいソースコードを書くためのチェックリストを以下に示す。これらは日常的な開発やコードレビューで活用できる。
 
-![コーディング規約チェックリスト集](Images/coding-standards-checklist.md)
+![コーディング規約チェックリスト集](../Images/coding-standards-checklist.md)
 
 ### B.4.1 命名チェックリスト
 
