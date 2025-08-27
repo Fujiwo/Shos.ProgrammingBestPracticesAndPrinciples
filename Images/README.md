@@ -40,8 +40,8 @@
 各MarkDownファイルから以下のように参照してください:
 
 ```markdown
-![図表の説明](Images/ファイル名.md)
-![バナー画像の説明](Images/chapter-xx-banner.svg)
+![図表の説明](../Images/ファイル名.md)
+![バナー画像の説明](../Images/chapter-xx-banner.svg)
 ```
 
 ## 注意事項
