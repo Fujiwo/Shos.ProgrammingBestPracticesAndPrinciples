@@ -448,7 +448,7 @@ public class StandardErrorHandling
 
 ## A.7 第七箇条:Testable
 
-### A.7.1 テスタブルな設計
+### A.7.1 Testableな設計
 
 コードが正しく動作していることを**検証しやすい**状態。
 
@@ -469,7 +469,7 @@ public class OrderService
     }
 }
 
-// ✅ テスタブルな設計
+// ✅ Testableな設計
 public class OrderService
 {
     private readonly IOrderRepository _repository;
