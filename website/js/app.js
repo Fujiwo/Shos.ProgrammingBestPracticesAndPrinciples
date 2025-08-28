@@ -37,8 +37,8 @@ function populateNavigation(markdownContent) {
     for (let line of lines) {
         line = line.trim();
         
-        // Match chapter links like [第0章 はじめに](第0章%20はじめに.md)
-        const chapterMatch = line.match(/^\s*###?\s*\[([^\]]+)\]\(([^)]+)\)/);
+        // Match chapter links like [第1章 美しいソースコード...](第1章_美しいソースコード....md)
+        const chapterMatch = line.match(/^\s*###\s*\[([^\]]+)\]\(([^)]+)\)/);
         if (chapterMatch) {
             const title = chapterMatch[1];
             const filename = decodeURIComponent(chapterMatch[2]).replace('.md', '');
