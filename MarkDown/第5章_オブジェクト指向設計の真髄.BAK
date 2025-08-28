@@ -27,7 +27,7 @@
 - [純粋な JavaScript を使ったブロック崩しゲーム - ゲーム開発 | MDN (mozilla.org)](https://developer.mozilla.org/ja/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript)
   - https://developer.mozilla.org/ja/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript
 
-にある JavaScript で書かれたブロック崩しという簡単なゲームのプログラムを引用し、これを筆者がオブジェクト指向で書き直した例をあげる (プログラムの機能は同じ)。
+にある JavaScript で書かれたブロック崩しという簡単なゲームのプログラムを引用し、これを著者がオブジェクト指向で書き直した例をあげる (プログラムの機能は同じ)。
 
 責務ごとに名前を付けてプログラムを分割する、というのは他のパラダイムと共通しているのだが、オブジェクト指向の場合、分割にクラスを用いてデータと振る舞いをカプセル化する、という特徴がある。
 
