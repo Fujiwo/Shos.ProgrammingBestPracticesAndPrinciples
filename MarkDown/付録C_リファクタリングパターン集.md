@@ -20,7 +20,7 @@ public void ProcessOrder(Order order)
         throw new ArgumentException("注文に商品が含まれていません");
     if (string.IsNullOrEmpty(order.CustomerEmail))
         throw new ArgumentException("顧客メールアドレスが必要です");
-   
+
     // 在庫チェック
     foreach (var item in order.Items)
     {
@@ -28,20 +28,20 @@ public void ProcessOrder(Order order)
         if (stock < item.Quantity)
             throw new InsufficientStockException($"商品 {item.ProductId} の在庫が不足しています");
     }
-   
+
     // 価格計算
     decimal subtotal = 0;
     foreach (var item in order.Items)
     {
         subtotal += item.Price * item.Quantity;
     }
-   
+
     decimal tax = subtotal * 0.1m;
     order.TotalAmount = subtotal + tax;
-   
+
     // 保存
     orderRepository.Save(order);
-   
+
     // 通知
     var emailContent = $"ご注文ありがとうございます。注文番号: {order.Id}、合計金額: {order.TotalAmount:C}";
     emailService.SendEmail(order.CustomerEmail, "注文確認", emailContent);
@@ -122,7 +122,7 @@ public bool IsEligibleForDiscount(Customer customer, Order order)
     var isLongTermCustomer = customer.RegistrationDate <= DateTime.Now.AddYears(-1);
     var hasHighLifetimeValue = customer.TotalPurchaseAmount >= 100000;
     var isLargeOrder = order.TotalAmount >= 50000;
-   
+
     return isLongTermCustomer && hasHighLifetimeValue && isLargeOrder;
 }
 ```
@@ -139,7 +139,7 @@ public decimal GetDiscount(Customer customer)
     if (customer.Age < 18) return 0;
     if (customer.IsBlacklisted) return 0;
     if (customer.AccountStatus != AccountStatus.Active) return 0;
-   
+
     // 割引計算...
     return CalculateDiscount(customer);
 }
@@ -152,7 +152,7 @@ public decimal GetDiscount(Customer customer)
 {
     if (!IsEligibleForDiscount(customer))
         return 0;
-   
+
     return CalculateDiscount(customer);
 }
 
@@ -178,20 +178,20 @@ public class Customer
     public string Name { get; set; }
     public string Email { get; set; }
     public string Phone { get; set; }
-   
+
     // 住所情報
     public string Street { get; set; }
     public string City { get; set; }
     public string State { get; set; }
     public string ZipCode { get; set; }
     public string Country { get; set; }
-   
+
     // 住所関連メソッド
     public string GetFullAddress()
     {
         return $"{Street}, {City}, {State} {ZipCode}, {Country}";
     }
-   
+
     public bool IsInSameCity(Customer other)
     {
         return this.City == other.City && this.State == other.State;
@@ -208,7 +208,7 @@ public class Customer
     public string Email { get; set; }
     public string Phone { get; set; }
     public Address Address { get; set; }
-   
+
     public bool IsInSameCity(Customer other)
     {
         return Address.IsInSameCity(other.Address);
@@ -222,12 +222,12 @@ public class Address
     public string State { get; set; }
     public string ZipCode { get; set; }
     public string Country { get; set; }
-   
+
     public string GetFullAddress()
     {
         return $"{Street}, {City}, {State} {ZipCode}, {Country}";
     }
-   
+
     public bool IsInSameCity(Address other)
     {
         return this.City == other.City && this.State == other.State;
@@ -245,7 +245,7 @@ _[C#]_
 public class DiscountedProduct : Product
 {
     public decimal DiscountRate { get; set; }
-   
+
     public override decimal GetPrice()
     {
         return base.GetPrice() * (1 - DiscountRate);
@@ -261,7 +261,7 @@ public class Product
     public string Name { get; set; }
     public decimal BasePrice { get; set; }
     public IPricingStrategy PricingStrategy { get; set; }
-   
+
     public decimal GetPrice()
     {
         return PricingStrategy.CalculatePrice(BasePrice);
@@ -276,7 +276,7 @@ public interface IPricingStrategy
 public class DiscountPricingStrategy : IPricingStrategy
 {
     public decimal DiscountRate { get; set; }
-   
+
     public decimal CalculatePrice(decimal basePrice)
     {
         return basePrice * (1 - DiscountRate);
@@ -302,7 +302,7 @@ _[C#]_
 public class Order
 {
     public OrderStatus Status { get; set; }
-   
+
     public void Process()
     {
         switch (Status)
@@ -334,12 +334,12 @@ _[C#]_
 public class Order
 {
     public IOrderState State { get; set; }
-   
+
     public void Process()
     {
         State.Process(this);
     }
-   
+
     public void SetState(IOrderState newState)
     {
         State = newState;
@@ -358,7 +358,7 @@ public class PendingOrderState : IOrderState
         ValidateOrder(order);
         order.SetState(new ValidatedOrderState());
     }
-   
+
     private void ValidateOrder(Order order)
     {
         // バリデーション処理
@@ -372,7 +372,7 @@ public class ValidatedOrderState : IOrderState
         ProcessPayment(order);
         order.SetState(new PaidOrderState());
     }
-   
+
     private void ProcessPayment(Order order)
     {
         // 決済処理
@@ -386,7 +386,7 @@ public class PaidOrderState : IOrderState
         ShipOrder(order);
         order.SetState(new ShippedOrderState());
     }
-   
+
     private void ShipOrder(Order order)
     {
         // 発送処理
@@ -415,12 +415,12 @@ public class Customer
 {
     public string Email { get; set; }
     public string Phone { get; set; }
-   
+
     public bool IsValidEmail()
     {
         return Email != null && Email.Contains("@");
     }
-   
+
     public bool IsValidPhone()
     {
         return Phone != null && Phone.Length >= 10;
@@ -440,36 +440,36 @@ public class Customer
 public class EmailAddress
 {
     private readonly string _value;
-   
+
     public EmailAddress(string value)
     {
         if (string.IsNullOrEmpty(value) || !value.Contains("@"))
             throw new ArgumentException("有効なメールアドレスを入力してください");
         _value = value;
     }
-   
+
     public string Value => _value;
-   
+
     public override string ToString() => _value;
-   
+
     public static implicit operator string(EmailAddress email) => email._value;
 }
 
 public class PhoneNumber
 {
     private readonly string _value;
-   
+
     public PhoneNumber(string value)
     {
         if (string.IsNullOrEmpty(value) || value.Length < 10)
             throw new ArgumentException("有効な電話番号を入力してください");
         _value = value;
     }
-   
+
     public string Value => _value;
-   
+
     public override string ToString() => _value;
-   
+
     public static implicit operator string(PhoneNumber phone) => phone._value;
 }
 ```
@@ -484,7 +484,7 @@ _[C#]_
 public class Order
 {
     public List<OrderItem> Items { get; set; } = new List<OrderItem>();
-   
+
     public decimal TotalAmount
     {
         get { return Items.Sum(item => item.Price * item.Quantity); }
@@ -503,14 +503,14 @@ _[C#]_
 public class Order
 {
     private readonly List<OrderItem> _items = new List<OrderItem>();
-   
+
     public IReadOnlyList<OrderItem> Items => _items.AsReadOnly();
-   
+
     public void AddItem(OrderItem item)
     {
         if (item == null)
             throw new ArgumentNullException(nameof(item));
-       
+
         var existingItem = _items.FirstOrDefault(i => i.ProductId == item.ProductId);
         if (existingItem != null)
         {
@@ -521,7 +521,7 @@ public class Order
             _items.Add(item);
         }
     }
-   
+
     public void RemoveItem(string productId)
     {
         var item = _items.FirstOrDefault(i => i.ProductId == productId);
@@ -530,7 +530,7 @@ public class Order
             _items.Remove(item);
         }
     }
-   
+
     public decimal TotalAmount => _items.Sum(item => item.Price * item.Quantity);
 }
 ```
@@ -549,7 +549,7 @@ public void CharacterizeCurrentBehavior()
 {
     // 既存システムの動作を記録するテスト
     var calculator = new LegacyPriceCalculator();
-   
+
     // 現在の動作を記録(意図通りかどうかは後で検証)
     Assert.AreEqual(1100, calculator.CalculatePrice(1000, "PREMIUM"));
     Assert.AreEqual(900, calculator.CalculatePrice(1000, "DISCOUNT"));
@@ -594,7 +594,7 @@ public class PriceCalculator
         { "DISCOUNT", 0.9m },
         { "REGULAR", 1.0m }
     };
-   
+
     public decimal CalculatePrice(decimal basePrice, string customerType)
     {
         var multiplier = _multipliers.GetValueOrDefault(customerType, 1.0m);
@@ -615,7 +615,7 @@ public class CustomerServiceProxy : ICustomerService
     private readonly LegacyCustomerService _legacyService;
     private readonly NewCustomerService _newService;
     private readonly IFeatureToggle _featureToggle;
-   
+
     public CustomerServiceProxy(
         LegacyCustomerService legacyService,
         NewCustomerService newService,
@@ -625,7 +625,7 @@ public class CustomerServiceProxy : ICustomerService
         _newService = newService;
         _featureToggle = featureToggle;
     }
-   
+
     public Customer GetCustomer(int id)
     {
         if (_featureToggle.IsEnabled("UseNewCustomerService"))
@@ -647,7 +647,7 @@ public class MigrationCustomerService : ICustomerService
 {
     private readonly LegacyCustomerService _legacyService;
     private readonly NewCustomerService _newService;
-   
+
     public Customer GetCustomer(int id)
     {
         // 新サービスで取得を試行
@@ -664,7 +664,7 @@ public class MigrationCustomerService : ICustomerService
             // ログ出力後、レガシーサービスにフォールバック
             _logger.LogWarning(ex, "新サービスでの取得に失敗、レガシーサービスを使用");
         }
-       
+
         // レガシーサービスを使用
         return _legacyService.GetCustomer(id);
     }
@@ -684,7 +684,7 @@ public class ProductCatalog
 {
     public List<Product> Products { get; }
     public Dictionary<string, List<Product>> ProductsByCategory { get; }
-   
+
     public ProductCatalog(IProductRepository repository)
     {
         Products = repository.GetAllProducts(); // 初期化時に全取得
@@ -702,7 +702,7 @@ public class ProductCatalog
     private readonly IProductRepository _repository;
     private readonly Lazy<List<Product>> _products;
     private readonly Lazy<Dictionary<string, List<Product>>> _productsByCategory;
-   
+
     public ProductCatalog(IProductRepository repository)
     {
         _repository = repository;
@@ -711,7 +711,7 @@ public class ProductCatalog
             () => _products.Value.GroupBy(p => p.Category)
                                 .ToDictionary(g => g.Key, g => g.ToList()));
     }
-   
+
     public List<Product> Products => _products.Value;
     public Dictionary<string, List<Product>> ProductsByCategory => _productsByCategory.Value;
 }
@@ -733,10 +733,10 @@ public class PriceCalculator
         var seasonalMultiplier = GetSeasonalMultiplier(date);
         var customerDiscount = GetCustomerDiscount(customer);
         var complexAdjustment = PerformComplexCalculation(product, customer, date);
-       
+
         return basePrice * seasonalMultiplier * customerDiscount * complexAdjustment;
     }
-   
+
     private decimal PerformComplexCalculation(Product product, Customer customer, DateTime date)
     {
         // 重い計算処理
@@ -752,29 +752,29 @@ _[C#]_
 public class PriceCalculator
 {
     private readonly Dictionary<string, decimal> _cache = new Dictionary<string, decimal>();
-   
+
     public decimal CalculateComplexPrice(Product product, Customer customer, DateTime date)
     {
         var cacheKey = $"{product.Id}_{customer.Id}_{date:yyyyMMdd}";
-       
+
         if (_cache.ContainsKey(cacheKey))
         {
             return _cache[cacheKey];
         }
-       
+
         var result = CalculateComplexPriceInternal(product, customer, date);
         _cache[cacheKey] = result;
-       
+
         return result;
     }
-   
+
     private decimal CalculateComplexPriceInternal(Product product, Customer customer, DateTime date)
     {
         var basePrice = product.BasePrice;
         var seasonalMultiplier = GetSeasonalMultiplier(date);
         var customerDiscount = GetCustomerDiscount(customer);
         var complexAdjustment = PerformComplexCalculation(product, customer, date);
-       
+
         return basePrice * seasonalMultiplier * customerDiscount * complexAdjustment;
     }
 }

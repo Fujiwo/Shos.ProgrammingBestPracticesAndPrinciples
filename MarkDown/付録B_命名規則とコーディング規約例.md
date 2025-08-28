@@ -320,14 +320,14 @@ namespace MyProject.Application.Services
         public async Task<Customer> RegisterCustomerAsync(CustomerRegistrationRequest request)
         {
             ValidateRegistrationRequest(request);
-           
+
             var customer = CreateCustomerFromRequest(request);
             var savedCustomer = await _customerRepository.SaveAsync(customer);
-           
+
             await SendWelcomeEmailAsync(savedCustomer);
-           
+
             _logger.LogInformation("顧客が正常に登録されました: {CustomerId}", savedCustomer.Id);
-           
+
             return savedCustomer;
         }
         #endregion
@@ -337,11 +337,11 @@ namespace MyProject.Application.Services
         {
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
-               
+
             if (string.IsNullOrEmpty(request.Email))
                 throw new ArgumentException("メールアドレスは必須です", nameof(request));
         }
-       
+
         private Customer CreateCustomerFromRequest(CustomerRegistrationRequest request)
         {
             return new Customer
@@ -352,7 +352,7 @@ namespace MyProject.Application.Services
                 Status = CustomerStatus.Active
             };
         }
-       
+
         private async Task SendWelcomeEmailAsync(Customer customer)
         {
             try
@@ -382,7 +382,7 @@ public class CustomerService
         {
             throw new ArgumentNullException(nameof(order));
         }
-       
+
         if (order.Items.Any())
         {
             foreach (var item in order.Items)
@@ -408,10 +408,10 @@ public class Calculator
     {
         var taxAmount = amount * taxRate;
         var total = amount + taxAmount;
-       
+
         return Math.Round(total, 2);
     }
-   
+
     public bool IsValidRange(int value, int min, int max)
     {
         return value >= min && value <= max;
@@ -429,13 +429,13 @@ public ValidationResult ValidateEmail(string email)
 {
     if (string.IsNullOrEmpty(email))
         return ValidationResult.Failure("メールアドレスが入力されていません");
-       
+
     if (!email.Contains("@"))
         return ValidationResult.Failure("有効なメールアドレスを入力してください");
-       
+
     if (email.Length > 254)
         return ValidationResult.Failure("メールアドレスが長すぎます");
-       
+
     return ValidationResult.Success();
 }
 ```
@@ -480,19 +480,19 @@ public class CustomerService
         // 引数チェック
         if (id == null)
             throw new ArgumentNullException(nameof(id));
-           
+
         if (id.IsEmpty)
             throw new ArgumentException("顧客IDが無効です", nameof(id));
-       
+
         // ビジネスルールチェック
         var customer = _repository.FindById(id);
         if (customer == null)
             throw new CustomerNotFoundException($"顧客が見つかりません: {id}");
-           
+
         // 認可チェック
         if (!_authorizationService.CanAccessCustomer(customer))
             throw new UnauthorizedAccessException("この顧客にアクセスする権限がありません");
-           
+
         return customer;
     }
 }
@@ -518,7 +518,7 @@ public class CustomerService
     {
         return await _repository.GetByIdAsync(id);
     }
-   
+
     // CancellationToken の受け渡し
     public async Task<List<Customer>> SearchCustomersAsync(
         CustomerSearchCriteria criteria,
@@ -526,7 +526,7 @@ public class CustomerService
     {
         return await _repository.SearchAsync(criteria, cancellationToken);
     }
-   
+
     // ConfigureAwait(false) の使用
     public async Task ProcessCustomerAsync(Customer customer)
     {

@@ -124,14 +124,14 @@ public void ProcessOrder(Order order)
     // バリデーション
     if (order == null) throw new ArgumentNullException();
     if (order.Items.Count == 0) throw new InvalidOperationException();
-   
+
     // 在庫チェック
     foreach (var item in order.Items)
     {
         if (inventory.GetStock(item.ProductId) < item.Quantity)
             throw new InsufficientStockException();
     }
-   
+
     // 価格計算
     decimal total = 0;
     foreach (var item in order.Items)
@@ -139,10 +139,10 @@ public void ProcessOrder(Order order)
         total += item.Price * item.Quantity;
     }
     order.TotalAmount = total;
-   
+
     // 保存
     orderRepository.Save(order);
-   
+
     // 通知
     emailService.SendOrderConfirmation(order);
 }
@@ -319,7 +319,7 @@ public void ProcessCustomerRegistration(CustomerRequest request)
 {
     // 高レベルの処理
     var customer = CreateCustomerFromRequest(request);
-   
+
     // 低レベルの詳細処理が混在
     using (var connection = new SqlConnection(connectionString))
     {
@@ -328,7 +328,7 @@ public void ProcessCustomerRegistration(CustomerRequest request)
         command.Parameters.AddWithValue("@Name", customer.Name);
         command.ExecuteNonQuery();
     }
-   
+
     // 高レベルの処理
     SendWelcomeEmail(customer);
 }
@@ -356,13 +356,13 @@ public ValidationResult ValidateCustomer(Customer customer)
 {
     if (customer == null)
         return ValidationResult.Failure("Customer is required");
-       
+
     if (string.IsNullOrEmpty(customer.Name))
         return ValidationResult.Failure("Customer name is required");
-       
+
     if (!IsValidEmail(customer.Email))
         return ValidationResult.Failure("Valid email is required");
-       
+
     return ValidationResult.Success();
 }
 ```
@@ -397,17 +397,17 @@ _[C#]_
 public class CustomerService
 {
     private readonly ICustomerRepository _repository;
-   
+
     public CustomerService(ICustomerRepository repository)
     {
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
-   
+
     public async Task<Customer> GetCustomerAsync(int customerId)
     {
         if (customerId <= 0)
             throw new ArgumentException("Customer ID must be positive", nameof(customerId));
-           
+
         return await _repository.GetByIdAsync(customerId);
     }
 }
@@ -463,7 +463,7 @@ public class OrderService
         // 直接的な依存関係
         var repository = new OrderRepository();
         var emailService = new EmailService();
-       
+
         repository.Save(order);
         emailService.SendConfirmation(order);
     }
@@ -474,13 +474,13 @@ public class OrderService
 {
     private readonly IOrderRepository _repository;
     private readonly IEmailService _emailService;
-   
+
     public OrderService(IOrderRepository repository, IEmailService emailService)
     {
         _repository = repository;
         _emailService = emailService;
     }
-   
+
     public void ProcessOrder(Order order)
     {
         _repository.Save(order);
@@ -499,7 +499,7 @@ public static class TaxCalculator
     {
         return amount * taxRate;
     }
-   
+
     public static decimal CalculateTotal(decimal amount, decimal taxRate)
     {
         return amount + CalculateTax(amount, taxRate);
@@ -513,10 +513,10 @@ public void CalculateTax_ShouldReturnCorrectAmount()
     // Arrange
     var amount = 1000m;
     var taxRate = 0.1m;
-   
+
     // Act
     var result = TaxCalculator.CalculateTax(amount, taxRate);
-   
+
     // Assert
     Assert.AreEqual(100m, result);
 }
@@ -570,13 +570,13 @@ public decimal CalculatePrice(Product product)
 {
     decimal price = 0.0m; // 不要な初期化
     price = product.BasePrice; // 分離する必要がない処理
-    
+
     // 自明なコメント(ノイズ)
     if (product.Discount > 0) // 割引があるかチェック
     {
         price = price - (price * product.Discount); // 割引を適用
     }
-    
+
     return price; // 価格を返す(不要なコメント)
 }
 ```
@@ -586,7 +586,7 @@ public decimal CalculatePrice(Product product)
 public decimal CalculatePrice(Product product)
 {
     var basePrice = product.BasePrice;
-    return product.HasDiscount 
+    return product.HasDiscount
         ? basePrice * (1 - product.Discount)
         : basePrice;
 }
@@ -643,7 +643,7 @@ public void ProcessOrder(Order order)
     // 高レベルの概念
     if (order.Items.Count == 0)
         throw new InvalidOperationException("Empty order");
-    
+
     // 低レベルの実装詳細が混入
     using (var connection = new SqlConnection(connectionString))
     {
@@ -655,7 +655,7 @@ public void ProcessOrder(Order order)
         command.Parameters.AddWithValue("@total", order.Total);
         command.ExecuteNonQuery();
     }
-    
+
     // 高レベルの概念
     SendConfirmationEmail(order);
 }
@@ -731,13 +731,13 @@ public string ProcessCustomerData(Customer customer)
 {
     if (customer == null)
         return "Customer is null";
-        
+
     if (!customer.IsActive)
         return "Inactive customer";
-        
+
     if (!customer.HasValidEmail)
         return "Active customer with invalid email";
-        
+
     return customer.Orders.Count > 0
         ? "Valid active customer with orders"
         : "Valid active customer without orders";
@@ -787,19 +787,19 @@ public class CustomerProcessor
     public void ProcessCustomers()
     {
         var customers = GetCustomers();
-        
+
         // 手動でのデータ変換
         foreach (var customer in customers)
         {
             customer.Name = customer.Name.Trim().ToUpper();
             customer.Email = customer.Email.ToLower();
-            
+
             // 手動でのバリデーション
             if (string.IsNullOrEmpty(customer.Name))
                 throw new Exception("Invalid name");
             if (!customer.Email.Contains("@"))
                 throw new Exception("Invalid email");
-                
+
             // 手動での保存
             SaveCustomer(customer);
         }
@@ -814,16 +814,16 @@ public class CustomerProcessor
     private readonly IDataNormalizer _normalizer;
     private readonly IValidator<Customer> _validator;
     private readonly IRepository<Customer> _repository;
-    
+
     public async Task ProcessCustomers()
     {
         var customers = await GetCustomers();
-        
+
         var processedCustomers = customers
             .Select(_normalizer.Normalize)    // 自動変換
             .Where(_validator.IsValid)        // 自動バリデーション
             .ToList();
-            
+
         await _repository.SaveAllAsync(processedCustomers); // 自動保存
     }
 }
@@ -843,24 +843,24 @@ public class OrderService
     private readonly IOrderRepository _repository;
     private readonly IPaymentService _paymentService;
     private readonly INotificationService _notificationService;
-    
+
     public async Task<OrderResult> ProcessOrder(CreateOrderRequest request)
     {
         // 第一箇条: 意図を表現 - メソッド名で処理内容が明確
         // 第四箇条: 階層化 - 高レベルの処理フローに統一
-        
+
         var order = CreateOrder(request);          // 注文作成
         var paymentResult = await ProcessPayment(order); // 決済処理
-        
+
         if (!paymentResult.IsSuccessful)           // 第五箇条: 線形化 - Early Return
             return OrderResult.Failed(paymentResult.ErrorMessage);
-            
+
         await SaveOrder(order);                    // 注文保存
         await SendConfirmation(order);             // 確認通知送信
-        
+
         return OrderResult.Success(order);         // 第三箇条: 対称性 - 成功/失敗の対称的処理
     }
-    
+
     // 第六箇条: ルールの統一 - 一貫した命名規則とパターン
     // 第七箇条: 自動化 - 依存性注入による自動的な協調動作
 }
