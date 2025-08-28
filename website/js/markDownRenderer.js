@@ -51,6 +51,65 @@ function processSpecialBlocks(markdownText) {
     return markdownText;
 };
 
+// Function to hide "← 目次に戻る" links as requested in the issue
+function hideTableOfContentsReturnLinks(container) {
+    // Find all strong elements that contain links with "← 目次に戻る" text
+    const strongElements = container.querySelectorAll('strong');
+    
+    strongElements.forEach(strong => {
+        const links = strong.querySelectorAll('a');
+        let hasReturnLink = false;
+        
+        // Check if this strong element contains a return to TOC link
+        links.forEach(link => {
+            if (link.textContent.includes('← 目次に戻る')) {
+                hasReturnLink = true;
+            }
+        });
+        
+        // Also check the text content of the strong element directly
+        if (strong.textContent.includes('← 目次に戻る')) {
+            hasReturnLink = true;
+        }
+        
+        if (hasReturnLink) {
+            // Hide the strong element and its parent if it's a paragraph
+            strong.style.display = 'none';
+            
+            // If the parent is a paragraph and it becomes empty, hide it too
+            if (strong.parentElement && 
+                strong.parentElement.tagName === 'P' && 
+                strong.parentElement.textContent.trim() === '') {
+                strong.parentElement.style.display = 'none';
+            }
+        }
+    });
+    
+    // Also look for any remaining direct links
+    const allLinks = container.querySelectorAll('a');
+    allLinks.forEach(link => {
+        if (link.textContent.includes('← 目次に戻る')) {
+            // Hide the link and its containing element
+            link.style.display = 'none';
+            
+            // If the parent becomes empty, hide it too
+            if (link.parentElement && 
+                link.parentElement.textContent.trim() === '') {
+                link.parentElement.style.display = 'none';
+            }
+        }
+    });
+    
+    // Hide any preceding HR elements that might be part of the footer
+    const hiddenElements = container.querySelectorAll('[style*="display: none"]');
+    hiddenElements.forEach(element => {
+        if (element.previousElementSibling && 
+            element.previousElementSibling.tagName === 'HR') {
+            element.previousElementSibling.style.display = 'none';
+        }
+    });
+}
+
 function render(markdownText, textView) {
     const text = markdownText.trim()
 
@@ -67,6 +126,9 @@ function render(markdownText, textView) {
         
         console.log('html:', html);
         textView.innerHTML = html;
+        
+        // Hide "← 目次に戻る" links as requested in the issue
+        hideTableOfContentsReturnLinks(textView);
         
         // Trigger Prism.js syntax highlighting after content is updated
         if (window.Prism) {
