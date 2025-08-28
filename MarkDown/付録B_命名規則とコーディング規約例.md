@@ -7,6 +7,7 @@
 ### B.1.1 C#命名規則
 
 #### クラス・インターフェース・構造体
+
 _[C#]_
 ```csharp
 // ✅ PascalCase を使用
@@ -27,6 +28,7 @@ public class CustomerNotFoundException : Exception { }
 ```
 
 #### メソッド・プロパティ
+
 _[C#]_
 ```csharp
 // ✅ PascalCase を使用
@@ -42,6 +44,7 @@ public bool CanProcess { get; }
 ```
 
 #### フィールド・変数・パラメータ
+
 _[C#]_
 ```csharp
 // ✅ camelCase を使用
@@ -58,6 +61,7 @@ private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
 ```
 
 #### 定数・列挙値
+
 _[C#]_
 ```csharp
 // ✅ PascalCase を使用
@@ -208,6 +212,7 @@ public class Account
 ### B.2.3 動詞の選択指針
 
 #### 作成・生成系
+
 _[C#]_
 ```csharp
 // Create: 新しいエンティティの作成
@@ -226,6 +231,7 @@ public string MakeDisplayName(string firstName, string lastName) { }
 ```
 
 #### 取得・検索系
+
 _[C#]_
 ```csharp
 // Get: 確実に存在するものの取得
@@ -245,6 +251,7 @@ public List<Order> FetchRecentOrders(CustomerId customerId, int count) { }
 ```
 
 #### 処理・実行系
+
 _[C#]_
 ```csharp
 // Process: 複雑な業務処理
@@ -261,6 +268,7 @@ public void HandleOrderCancellation(OrderCancelledEvent @event) { }
 ```
 
 #### 検証・確認系
+
 _[C#]_
 ```csharp
 // Validate: 包括的な検証
@@ -281,6 +289,7 @@ public void EnsureCustomerExists(CustomerId customerId) { }
 ### B.3.1 C#コーディング規約
 
 #### ファイル構成
+
 _[C#]_
 ```csharp
 // ✅ 推奨されるファイル構成
@@ -371,6 +380,7 @@ namespace MyProject.Application.Services
 ```
 
 #### インデントとブレース
+
 _[C#]_
 ```csharp
 // ✅ 推奨スタイル
@@ -399,6 +409,7 @@ public class CustomerService
 ```
 
 #### 空白とスペース
+
 _[C#]_
 ```csharp
 // ✅ 推奨スタイル
@@ -422,6 +433,7 @@ public class Calculator
 ### B.3.2 メソッド設計規約
 
 #### メソッドサイズ
+
 _[C#]_
 ```csharp
 // ✅ 適切なサイズ(10行以内が理想)
@@ -441,6 +453,7 @@ public ValidationResult ValidateEmail(string email)
 ```
 
 #### パラメータ数の制限
+
 _[C#]_
 ```csharp
 // ❌ パラメータが多すぎる
@@ -470,6 +483,7 @@ public class CustomerCreationRequest
 ### B.3.3 例外処理規約
 
 #### 例外の種類と使い分け
+
 _[C#]_
 ```csharp
 // ✅ 適切な例外の使い分け

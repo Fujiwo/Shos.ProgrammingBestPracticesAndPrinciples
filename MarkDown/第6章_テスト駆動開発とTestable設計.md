@@ -50,6 +50,8 @@
 ###### 依存性注入による分離
 
 ####### ❌ テストしにくい設計
+
+_[C#]_
 ```csharp
 public class OrderService
 {
@@ -69,6 +71,8 @@ public class OrderService
 ```
 
 ####### ✅ テストしやすい設計
+
+_[C#]_
 ```csharp
 public class OrderService
 {
@@ -167,6 +171,7 @@ public class OrderService
 
 ###### 推奨命名パターン
 
+_[C#]_
 ```csharp
 // パターン1: Given_When_Then
 [Test]

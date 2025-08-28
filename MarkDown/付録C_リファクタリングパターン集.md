@@ -9,6 +9,7 @@
 最も基本的で効果的なリファクタリング手法。長いメソッドを意味のある単位に分割する。
 
 #### Before(リファクタリング前)
+
 _[C#]_
 ```csharp
 public void ProcessOrder(Order order)
@@ -49,6 +50,7 @@ public void ProcessOrder(Order order)
 ```
 
 #### After(リファクタリング後)
+
 _[C#]_
 ```csharp
 public void ProcessOrder(Order order)
@@ -104,6 +106,7 @@ private void SendOrderConfirmation(Order order)
 複雑な式や意味のある値に名前を付けて理解しやすくする。
 
 #### Before
+
 _[C#]_
 ```csharp
 public bool IsEligibleForDiscount(Customer customer, Order order)
@@ -115,6 +118,7 @@ public bool IsEligibleForDiscount(Customer customer, Order order)
 ```
 
 #### After
+
 _[C#]_
 ```csharp
 public bool IsEligibleForDiscount(Customer customer, Order order)
@@ -132,6 +136,7 @@ public bool IsEligibleForDiscount(Customer customer, Order order)
 複数の条件が同じ結果を返す場合、条件式を統合して意図を明確にする。
 
 #### Before
+
 _[C#]_
 ```csharp
 public decimal GetDiscount(Customer customer)
@@ -146,6 +151,7 @@ public decimal GetDiscount(Customer customer)
 ```
 
 #### After
+
 _[C#]_
 ```csharp
 public decimal GetDiscount(Customer customer)
@@ -171,6 +177,7 @@ private bool IsEligibleForDiscount(Customer customer)
 一つのクラスが複数の責務を持っている場合、責務ごとにクラスを分離する。
 
 #### Before
+
 _[C#]_
 ```csharp
 public class Customer
@@ -200,6 +207,7 @@ public class Customer
 ```
 
 #### After
+
 _[C#]_
 ```csharp
 public class Customer
@@ -240,6 +248,7 @@ public class Address
 継承よりも委譲を使用してコードの柔軟性を向上させる。
 
 #### Before
+
 _[C#]_
 ```csharp
 public class DiscountedProduct : Product
@@ -254,6 +263,7 @@ public class DiscountedProduct : Product
 ```
 
 #### After
+
 _[C#]_
 ```csharp
 public class Product
@@ -297,6 +307,7 @@ public class RegularPricingStrategy : IPricingStrategy
 複雑な状態遷移を状態パターンで整理する。
 
 #### Before
+
 _[C#]_
 ```csharp
 public class Order
@@ -329,6 +340,7 @@ public class Order
 ```
 
 #### After
+
 _[C#]_
 ```csharp
 public class Order
@@ -409,6 +421,7 @@ public class ShippedOrderState : IOrderState
 プリミティブ型を意味のあるオブジェクトに置き換える。
 
 #### Before
+
 _[C#]_
 ```csharp
 public class Customer
@@ -429,6 +442,7 @@ public class Customer
 ```
 
 #### After
+
 _[C#]_
 ```csharp
 public class Customer
@@ -479,6 +493,7 @@ public class PhoneNumber
 コレクションへの直接アクセスを防ぎ、安全な操作メソッドを提供する。
 
 #### Before
+
 _[C#]_
 ```csharp
 public class Order
@@ -498,6 +513,7 @@ order.Items.Clear(); // 外部から全削除される可能性
 ```
 
 #### After
+
 _[C#]_
 ```csharp
 public class Order
@@ -542,6 +558,7 @@ public class Order
 既存コードの動作を保護するテストを作成してからリファクタリングを実行する。
 
 #### ステップ1:現在の動作を記録
+
 _[C#]_
 ```csharp
 [Test]
@@ -559,6 +576,7 @@ public void CharacterizeCurrentBehavior()
 ```
 
 #### ステップ2:安全にリファクタリング
+
 _[C#]_
 ```csharp
 // リファクタリング前
@@ -608,6 +626,7 @@ public class PriceCalculator
 レガシーシステムを段階的に新システムに置き換える。
 
 #### フェーズ1:プロキシの導入
+
 _[C#]_
 ```csharp
 public class CustomerServiceProxy : ICustomerService
@@ -641,6 +660,7 @@ public class CustomerServiceProxy : ICustomerService
 ```
 
 #### フェーズ2:段階的移行
+
 _[C#]_
 ```csharp
 public class MigrationCustomerService : ICustomerService
@@ -678,6 +698,7 @@ public class MigrationCustomerService : ICustomerService
 重い処理を必要になるまで遅延させる。
 
 #### Before
+
 _[C#]_
 ```csharp
 public class ProductCatalog
@@ -695,6 +716,7 @@ public class ProductCatalog
 ```
 
 #### After
+
 _[C#]_
 ```csharp
 public class ProductCatalog
@@ -722,6 +744,7 @@ public class ProductCatalog
 計算結果をキャッシュして同じ計算の繰り返しを避ける。
 
 #### Before
+
 _[C#]_
 ```csharp
 public class PriceCalculator
@@ -747,6 +770,7 @@ public class PriceCalculator
 ```
 
 #### After
+
 _[C#]_
 ```csharp
 public class PriceCalculator
