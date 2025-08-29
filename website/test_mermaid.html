@@ -41,8 +41,16 @@ classDiagram
                 theme: 'default',
                 securityLevel: 'loose',
                 themeVariables: {
-                    fontFamily: 'arial',
-                    fontSize: '12px'
+                    // クラス図の背景色を明るくして線を見やすくする
+                    primaryColor: '#f9f9f9',          // クラスボックスの背景色を明るくする
+                    primaryTextColor: '#333333',      // テキストの色を濃くして可読性を向上
+                    primaryBorderColor: '#000000',    // 境界線を黒くして明確にする
+                    lineColor: '#000000',             // 線の色を黒くして見やすくする
+                    secondaryColor: '#ffffff',        // セカンダリ背景色を白にする
+                    tertiaryColor: '#f0f0f0',         // ターシャリ背景色を明るいグレーにする
+                    background: '#ffffff',            // 全体の背景色を白にする
+                    fontFamily: 'Arial, sans-serif', // フォントファミリーを設定
+                    fontSize: '14px'                  // フォントサイズを設定
                 }
             };
             mermaid.default.initialize(config);

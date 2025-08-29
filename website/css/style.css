@@ -359,3 +359,45 @@ body {
 .sidebar::-webkit-scrollbar-thumb:hover {
     background: #a1a1a1;
 }
+
+/* Mermaid diagram styling for better visibility */
+.content .mermaid {
+    background-color: #ffffff !important;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Ensure Mermaid SVG elements have proper contrast */
+.content .mermaid svg {
+    background-color: #ffffff !important;
+}
+
+/* Improve Mermaid class diagram visibility */
+.content .mermaid .node rect,
+.content .mermaid .node circle,
+.content .mermaid .node ellipse,
+.content .mermaid .node polygon {
+    fill: #f9f9f9 !important;
+    stroke: #000000 !important;
+    stroke-width: 2px !important;
+}
+
+.content .mermaid .edgePath path {
+    stroke: #000000 !important;
+    stroke-width: 2px !important;
+}
+
+.content .mermaid .edgeLabel {
+    background-color: #ffffff !important;
+    border: 1px solid #000000 !important;
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+.content .mermaid text {
+    fill: #333333 !important;
+    font-weight: 500 !important;
+}
