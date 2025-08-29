@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Mermaid Test</title>
+</head>
+<body>
+    <h1>Simple Mermaid Test (No CDN)</h1>
+    
+    <h2>Testing Conversion Function</h2>
+    <div id="test-content"></div>
+    <div id="converted-content"></div>
+
+    <script>
+        // Copy the convertMermaidBlocks function from markDownRenderer.js
+        function convertMermaidBlocks(text) {
+            return text.replace(/```mermaid([\s\S]*?)```/g, (match, content) => {
+                console.log('Processing mermaid block match:', match);
+                console.log('Content:', content);
+                return `<pre class="mermaid">${content}</pre>`;
+            });
+        }
+
+        // Test the conversion
+        const testMarkdown = `# Test Document
+
+This is a test of mermaid conversion.
+
+\`\`\`mermaid
+classDiagram
+    class Controller {
+        +Command Command
+        +Model Model
+        +MouseDown(Point location)
+        +MouseUp(Point location)
+    }
+    class Command {
+        <<abstract>>
+        +OnDragStart(Model model, Point location)
+        +OnDragEnd(Model model, Point location)
+    }
+    class AddLineCommand {
+        +OnDragStart(Model model, Point location)
+        +OnDragEnd(Model model, Point location)
+    }
+    Controller --> Command
+    Command <|-- AddLineCommand
+\`\`\`
+
+End of test.`;
+
+        // Show original
+        document.getElementById('test-content').innerHTML = '<h3>Original Markdown:</h3><pre>' + testMarkdown + '</pre>';
+        
+        // Convert and show result
+        const converted = convertMermaidBlocks(testMarkdown);
+        document.getElementById('converted-content').innerHTML = '<h3>Converted HTML:</h3><pre>' + converted.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</pre><h3>Rendered:</h3>' + converted;
+        
+        console.log('Test completed');
+    </script>
+</body>
+</html>

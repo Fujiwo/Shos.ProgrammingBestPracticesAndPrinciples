@@ -37,8 +37,9 @@ classDiagram
             const mermaid = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
             console.log('Mermaid loaded:', mermaid);
             const config = { 
-                startOnLoad: true,
+                startOnLoad: false,  // Set to false for manual control
                 theme: 'default',
+                securityLevel: 'loose',
                 themeVariables: {
                     fontFamily: 'arial',
                     fontSize: '12px'
@@ -47,8 +48,23 @@ classDiagram
             mermaid.default.initialize(config);
             window.mermaid = mermaid.default;
             
+            // Initial render
+            setTimeout(async () => {
+                try {
+                    const elements = document.querySelectorAll('.mermaid');
+                    console.log('Initial render - found elements:', elements.length);
+                    if (mermaid.default.run) {
+                        await mermaid.default.run({ nodes: elements });
+                    } else {
+                        mermaid.default.init(undefined, elements);
+                    }
+                } catch (error) {
+                    console.error('Initial mermaid render error:', error);
+                }
+            }, 1000);
+            
             // Test dynamic content
-            setTimeout(() => {
+            setTimeout(async () => {
                 const dynamicDiv = document.getElementById('dynamic-content');
                 dynamicDiv.innerHTML = `<pre class="mermaid">
 classDiagram
@@ -69,8 +85,18 @@ classDiagram
 </pre>`;
                 
                 // Re-initialize mermaid for dynamic content
-                mermaid.init(undefined, dynamicDiv.querySelectorAll('.mermaid'));
-            }, 2000);
+                try {
+                    const newElements = dynamicDiv.querySelectorAll('.mermaid');
+                    console.log('Dynamic render - found elements:', newElements.length);
+                    if (mermaid.default.run) {
+                        await mermaid.default.run({ nodes: newElements });
+                    } else {
+                        mermaid.default.init(undefined, newElements);
+                    }
+                } catch (error) {
+                    console.error('Dynamic mermaid render error:', error);
+                }
+            }, 3000);
             
         } catch (e) {
             console.error('Mermaid loading error:', e);

@@ -141,9 +141,33 @@ function render(markdownText, textView) {
         
         // Trigger mermaid rendering after content is updated
         if (window.mermaid) {
-            setTimeout(() => {
-                mermaid.init(undefined, textView.querySelectorAll('.mermaid'));
-            }, 100);
+            setTimeout(async () => {
+                try {
+                    // For Mermaid v11+, use run() instead of init()
+                    // Clear any existing rendered content in mermaid elements first
+                    const mermaidElements = textView.querySelectorAll('.mermaid');
+                    console.log('Found mermaid elements:', mermaidElements.length);
+                    
+                    for (let element of mermaidElements) {
+                        // Clear any previous rendering
+                        element.removeAttribute('data-processed');
+                        element.innerHTML = element.textContent || element.innerText;
+                        console.log('Mermaid element content:', element.textContent);
+                    }
+                    
+                    // Use the new run() API for Mermaid v11+
+                    if (mermaid.run) {
+                        await mermaid.run({ nodes: mermaidElements });
+                        console.log('Mermaid rendering completed with run()');
+                    } else {
+                        // Fallback to init for older versions
+                        mermaid.init(undefined, mermaidElements);
+                        console.log('Mermaid rendering completed with init()');
+                    }
+                } catch (error) {
+                    console.error('Mermaid rendering error:', error);
+                }
+            }, 200);
         } else {
             console.log('Mermaid.js is not loaded');
         }
