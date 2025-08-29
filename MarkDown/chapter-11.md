@@ -1,6 +1,6 @@
 # 第11章 終わりに
 
-![第11章バナー](../Images/chapter-11-banner.svg)
+![第11章バナー](Images/chapter-11-banner.svg)
 
 ## 章の概要
 

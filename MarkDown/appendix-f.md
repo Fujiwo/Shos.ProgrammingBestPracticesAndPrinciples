@@ -1,6 +1,6 @@
 # 付録F 用語集
 
-![付録F バナー](../Images/banner-appendix-f.svg)
+![付録F バナー](Images/banner-appendix-f.svg)
 
 ## A
 

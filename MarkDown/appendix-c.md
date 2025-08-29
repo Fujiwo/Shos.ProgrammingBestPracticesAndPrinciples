@@ -1,6 +1,6 @@
 # 付録C リファクタリングパターン集
 
-![付録C バナー](../Images/banner-appendix-c.svg)
+![付録C バナー](Images/banner-appendix-c.svg)
 
 ## C.1 基本的なリファクタリングパターン
 

@@ -1,6 +1,6 @@
 # 第8章 実践的なコーディング手法
 
-![第8章バナー](../Images/chapter-08-banner.svg)
+![第8章バナー](Images/chapter-08-banner.svg)
 
 ## 章の概要
 
@@ -49,7 +49,7 @@
 
 例えば、次のような問題を考えてみよう:
 
-![キリンを冷蔵庫に](../Images/8.1.giraffe-refrigerator.png)
+![キリンを冷蔵庫に](Images/8.1.giraffe-refrigerator.png)
 >「キリンを冷蔵庫に入れるにはどうする?」<br>
 >(“How do you put a giraffe into a refrigerator?")
 

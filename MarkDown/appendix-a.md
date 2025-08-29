@@ -1,6 +1,6 @@
 # 付録A 美しいソースコードのための七箇条
 
-![付録A バナー](../Images/banner-appendix-a.svg)
+![付録A バナー](Images/banner-appendix-a.svg)
 
 ## A.1 第一箇条:意図を表現
 

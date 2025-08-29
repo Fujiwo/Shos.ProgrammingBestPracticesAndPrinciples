@@ -1,6 +1,6 @@
 # 第3章 モデリングとしてのプログラミング
 
-![第3章バナー](../Images/chapter-03-banner.svg)
+![第3章バナー](Images/chapter-03-banner.svg)
 
 ## 章の概要
 

@@ -1,6 +1,6 @@
 # 第5章 オブジェクト指向設計の真髄
 
-![第5章バナー](../Images/chapter-05-banner.svg)
+![第5章バナー](Images/chapter-05-banner.svg)
 
 ## 章の概要
 
@@ -23,7 +23,7 @@
 
 最初に、オブジェクト指向プログラミングの例を示したい。
 
-![ブロック崩しゲーム](../Images/5.breakout_game.png)
+![ブロック崩しゲーム](Images/5.breakout_game.png)
 - [純粋な JavaScript を使ったブロック崩しゲーム - ゲーム開発 | MDN (mozilla.org)](https://developer.mozilla.org/ja/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript)
   - https://developer.mozilla.org/ja/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript
 

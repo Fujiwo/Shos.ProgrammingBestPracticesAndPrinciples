@@ -1,6 +1,6 @@
 # 付録E 参考文献と出典
 
-![付録E バナー](../Images/banner-appendix-e.svg)
+![付録E バナー](Images/banner-appendix-e.svg)
 
 ## E.1 主要参考文献
 

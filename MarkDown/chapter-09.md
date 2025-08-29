@@ -1,6 +1,6 @@
 # 第9章 チーム開発における品質管理
 
-![第9章バナー](../Images/chapter-09-banner.svg)
+![第9章バナー](Images/chapter-09-banner.svg)
 
 ## 章の概要
 

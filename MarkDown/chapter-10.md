@@ -1,6 +1,6 @@
 # 第10章 現代的なプログラミング技術と将来展望
 
-![第10章バナー](../Images/chapter-10-banner.svg)
+![第10章バナー](Images/chapter-10-banner.svg)
 
 ## 章の概要
 
