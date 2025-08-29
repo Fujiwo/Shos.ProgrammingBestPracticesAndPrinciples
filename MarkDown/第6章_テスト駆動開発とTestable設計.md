@@ -588,7 +588,7 @@ public void validateAge_EquivalenceClasses() {
 
 ### 6.3.1 TDDの基本サイクル:Red-Green-Refactor
 
-テスト駆動開発は以下の3つのステップを繰り返す:
+テスト駆動開発は以下の三つのステップを繰り返す:
 
 1. **Red**:失敗するテストを書く
 2. **Green**:テストを通す最小限のコードを書く
@@ -811,7 +811,7 @@ public void Test1()
 [Test]
 public void Add_TwoPositiveIntegers_ReturnsCorrectSum()
 {
-    // Given: 電卓と2つの正の整数
+    // Given: 電卓と二つの正の整数
     var calculator = new Calculator();
     var firstNumber = 2;
     var secondNumber = 3;
