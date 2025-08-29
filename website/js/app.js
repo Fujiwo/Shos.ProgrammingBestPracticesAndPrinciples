@@ -10,7 +10,7 @@ function initializeApp() {
 }
 
 function pageNameToUrl(pageName) {
-    return `../MarkDown/${encodeURIComponent(pageName)}.md`
+    return `./MarkDown/${encodeURIComponent(pageName)}.md`
 }
 
 function loadTableOfContents() {
@@ -151,7 +151,17 @@ function loadPage(pageName) {
     
     // Load the markdown file
     renderMarkDown(pageNameToUrl(pageName), content);
+    changeImageSource(content, '../Images/', './Images/');
     currentPage = pageName;
+}
+
+function changeImageSource(content, oldImagePath, newImagePath) {
+    const images = content.querySelectorAll('img');
+    images.forEach(img => {
+        if (img.src === oldImagePath) {
+            img.src = newImagePath;
+        }
+    });
 }
 
 // Handle window resize to properly manage sidebar state

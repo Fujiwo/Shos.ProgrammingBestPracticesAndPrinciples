@@ -124,8 +124,15 @@ function render(markdownText, textView) {
                         ? marked.parse(processedMarkdown)
                         : simpleMarkdownToHtml(processedMarkdown)
         
-        console.log('html:', html);
-        textView.innerHTML = html;
+    // console.log('html:', html);
+
+    // NOTE: Markdown source files under `MarkDown/` must not be modified.
+    // We only adjust the generated HTML here so that links to images
+    // which previously used "../Images/..." (relative to the markdown file)
+    // now point to "./Images/..." (relative to the website folder)
+    // after the HTML is injected into the page.
+    const adjustedHtml = html.replace(/(\.{2}\/Images\/)/g, './Images/');
+    textView.innerHTML = adjustedHtml;
         
         // Hide "← 目次に戻る" links as requested in the issue
         hideTableOfContentsReturnLinks(textView);
