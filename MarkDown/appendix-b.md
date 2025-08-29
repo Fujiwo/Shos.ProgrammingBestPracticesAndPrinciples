@@ -1,6 +1,6 @@
 # 付録B 命名規則とコーディング規約例
 
-![付録B バナー](../Images/banner_付録B.svg)
+![付録B バナー](../Images/banner-appendix-b.svg)
 
 ## B.1 基本的な命名規則
 
@@ -760,4 +760,4 @@ public class CustomerService
 
 ---
 
-**[← 目次に戻る](目次.md)**
+**[← 目次に戻る](table-of-contents.md)**

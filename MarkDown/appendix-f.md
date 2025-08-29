@@ -1,6 +1,6 @@
 # 付録F 用語集
 
-![付録F バナー](../Images/banner_付録F_用語集.svg)
+![付録F バナー](../Images/banner-appendix-f.svg)
 
 ## A
 
@@ -335,4 +335,4 @@ C#における統合クエリ機能。コレクションやデータベースに
 
 ---
 
-**[← 目次に戻る](目次.md)**
+**[← 目次に戻る](table-of-contents.md)**

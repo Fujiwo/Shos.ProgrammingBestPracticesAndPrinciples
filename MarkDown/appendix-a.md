@@ -1,6 +1,6 @@
 # 付録A 美しいソースコードのための七箇条
 
-![付録A バナー](../Images/banner_付録A.svg)
+![付録A バナー](../Images/banner-appendix-a.svg)
 
 ## A.1 第一箇条:意図を表現
 
@@ -970,4 +970,4 @@ public class OrderService
 
 ---
 
-**[← 目次に戻る](目次.md)**
+**[← 目次に戻る](table-of-contents.md)**

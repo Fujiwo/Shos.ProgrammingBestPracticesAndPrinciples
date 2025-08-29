@@ -1,6 +1,6 @@
 # 付録C リファクタリングパターン集
 
-![付録C バナー](../Images/banner_付録C.svg)
+![付録C バナー](../Images/banner-appendix-c.svg)
 
 ## C.1 基本的なリファクタリングパターン
 
@@ -846,4 +846,4 @@ public class PriceCalculator
 
 ---
 
-**[← 目次に戻る](目次.md)**
+**[← 目次に戻る](table-of-contents.md)**

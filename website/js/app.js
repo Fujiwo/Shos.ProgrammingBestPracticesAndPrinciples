@@ -6,7 +6,7 @@ let currentPage = null;
 
 function initializeApp() {
     loadTableOfContents();
-    loadPage('第0章 はじめに');
+    loadPage('chapter-00');
 }
 
 function pageNameToUrl(pageName) {
@@ -15,7 +15,7 @@ function pageNameToUrl(pageName) {
 
 function loadTableOfContents() {
     // Load the table of contents markdown file for navigation
-    fetch(pageNameToUrl('目次'))
+    fetch(pageNameToUrl('table-of-contents'))
         .then(response => response.text())
         .then(content => {
             populateNavigation(content);
@@ -25,7 +25,7 @@ function loadTableOfContents() {
             // Clear active states
             const navLinks = document.querySelectorAll('.nav-content a');
             navLinks.forEach(link => link.classList.remove('active'));
-            currentPage = '目次';
+            currentPage = 'table-of-contents';
         })
         .catch(error => {
             console.error('Error loading table of contents:', error);
