@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mermaid Test</title>
+</head>
+<body>
+    <h1>Mermaid Test</h1>
+    
+    <h2>Direct Mermaid Test</h2>
+    <pre class="mermaid">
+classDiagram
+    class Controller {
+        +Command Command
+        +Model Model
+        +MouseDown(Point location)
+        +MouseUp(Point location)
+    }
+    class Command {
+        <<abstract>>
+        +OnDragStart(Model model, Point location)
+        +OnDragEnd(Model model, Point location)
+    }
+    class AddLineCommand {
+        +OnDragStart(Model model, Point location)
+        +OnDragEnd(Model model, Point location)
+    }
+    Controller --> Command
+    Command <|-- AddLineCommand
+    </pre>
+
+    <h2>Dynamic Content Test</h2>
+    <div id="dynamic-content"></div>
+
+    <script type="module">
+        try {
+            const mermaid = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+            console.log('Mermaid loaded:', mermaid);
+            const config = { 
+                startOnLoad: false,  // Set to false for manual control
+                theme: 'default',
+                securityLevel: 'loose',
+                themeVariables: {
+                    fontFamily: 'arial',
+                    fontSize: '12px'
+                }
+            };
+            mermaid.default.initialize(config);
+            window.mermaid = mermaid.default;
+            
+            // Initial render
+            setTimeout(async () => {
+                try {
+                    const elements = document.querySelectorAll('.mermaid');
+                    console.log('Initial render - found elements:', elements.length);
+                    if (mermaid.default.run) {
+                        await mermaid.default.run({ nodes: elements });
+                    } else {
+                        mermaid.default.init(undefined, elements);
+                    }
+                } catch (error) {
+                    console.error('Initial mermaid render error:', error);
+                }
+            }, 1000);
+            
+            // Test dynamic content
+            setTimeout(async () => {
+                const dynamicDiv = document.getElementById('dynamic-content');
+                dynamicDiv.innerHTML = `<pre class="mermaid">
+classDiagram
+    class Add2PointFigureCommand {
+        <<abstract>>
+        +OnDragStart(Model model, Point location)
+        +OnDragEnd(Model model, Point location)
+        #CreateFigure(Point point1, Point point2)
+    }
+    class AddLineCommand {
+        +CreateFigure(Point point1, Point point2)
+    }
+    class AddRectangleCommand {
+        +CreateFigure(Point point1, Point point2)
+    }
+    Add2PointFigureCommand <|-- AddLineCommand
+    Add2PointFigureCommand <|-- AddRectangleCommand
+</pre>`;
+                
+                // Re-initialize mermaid for dynamic content
+                try {
+                    const newElements = dynamicDiv.querySelectorAll('.mermaid');
+                    console.log('Dynamic render - found elements:', newElements.length);
+                    if (mermaid.default.run) {
+                        await mermaid.default.run({ nodes: newElements });
+                    } else {
+                        mermaid.default.init(undefined, newElements);
+                    }
+                } catch (error) {
+                    console.error('Dynamic mermaid render error:', error);
+                }
+            }, 3000);
+            
+        } catch (e) {
+            console.error('Mermaid loading error:', e);
+            document.body.innerHTML += '<p style="color: red;">Mermaid failed to load: ' + e.message + '</p>';
+        }
+    </script>
+</body>
+</html>

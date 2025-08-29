@@ -61,15 +61,48 @@
     <script type="module">
         try {
             const mermaid = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
-            const config = { startOnLoad: true }
+            const config = { 
+                startOnLoad: false,  // Set to false for manual control
+                theme: 'default',
+                securityLevel: 'loose',
+                flowchart: {
+                    useMaxWidth: true,
+                    htmlLabels: true
+                },
+                class: {
+                    useMaxWidth: true
+                }
+            }
             mermaid.default.initialize(config);
             window.mermaid = mermaid.default;
+            console.log('Mermaid initialized successfully');
         } catch (e) {
             console.log('Mermaid not available:', e);
             // Fallback: create a mock mermaid object
             window.mermaid = {
-                init: () => console.log('Mermaid init called (mock)'),
-                initialize: () => console.log('Mermaid initialize called (mock)')
+                init: (config, elements) => {
+                    console.log('Mermaid init called (mock)', elements ? elements.length : 0, 'elements');
+                    if (elements) {
+                        elements.forEach((el, i) => {
+                            el.innerHTML = `<div style="border: 2px solid red; padding: 10px; margin: 10px;">
+                                <strong>Mock Mermaid Diagram ${i + 1}</strong><br>
+                                <pre style="background: #f0f0f0; padding: 5px;">${el.textContent}</pre>
+                            </div>`;
+                        });
+                    }
+                },
+                run: async (options) => {
+                    console.log('Mermaid run called (mock)', options?.nodes ? options.nodes.length : 0, 'elements');
+                    if (options?.nodes) {
+                        options.nodes.forEach((el, i) => {
+                            el.innerHTML = `<div style="border: 2px solid blue; padding: 10px; margin: 10px;">
+                                <strong>Mock Mermaid Diagram (run) ${i + 1}</strong><br>
+                                <pre style="background: #f0f0f0; padding: 5px;">${el.textContent}</pre>
+                            </div>`;
+                        });
+                    }
+                },
+                initialize: (config) => console.log('Mermaid initialize called (mock)', config)
             };
         }
     </script>
