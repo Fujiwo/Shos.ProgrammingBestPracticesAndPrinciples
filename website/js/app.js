@@ -11,7 +11,7 @@ function initializeApp() {
 
 function loadTableOfContents() {
     // Load the table of contents markdown file for navigation
-    fetch('/MarkDown/目次.md')
+    fetch('../MarkDown/目次.md')
         .then(response => response.text())
         .then(content => {
             populateNavigation(content);
@@ -76,7 +76,7 @@ function loadPage(pageName) {
     content.innerHTML = '<div class="loading">読み込み中...</div>';
     
     // Load the markdown file
-    renderMarkDown(`/MarkDown/${pageName}.md`, content);
+    renderMarkDown(`../MarkDown/${pageName}.md`, content);
     currentPage = pageName;
 }
 
