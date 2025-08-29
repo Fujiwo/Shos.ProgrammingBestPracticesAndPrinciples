@@ -1,6 +1,6 @@
 # 第6章 テスト駆動開発とTestable設計
 
-![第6章バナー](Images/chapter-06-banner.svg)
+![第6章バナー](../website/Images/chapter-06-banner.svg)
 
 ## 章の概要
 

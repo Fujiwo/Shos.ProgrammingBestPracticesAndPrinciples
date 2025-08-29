@@ -1,6 +1,6 @@
 # 付録D 新人プログラマーのための「コーディングの心得」Q&A
 
-![付録D バナー](Images/banner-appendix-d.svg)
+![付録D バナー](../website/Images/banner-appendix-d.svg)
 
 新人プログラマーからの素朴な質問に答えてみる。
 

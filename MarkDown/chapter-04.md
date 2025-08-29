@@ -1,6 +1,6 @@
 # 第4章 マルチパラダイムプログラミング
 
-![第4章バナー](Images/chapter-04-banner.svg)
+![第4章バナー](../website/Images/chapter-04-banner.svg)
 
 ## 章の概要
 

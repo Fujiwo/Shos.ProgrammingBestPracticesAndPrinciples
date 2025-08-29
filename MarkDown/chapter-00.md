@@ -1,6 +1,6 @@
 # 第0章 はじめに
 
-![第0章バナー](Images/chapter-00-banner.svg)
+![第0章バナー](../website/Images/chapter-00-banner.svg)
 
 ## なぜあなたのコードは6ヶ月後に読めなくなるのか?
 
@@ -272,7 +272,7 @@ AI時代のプログラマーには、以下のスキルが重要になる:
 
 ### 筆者
 
-![筆者](Images/fujiwo.2018-03-07.jpg "筆者")
+![筆者](../website/Images/fujiwo.2018-03-07.jpg "筆者")
 小島 富治雄
 
 ソフトウェア開発エンジニアです。

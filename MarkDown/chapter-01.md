@@ -1,6 +1,6 @@
 # 第1章 美しいソースコードの基本原則
 
-![第1章バナー](Images/chapter-01-banner.svg)
+![第1章バナー](../Images/chapter-01-banner.svg)
 
 ## 章の概要
 
@@ -1333,7 +1333,7 @@ public class AdvancedCustomerService
 
 「分かる」という作業自体の最後の部分は、本人にしかできない。正解を告げれば分かれる訳ではない。正解を覚えるのと分かるのは別のことである。
 
-![「馬を水辺に連れて行くことはできても、水を飲ませることはできない」("You can lead a horse to water, but you can't make him drink.")](Images/1.6.horse.png)
+![「馬を水辺に連れて行くことはできても、水を飲ませることはできない」("You can lead a horse to water, but you can't make him drink.")](../Images/1.6.horse.png)
 **「馬を水辺に連れて行くことはできても、水を飲ませることはできない」("You can lead a horse to water, but you can't make him drink.")**
 
 例えば、見聞きしたことをその儘言えたとしても「理解している」とは限らない。説明を記憶することと理解することは割と別のことだと思う。オウムがオウム返しできても理解できてる訳ではない。オウム返しで理解したかどうかは検証できない。
@@ -1344,7 +1344,7 @@ public class AdvancedCustomerService
 
 開発者に必要な学習は、正解を知ること、テキストに書いてある正解を覚えること、ではない。問題を見つけて、その問題を解くこと、であろう。
 
-![「魚を与えるのではなく、釣り方を教えよ」](Images/1.6.fishing.png)
+![「魚を与えるのではなく、釣り方を教えよ」](../Images/1.6.fishing.png)
 **「授人以魚 不如授人以漁」by 老子(「魚を与えるのではなく、釣り方を教えよ」、Give me a fish and I will eat today; teach me to fish and I will eat all my life.)**
 
 #### 問題を「分かる」

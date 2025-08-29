@@ -1,6 +1,6 @@
 # 第7章 リファクタリングと継続的品質改善
 
-![第7章バナー](Images/chapter-07-banner.svg)
+![第7章バナー](../website/Images/chapter-07-banner.svg)
 
 ## 章の概要
 
@@ -52,7 +52,7 @@ public class Controller
 ```
 
 これでマウスのドラッグで線分を追加していくことができる。
-![MiniCad](Images/7.minicad.1.png)
+![MiniCad](../website/Images/7.minicad.1.png)
 
 では、次に他の図形として、矩形も追加できるようにし、さらに図形の選択もできるようにしてみよう:
 
@@ -98,7 +98,7 @@ public class Controller
 }
 ```
 
-![MiniCad](Images/7.minicad.2.png)
+![MiniCad](../website/Images/7.minicad.2.png)
 
 いい感じだ。しかし、これからどんどんコマンド(処理)の種類が増えていくと、コードの複雑化が起きそうである。複雑化しそうなswitch - caseが二つもあるし、一部のコマンドでしか使用しないフィールドfirstPointがあるのも気持ち悪い。
 
@@ -275,7 +275,7 @@ public class AddEllipseCommand : Add2PointFigureCommand
 }
 ```
 
-![MiniCad](Images/7.minicad.3.png)
+![MiniCad](../website/Images/7.minicad.3.png)
 
 ---
 
