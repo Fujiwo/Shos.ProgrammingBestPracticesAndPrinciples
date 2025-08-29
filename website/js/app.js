@@ -9,9 +9,13 @@ function initializeApp() {
     loadPage('第0章 はじめに');
 }
 
+function pageNameToUrl(pageName) {
+    return `../MarkDown/${encodeURIComponent(pageName)}.md`
+}
+
 function loadTableOfContents() {
     // Load the table of contents markdown file for navigation
-    fetch('../MarkDown/目次.md')
+    fetch(pageNameToUrl('目次'))
         .then(response => response.text())
         .then(content => {
             populateNavigation(content);
@@ -76,7 +80,7 @@ function loadPage(pageName) {
     content.innerHTML = '<div class="loading">読み込み中...</div>';
     
     // Load the markdown file
-    renderMarkDown(`../MarkDown/${pageName}.md`, content);
+    renderMarkDown(pageNameToUrl(pageName), content);
     currentPage = pageName;
 }
 
