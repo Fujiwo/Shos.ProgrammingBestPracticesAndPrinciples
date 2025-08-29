@@ -312,6 +312,11 @@ body {
 
 /* Responsive design */
 @media (max-width: 768px) {
+    /* Show mobile hamburger button */
+    .mobile-menu-btn {
+        display: flex !important;
+    }
+    
     /* Base layout adjustments */
     .container {
         flex-direction: column;
@@ -359,11 +364,15 @@ body {
         color: white;
         position: sticky;
         top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     
     .nav-header h3 {
         color: white;
         font-size: 1.1rem;
+        margin: 0;
     }
     
     .toggle-btn {
@@ -372,7 +381,9 @@ body {
         font-size: 1.3rem;
         padding: 0.5rem;
         background: rgba(255,255,255,0.1);
+        border: none;
         border-radius: 4px;
+        cursor: pointer;
     }
     
     .toggle-btn:hover {
@@ -391,12 +402,26 @@ body {
         font-size: 0.95rem;
         border-radius: 6px;
         margin-bottom: 0.25rem;
+        display: block;
+        color: #333;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+    }
+    
+    .nav-content a:hover {
+        background-color: #f0f0f0;
+    }
+    
+    .nav-content a.active {
+        background-color: #667eea;
+        color: white;
     }
     
     /* Main content adjustments */
     .main-content {
         padding: 0.75rem;
         margin-top: 0;
+        width: 100%;
     }
     
     .content {
@@ -610,4 +635,57 @@ body {
 .mobile-overlay.active {
     display: block;
     opacity: 1;
+}
+
+/* Mobile hamburger menu button */
+.mobile-menu-btn {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 500;
+    background: #667eea;
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    width: 48px;
+    height: 48px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.mobile-menu-btn:hover {
+    background: #5a6fd8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu-btn:active {
+    transform: translateY(0);
+}
+
+.hamburger-line {
+    width: 20px;
+    height: 2px;
+    background: white;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+}
+
+/* Mobile hamburger button animation when sidebar is open */
+.sidebar.open ~ .main-content .mobile-menu-btn .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.sidebar.open ~ .main-content .mobile-menu-btn .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.sidebar.open ~ .main-content .mobile-menu-btn .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
 }
