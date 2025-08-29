@@ -62,8 +62,14 @@ function populateNavigation(markdownContent) {
     navContent.innerHTML = navHtml;
 }
 
+// Close sidebar when clicking on navigation links on mobile
 function loadPage(pageName) {
     const content = document.getElementById('content');
+    
+    // Close sidebar on mobile after selecting a page
+    if (window.innerWidth <= 768) {
+        closeSidebar();
+    }
     
     // Update active navigation
     const navLinks = document.querySelectorAll('.nav-content a');
@@ -86,5 +92,73 @@ function loadPage(pageName) {
 
 function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
-    sidebar.classList.toggle('open');
+    const overlay = document.getElementById('mobile-overlay');
+    const isOpen = sidebar.classList.contains('open');
+    
+    if (isOpen) {
+        closeSidebar();
+    } else {
+        openSidebar();
+    }
 }
+
+function openSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('mobile-overlay');
+    
+    sidebar.classList.add('open');
+    overlay.classList.add('active');
+    
+    // Prevent body scrolling when sidebar is open on mobile
+    if (window.innerWidth <= 768) {
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('mobile-overlay');
+    
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+    
+    // Restore body scrolling
+    document.body.style.overflow = '';
+}
+
+// Close sidebar when clicking on navigation links on mobile
+function loadPage(pageName) {
+    const content = document.getElementById('content');
+    
+    // Close sidebar on mobile after selecting a page
+    if (window.innerWidth <= 768) {
+        closeSidebar();
+    }
+    
+    // Update active navigation
+    const navLinks = document.querySelectorAll('.nav-content a');
+    navLinks.forEach(link => link.classList.remove('active'));
+    
+    // Find and activate the current page link
+    navLinks.forEach(link => {
+        if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(pageName)) {
+            link.classList.add('active');
+        }
+    });
+    
+    // Show loading state
+    content.innerHTML = '<div class="loading">読み込み中...</div>';
+    
+    // Load the markdown file
+    renderMarkDown(pageNameToUrl(pageName), content);
+    currentPage = pageName;
+}
+
+// Handle window resize to properly manage sidebar state
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+        // Reset mobile-specific styles when switching to desktop
+        closeSidebar();
+        document.body.style.overflow = '';
+    }
+});
