@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bookSpine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.9" />
+    </linearGradient>
+    <radialGradient id="knowledgeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:0" />
+    </radialGradient>
+    <linearGradient id="paperGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="200" fill="url(#bg)"/>
+  
+  <!-- Central library/bookshelf -->
+  <g transform="translate(400, 100)">
+    <!-- Knowledge aura -->
+    <ellipse cx="0" cy="0" rx="150" ry="60" fill="url(#knowledgeGlow)"/>
+    
+    <!-- Main book collection -->
+    <g id="books">
+      <!-- Book 1 - tallest (center-left) -->
+      <g transform="translate(-40, 0)">
+        <rect x="-8" y="-50" width="16" height="100" fill="url(#bookSpine)" rx="2"/>
+        <rect x="-6" y="-45" width="12" height="90" fill="#1e293b" opacity="0.7" rx="1"/>
+        <rect x="-5" y="-40" width="10" height="80" fill="url(#paperGradient)" rx="1"/>
+        <!-- Book spine details -->
+        <line x1="-6" y1="-30" x2="6" y2="-30" stroke="#64748b" stroke-width="0.5"/>
+        <line x1="-6" y1="0" x2="6" y2="0" stroke="#64748b" stroke-width="0.5"/>
+        <line x1="-6" y1="30" x2="6" y2="30" stroke="#64748b" stroke-width="0.5"/>
+      </g>
+      
+      <!-- Book 2 - medium (center) -->
+      <g transform="translate(0, 15)">
+        <rect x="-8" y="-40" width="16" height="80" fill="#10b981" opacity="0.9" rx="2"/>
+        <rect x="-6" y="-35" width="12" height="70" fill="#1e293b" opacity="0.7" rx="1"/>
+        <rect x="-5" y="-30" width="10" height="60" fill="url(#paperGradient)" rx="1"/>
+        <!-- Book spine details -->
+        <line x1="-6" y1="-20" x2="6" y2="-20" stroke="#64748b" stroke-width="0.5"/>
+        <line x1="-6" y1="10" x2="6" y2="10" stroke="#64748b" stroke-width="0.5"/>
+      </g>
+      
+      <!-- Book 3 - short (center-right) -->
+      <g transform="translate(40, 25)">
+        <rect x="-8" y="-35" width="16" height="70" fill="#fbbf24" opacity="0.9" rx="2"/>
+        <rect x="-6" y="-30" width="12" height="60" fill="#1e293b" opacity="0.7" rx="1"/>
+        <rect x="-5" y="-25" width="10" height="50" fill="url(#paperGradient)" rx="1"/>
+        <!-- Book spine details -->
+        <line x1="-6" y1="-15" x2="6" y2="-15" stroke="#64748b" stroke-width="0.5"/>
+        <line x1="-6" y1="5" x2="6" y2="5" stroke="#64748b" stroke-width="0.5"/>
+      </g>
+      
+      <!-- Book 4 - thin (far left) -->
+      <g transform="translate(-80, 10)">
+        <rect x="-5" y="-40" width="10" height="80" fill="#ef4444" opacity="0.8" rx="2"/>
+        <rect x="-3" y="-35" width="6" height="70" fill="#1e293b" opacity="0.7" rx="1"/>
+        <rect x="-2" y="-30" width="4" height="60" fill="url(#paperGradient)" rx="1"/>
+      </g>
+      
+      <!-- Book 5 - thin (far right) -->
+      <g transform="translate(80, 5)">
+        <rect x="-5" y="-45" width="10" height="90" fill="#8b5cf6" opacity="0.8" rx="2"/>
+        <rect x="-3" y="-40" width="6" height="80" fill="#1e293b" opacity="0.7" rx="1"/>
+        <rect x="-2" y="-35" width="4" height="70" fill="url(#paperGradient)" rx="1"/>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Academic/research symbols -->
+  <g opacity="0.7">
+    <!-- Left side - Research papers -->
+    <g transform="translate(150, 70)">
+      <!-- Stack of papers -->
+      <rect x="-15" y="-10" width="30" height="20" fill="url(#paperGradient)" rx="2"/>
+      <rect x="-13" y="-12" width="26" height="18" fill="#f1f5f9" opacity="0.8" rx="2"/>
+      <rect x="-11" y="-14" width="22" height="16" fill="#e2e8f0" opacity="0.8" rx="2"/>
+      
+      <!-- Paper content lines -->
+      <g stroke="#64748b" stroke-width="0.5" opacity="0.6">
+        <line x1="-8" y1="-8" x2="8" y2="-8"/>
+        <line x1="-8" y1="-4" x2="5" y2="-4"/>
+        <line x1="-8" y1="0" x2="6" y2="0"/>
+        <line x1="-8" y1="4" x2="3" y2="4"/>
+      </g>
+    </g>
+    
+    <!-- Right side - Research papers -->
+    <g transform="translate(650, 130)">
+      <!-- Stack of papers -->
+      <rect x="-15" y="-10" width="30" height="20" fill="url(#paperGradient)" rx="2"/>
+      <rect x="-13" y="-12" width="26" height="18" fill="#f1f5f9" opacity="0.8" rx="2"/>
+      <rect x="-11" y="-14" width="22" height="16" fill="#e2e8f0" opacity="0.8" rx="2"/>
+      
+      <!-- Paper content lines -->
+      <g stroke="#64748b" stroke-width="0.5" opacity="0.6">
+        <line x1="-8" y1="-8" x2="8" y2="-8"/>
+        <line x1="-8" y1="-4" x2="5" y2="-4"/>
+        <line x1="-8" y1="0" x2="6" y2="0"/>
+        <line x1="-8" y1="4" x2="3" y2="4"/>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Citation/reference symbols -->
+  <g opacity="0.6">
+    <!-- Citation marks -->
+    <g transform="translate(250, 50)">
+      <text x="0" y="0" text-anchor="middle" fill="#06b6d4" font-size="20" font-family="serif">"</text>
+      <text x="15" y="0" text-anchor="middle" fill="#06b6d4" font-size="20" font-family="serif">"</text>
+    </g>
+    
+    <g transform="translate(550, 150)">
+      <text x="0" y="0" text-anchor="middle" fill="#06b6d4" font-size="20" font-family="serif">"</text>
+      <text x="15" y="0" text-anchor="middle" fill="#06b6d4" font-size="20" font-family="serif">"</text>
+    </g>
+    
+    <!-- Reference numbers -->
+    <g transform="translate(200, 120)">
+      <circle r="8" fill="#8b5cf6" opacity="0.8"/>
+      <text x="0" y="3" text-anchor="middle" fill="#ffffff" font-size="10" font-family="Arial">1</text>
+    </g>
+    
+    <g transform="translate(600, 80)">
+      <circle r="8" fill="#8b5cf6" opacity="0.8"/>
+      <text x="0" y="3" text-anchor="middle" fill="#ffffff" font-size="10" font-family="Arial">2</text>
+    </g>
+    
+    <g transform="translate(300, 170)">
+      <circle r="8" fill="#8b5cf6" opacity="0.8"/>
+      <text x="0" y="3" text-anchor="middle" fill="#ffffff" font-size="10" font-family="Arial">3</text>
+    </g>
+  </g>
+  
+  <!-- Knowledge flow lines -->
+  <g stroke="#8b5cf6" stroke-width="1.5" fill="none" opacity="0.3">
+    <!-- Top knowledge flow -->
+    <path d="M100 60 Q200 40 300 60 Q350 70 400 60 Q450 70 500 60 Q600 40 700 60"/>
+    
+    <!-- Bottom knowledge flow -->
+    <path d="M100 140 Q200 160 300 140 Q350 130 400 140 Q450 130 500 140 Q600 160 700 140"/>
+    
+    <!-- Connecting references to central knowledge -->
+    <path d="M250 50 Q325 75 400 60"/>
+    <path d="M550 150 Q475 125 400 140"/>
+  </g>
+  
+  <!-- Academic symbols at corners -->
+  <g opacity="0.5">
+    <!-- Top left - University/Academy -->
+    <g transform="translate(80, 50)">
+      <polygon points="0,-8 8,0 0,8 -8,0" fill="#10b981"/>
+      <rect x="-6" y="-6" width="12" height="12" fill="none" stroke="#10b981" stroke-width="1"/>
+    </g>
+    
+    <!-- Top right - Knowledge tree -->
+    <g transform="translate(720, 50)">
+      <circle cx="0" cy="0" r="6" fill="#fbbf24" opacity="0.4"/>
+      <line x1="0" y1="6" x2="0" y2="12" stroke="#10b981" stroke-width="2"/>
+      <circle cx="-3" cy="3" r="2" fill="#10b981"/>
+      <circle cx="3" cy="3" r="2" fill="#10b981"/>
+    </g>
+    
+    <!-- Bottom left - Research -->
+    <g transform="translate(80, 150)">
+      <circle cx="0" cy="0" r="8" fill="#06b6d4" opacity="0.4"/>
+      <circle cx="0" cy="0" r="4" fill="#06b6d4"/>
+      <circle cx="0" cy="0" r="12" fill="none" stroke="#06b6d4" stroke-width="1"/>
+    </g>
+    
+    <!-- Bottom right - Bibliography -->
+    <g transform="translate(720, 150)">
+      <rect x="-6" y="-6" width="12" height="12" fill="#8b5cf6" opacity="0.4" rx="2"/>
+      <rect x="-4" y="-4" width="8" height="8" fill="none" stroke="#8b5cf6" stroke-width="1" rx="1"/>
+    </g>
+  </g>
+</svg>
