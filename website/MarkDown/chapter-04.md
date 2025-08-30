@@ -1399,8 +1399,8 @@ public class ValidationService
            ? "Email is required"
            : !IsValidEmail(email) ? "Email format is invalid" : null;
     
-    private string? ValidateAge(int age) =>
-        age < 18 ? "User must be at least 18 years old" : null;
+    private string? ValidateAge(int age)
+        => age < 18 ? "User must be at least 18 years old" : null;
 }
 ```
 
