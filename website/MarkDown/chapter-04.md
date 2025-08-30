@@ -1180,35 +1180,27 @@ var finalPrice = calculateFinalPrice(100m);  // (100 * 0.9) * 1.2 = 108
 
 #### 文から式へのシフト:C#における関数型パラダイムの進化
 
-関数型プログラミングの核心的な特徴の一つは、**文(Statement)ではなく式(Expression)で記述する**ことである。この概念は、C#の進化とともに段階的に取り入れられ、現代的なC#プログラミングでは重要な設計原則となっている。
+関数型プログラミングでは、処理を「文(statement)」の連続としてではなく、値を評価する「式(expression)」として記述することが基本的な考え方である。式は評価することで値を返すため、関数の合成やパイプライン処理が自然になり、副作用を局所化しやすくなる。
 
-##### 文と式の違い
-
-**文(Statement)**は「何かを実行する」ための記述であり、**式(Expression)**は「値を生成する」ための記述である。
-
-_[C#]_
-```csharp
-// 文(Statement): 実行するが値を返さない
-if (customer.IsVip)
-{
-    discount = 0.2m;
-}
-else
-{
-    discount = 0.1m;
-}
-
-// 式(Expression): 値を返す
-var discount = customer.IsVip ? 0.2m : 0.1m;
-```
+この概念は、C#の進化とともに段階的に取り入れられ、現代的なC#プログラミングでは重要な設計原則となっている。
 
 ##### 式指向プログラミングの利点
 
-1. **不変性の促進**: 式は値を生成するため、変数の再代入が不要
-2. **合成可能性**: 式は他の式と組み合わせやすい
-3. **予測可能性**: 副作用が少なく、結果が予測しやすい
-4. **簡潔性**: 冗長なコードが削減される
-5. **テスタビリティ**: 純粋な計算として扱いやすい
+| | |
+|---------------------------|------------------------------------------------------------|
+| 意図が明確になる          | 式は何を返すかを直接示すため、コードの意図が読み取りやすい |
+| テストしやすい            | 副作用の少ない式は単体で評価でき、テストが容易になる       |
+| 合成しやすい    		    | 式は値を返すので関数合成やLINQのチェーンなどで扱いやすい   |
+| 制御フローが値として扱える| 条件や分岐を値として扱うことで、より宣言的に書ける         |
+| 簡潔性                    | 冗長なコードが削減される                                   |
+| 不変性の促進              | 式は値を生成するため、変数の再代入が不要                   |
+| 予測可能性                | 副作用が少なく、結果が予測しやすい                         |
+
+
+##### 文と式の違い
+
+**文(Statement)** は「何かを実行する」ための記述であり、**式(Expression)** は「値を生成する」ための記述である。
+具体例(ラムダ式、switch 式、式ボディ):
 
 ##### C#における式指向の進化
 
@@ -1224,65 +1216,61 @@ C#は段階的に関数型プログラミングの要素を取り入れ、文か
 | **C# 10.0** | global using | グローバルな式の簡潔化 |
 | **C# 11.0** | 生の文字列リテラル | `"""多行文字列"""` |
 
+_[C#]_
+```csharp
+// ラムダ式:式としての関数定義
+Func<decimal, decimal> applyTax = amount => amount * 1.1m;
+
+// switch 式:値を返す式としての分岐
+static string Describe(int score) => score switch {
+    >= 90 => "Excellent",
+    >= 75 => "Good"     ,
+    >= 60 => "Pass"     ,
+    _     => "Fail"
+};
+
+// 式ボディを使ったメソッドとプロパティ
+public static decimal CalculateTotal(IEnumerable<OrderItem> items)
+    => items.Sum(item => item.Price * item.Quantity);
+
+// プロパティも式で記述
+public decimal Tax => Subtotal * 0.1m;
+```
+
 ##### 実践例:文指向から式指向への変換
+
+文ベースと式ベースの比較例:
 
 **1. 条件分岐の式化**
 
 _[従来の文指向アプローチ]_
+_[C#]_
 ```csharp
-public class OrderProcessor
+// 文ベース:明示的な命令と副作用を含む実装
+public decimal ComputeDiscountStatement(Order order)
 {
-    public decimal CalculateShippingCost(Order order)
-    {
-        decimal cost;
-        
-        if (order.TotalAmount >= 100m)
-        {
-            cost = 0m;  // 無料配送
-        }
-        else if (order.Weight <= 1.0)
-        {
-            cost = 5m;  // 軽量商品
-        }
-        else if (order.Weight <= 5.0)
-        {
-            cost = 10m; // 標準商品
-        }
-        else
-        {
-            cost = 20m; // 重量商品
-        }
-        
-        if (order.IsExpress)
-        {
-            cost += 15m; // 特急料金
-        }
-        
-        return cost;
-    }
+    decimal discount = 0m;
+    if (order.Total > 1000)
+        discount = 0.05m;
+    else
+        discount = 0m;
+
+    // 副作用:ログ書き込み
+    File.AppendAllText("discount.log", $"Order:{order.Id} Discount:{discount}\n");
+    return order.Total * discount;
 }
 ```
 
 _[現代的な式指向アプローチ]_
+_[C#]_
 ```csharp
-public class OrderProcessor
-{
-    public decimal CalculateShippingCost(Order order) =>
-        GetBaseShippingCost(order) + GetExpressFee(order);
-    
-    private decimal GetBaseShippingCost(Order order) =>
-        order.TotalAmount >= 100m ? 0m :
-        order.Weight <= 1.0 ? 5m :
-        order.Weight <= 5.0 ? 10m : 20m;
-    
-    // C# 8.0 switch式を使用
-    private decimal GetExpressFee(Order order) =>
-        order.IsExpress switch
-        {
-            true => 15m,
-            false => 0m
-        };
-}
+// 式ベース:副作用を排し、値を返すことに集中した実装
+public decimal ComputeDiscountExpression(Order order)
+    => (order.Total, order.Customer.Type) switch {
+        ( > 1000, _                   ) => order.Total * 0.05m,
+        (_      , CustomerType.Premium) => order.Total * 0.10m,
+        _                               => 0m
+    };
 ```
 
 **2. データ変換の式化**
@@ -1295,33 +1283,28 @@ public class CustomerDataProcessor
     {
         var summaries = new List<CustomerSummary>();
         
-        foreach (var customer in customers)
-        {
-            if (customer.IsActive && customer.Orders.Count > 0)
-            {
+        foreach (var customer in customers) {
+            if (customer.IsActive && customer.Orders.Count > 0) {
                 var totalSpent = 0m;
-                foreach (var order in customer.Orders)
-                {
+                foreach (var order in customer.Orders) {
                     if (order.Status == OrderStatus.Completed)
-                    {
                         totalSpent += order.Total;
-                    }
                 }
                 
-                var summary = new CustomerSummary
-                {
-                    Id = customer.Id,
-                    Name = customer.Name,
+                var summary = new CustomerSummary {
+                    Id         = customer.Id,
+                    Name       = customer.Name,
                     TotalSpent = totalSpent,
                     OrderCount = customer.Orders.Count(o => o.Status == OrderStatus.Completed),
-                    Tier = totalSpent >= 1000m ? "Gold" : 
-                           totalSpent >= 500m ? "Silver" : "Bronze"
+                    Tier       = totalSpent >= 1000m
+                                 ? "Gold"
+                                 : totalSpent >= 500m ? "Silver" : "Bronze"
                 };
                 
                 summaries.Add(summary);
             }
         }
-        
+
         return summaries;
     }
 }
@@ -1331,35 +1314,32 @@ _[現代的な式指向アプローチ]_
 ```csharp
 public class CustomerDataProcessor
 {
-    public IEnumerable<CustomerSummary> ProcessCustomers(IEnumerable<Customer> customers) =>
-        customers
-            .Where(customer => customer.IsActive && customer.Orders.Any())
-            .Select(CreateCustomerSummary);
+    public IEnumerable<CustomerSummary> ProcessCustomers(IEnumerable<Customer> customers)
+        => customers.Where(customer => customer.IsActive && customer.Orders.Any())
+                    .Select(CreateCustomerSummary);
     
-    private CustomerSummary CreateCustomerSummary(Customer customer) =>
-        new CustomerSummary
-        {
-            Id = customer.Id,
-            Name = customer.Name,
-            TotalSpent = CalculateTotalSpent(customer),
-            OrderCount = customer.Orders.Count(IsCompletedOrder),
-            Tier = DetermineTier(CalculateTotalSpent(customer))
+    private CustomerSummary CreateCustomerSummary(Customer customer)
+        => new CustomerSummary {
+            Id         = customer.Id                                ,
+            Name       = customer.Name                              ,
+            TotalSpent = CalculateTotalSpent(customer)              ,
+            OrderCount = customer.Orders.Count(IsCompletedOrder)    ,
+            Tier       = DetermineTier(CalculateTotalSpent(customer))
         };
     
-    private decimal CalculateTotalSpent(Customer customer) =>
-        customer.Orders
-            .Where(IsCompletedOrder)
-            .Sum(order => order.Total);
+    private decimal CalculateTotalSpent(Customer customer)
+        => customer.Orders
+                   .Where(IsCompletedOrder)
+                   .Sum(order => order.Total);
     
-    private static bool IsCompletedOrder(Order order) =>
-        order.Status == OrderStatus.Completed;
+    private static bool IsCompletedOrder(Order order)
+        => order.Status == OrderStatus.Completed;
     
-    private static string DetermineTier(decimal totalSpent) =>
-        totalSpent switch
-        {
-            >= 1000m => "Gold",
-            >= 500m => "Silver",
-            _ => "Bronze"
+    private static string DetermineTier(decimal totalSpent)
+        => totalSpent switch {
+            >= 1000m => "Gold"  ,
+            >= 500m  => "Silver",
+            _        => "Bronze"
         };
 }
 ```
@@ -1375,32 +1355,20 @@ public class ValidationService
         var errors = new List<string>();
         
         if (string.IsNullOrEmpty(user.Name))
-        {
             errors.Add("Name is required");
-        }
         
         if (string.IsNullOrEmpty(user.Email))
-        {
             errors.Add("Email is required");
-        }
         else if (!IsValidEmail(user.Email))
-        {
             errors.Add("Email format is invalid");
-        }
         
         if (user.Age < 18)
-        {
             errors.Add("User must be at least 18 years old");
-        }
         
         if (errors.Count > 0)
-        {
             return ValidationResult.Failed(errors);
-        }
         else
-        {
             return ValidationResult.Success();
-        }
     }
 }
 ```
@@ -1409,29 +1377,27 @@ _[現代的な式指向アプローチ]_
 ```csharp
 public class ValidationService
 {
-    public ValidationResult ValidateUser(User user) =>
-        CollectValidationErrors(user) switch
-        {
-            var errors when errors.Any() => ValidationResult.Failed(errors),
-            _ => ValidationResult.Success()
-        };
+    public ValidationResult ValidateUser(User user)
+        => CollectValidationErrors(user) switch {
+               var errors when errors.Any() => ValidationResult.Failed(errors),
+               _                            => ValidationResult.Success()
+           };
     
-    private IEnumerable<string> CollectValidationErrors(User user) =>
-        new[]
-        {
-            ValidateName(user.Name),
+    private IEnumerable<string> CollectValidationErrors(User user)
+        => new[] {
+            ValidateName (user.Name ),
             ValidateEmail(user.Email),
-            ValidateAge(user.Age)
-        }
-        .Where(error => error != null)
-        .Cast<string>();
+            ValidateAge  (user.Age  )
+        }.Where(error => error != null)
+         .Cast<string>();
     
-    private string? ValidateName(string name) =>
-        string.IsNullOrEmpty(name) ? "Name is required" : null;
+    private string? ValidateName(string name)
+        => string.IsNullOrEmpty(name) ? "Name is required" : null;
     
-    private string? ValidateEmail(string email) =>
-        string.IsNullOrEmpty(email) ? "Email is required" :
-        !IsValidEmail(email) ? "Email format is invalid" : null;
+    private string? ValidateEmail(string email)
+        => string.IsNullOrEmpty(email)
+           ? "Email is required"
+           : !IsValidEmail(email) ? "Email format is invalid" : null;
     
     private string? ValidateAge(int age) =>
         age < 18 ? "User must be at least 18 years old" : null;
