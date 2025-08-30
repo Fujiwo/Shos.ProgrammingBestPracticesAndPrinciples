@@ -191,10 +191,9 @@ website/                         # Webサイト版（完成済み）
 - [X (Twitter)](https://x.com/Fujiwo)
 - [Instagram](https://www.instagram.com/fujiwo/)
 
-## ライセンス
+## 著作権表示
 
-本書は著者の思想と実践に基づいており、参考資料の出典を適切に明記しています。
-詳細については、[LICENSE](LICENSE) ファイルをご確認ください。
+Copyright (c) 2025 Fujio Kojima
 
 ## 最終更新情報
 
